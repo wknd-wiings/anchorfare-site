@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="data:," />
+    <title>AnchorFare — Cruise Deal Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,600&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0a2242;
+        --navy-deep: #061830;
+        --navy-soft: #123058;
+        --cream: #f6efdc;
+        --paper: #fffdf4;
+        --ink: #1c2a3d;
+        --ink-soft: #48566a;
+        --coral: #d95a41;
+        --coral-deep: #b8432c;
+        --coral-light: #f0836a;
+        --gold: #c19a3d;
+        --gold-soft: #e3cd8f;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .serif { font-family: "Playfair Display", Georgia, serif; }
+
+      /* ---------- Header ---------- */
+      header.masthead {
+        background: linear-gradient(180deg, var(--navy-soft) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+        color: var(--cream);
+        padding: 26px 18px 22px;
+        text-align: center;
+        border-bottom: 3px solid var(--gold);
+        position: relative;
+      }
+      header.masthead::after {
+        content: "";
+        position: absolute; left: 0; right: 0; bottom: 5px;
+        border-bottom: 1px solid rgba(193,154,61,.55);
+      }
+      .brand {
+        display: flex; align-items: center; justify-content: center; gap: 14px;
+        flex-wrap: wrap;
+      }
+      .anchor-mark {
+        width: 62px; height: 62px; flex: 0 0 auto;
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 38%, #fdf6df 0%, var(--cream) 62%, #e7d9ae 100%);
+        border: 2px solid var(--gold);
+        box-shadow: 0 0 0 4px var(--navy), 0 0 0 5.5px var(--gold-soft), 0 4px 10px rgba(0,0,0,.35);
+        display: grid; place-items: center;
+      }
+      .anchor-mark img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+      h1.wordmark {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(2.3rem, 8.5vw, 3.4rem);
+        letter-spacing: .01em;
+        line-height: 1;
+        color: var(--cream);
+      }
+      h1.wordmark .tm {
+        font-size: .36em;
+        font-weight: 700;
+        vertical-align: super;
+        letter-spacing: 0;
+        margin-left: .06em;
+        line-height: 0;
+      }
+      .tagline {
+        margin: 8px 0 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+        color: var(--gold-soft);
+      }
+      .mast-sub {
+        margin: 14px auto 2px;
+        max-width: 560px;
+        font-size: .86rem;
+        line-height: 1.5;
+        color: rgba(246,239,220,.82);
+      }
+
+      main { max-width: 1060px; margin: 0 auto; padding: 0 14px 8px; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        margin: 20px 0 6px;
+        background: linear-gradient(160deg, var(--navy-soft) 0%, var(--navy) 58%, var(--navy-deep) 100%);
+        color: var(--cream);
+        border: 1.5px solid var(--gold);
+        outline: 1px solid rgba(193,154,61,.35);
+        outline-offset: 4px;
+        border-radius: 6px;
+        padding: 22px 20px 20px;
+        position: relative;
+        box-shadow: 0 10px 26px rgba(6,24,48,.28);
+      }
+      .hero-kicker {
+        margin: 0 0 6px;
+        font-size: .78rem; font-weight: 800;
+        letter-spacing: .22em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+      .hero-ship {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.04;
+      }
+      .hero-line {
+        margin: 2px 0 0;
+        font-size: .8rem; font-weight: 700;
+        letter-spacing: .18em; text-transform: uppercase;
+        color: var(--coral-light);
+      }
+      .hero-meta { margin: 12px 0 0; font-size: 1rem; line-height: 1.55; color: rgba(246,239,220,.94); }
+      .hero-meta .dot { color: var(--gold); padding: 0 .3em; }
+      .hero-bottom {
+        margin-top: 16px;
+        display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+      }
+      .hero-price { font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: clamp(2.6rem, 11vw, 3.6rem); line-height: .95; }
+      .hero-price small { display: block; font-family: "Libre Franklin", sans-serif; font-weight: 600; font-size: .8rem; letter-spacing: .08em; margin-top: 5px; color: rgba(246,239,220,.85); }
+      .hero-badges { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+      /* Porthole badge */
+      .porthole {
+        flex: 0 0 auto;
+        width: 104px; height: 104px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 34%, var(--coral-light) 0%, var(--coral) 58%, var(--coral-deep) 100%);
+        border: 3px solid var(--gold-soft);
+        box-shadow: 0 0 0 2px var(--coral-deep), 0 6px 14px rgba(0,0,0,.35), inset 0 2px 5px rgba(255,255,255,.35);
+        color: #fff8ea;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center;
+        transform: rotate(-4deg);
+      }
+      .porthole .amt { font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.9rem; line-height: 1; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+      .porthole .per { font-size: .62rem; font-weight: 800; letter-spacing: .18em; margin-top: 4px; }
+      .porthole.small { width: 84px; height: 84px; box-shadow: 0 0 0 2px var(--coral-deep), 0 4px 10px rgba(6,24,48,.22), inset 0 2px 5px rgba(255,255,255,.35); }
+      .porthole.small .amt { font-size: 1.45rem; }
+      .porthole.small .per { font-size: .55rem; }
+
+      /* ---------- Basis + port badges ---------- */
+      .basis {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: .74rem; font-weight: 700; letter-spacing: .02em;
+        padding: 5px 9px; border-radius: 999px; line-height: 1.25;
+      }
+      .basis.allin { background: #e9f0dd; color: #3c5a1e; border: 1px solid #b9cc96; }
+      .basis.fare { background: #fbe9e2; color: #8f3320; border: 1px solid #eda88f; }
+      .tag {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: .74rem; font-weight: 700;
+        padding: 5px 9px; border-radius: 999px; line-height: 1.25;
+      }
+      .tag.fly { background: rgba(246,239,220,.14); color: var(--gold-soft); border: 1px solid rgba(227,205,143,.6); }
+      .tag.drive { background: rgba(246,239,220,.14); color: #bcd79b; border: 1px solid rgba(160,190,120,.55); }
+      .card .tag.fly { background: #fdf3e3; color: #7a5a12; border-color: #dfc98c; }
+      .card .tag.drive { background: #eef4e2; color: #3c5a1e; border-color: #b9cc96; }
+      .tag.honor { background: #0a2242; color: var(--gold-soft); border: 1px solid var(--gold); font-weight: 800; letter-spacing: .02em; }
+      .tag svg, .basis svg { width: 13px; height: 13px; flex: 0 0 auto; }
+
+      /* ---------- Gold Strike showcase ---------- */
+      .goldstrike {
+        margin: 20px 0 6px;
+        background: linear-gradient(160deg, var(--navy-soft) 0%, var(--navy) 58%, var(--navy-deep) 100%);
+        color: var(--cream);
+        border: 1.5px solid var(--gold);
+        outline: 1px solid rgba(193,154,61,.35);
+        outline-offset: 4px;
+        border-radius: 6px;
+        padding: 24px 20px 22px;
+        box-shadow: 0 10px 26px rgba(6,24,48,.28);
+        text-align: center;
+      }
+      .goldstrike-kicker {
+        margin: 0 0 14px;
+        font-size: .78rem; font-weight: 800;
+        letter-spacing: .22em; text-transform: uppercase;
+        color: var(--coral-light);
+      }
+      .strike-line {
+        display: flex; align-items: center; justify-content: center;
+        gap: clamp(8px, 2.5vw, 18px);
+      }
+      .nuggets { display: flex; align-items: center; gap: 5px; flex: 0 0 auto; }
+      .nuggets svg { display: block; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+      .strike-phrase {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(1.7rem, 6.8vw, 2.9rem);
+        line-height: 1.08;
+        letter-spacing: .02em;
+        color: var(--gold-soft);
+        text-shadow: 0 0 18px rgba(227,205,143,.45), 0 2px 3px rgba(0,0,0,.35);
+        animation: goldBlink 1.6s ease-in-out infinite;
+      }
+      @keyframes goldBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .3; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .strike-phrase { animation: none; }
+      }
+      .strike-spirit {
+        margin: 14px auto 0; max-width: 560px;
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic; font-weight: 500;
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        line-height: 1.45;
+        color: rgba(246,239,220,.94);
+      }
+      .strike-details {
+        margin: 20px auto 0; max-width: 620px;
+        text-align: left;
+        border-top: 1px solid rgba(193,154,61,.45);
+      }
+      .strike-row {
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 14px; flex-wrap: wrap;
+        padding: 11px 2px;
+        border-bottom: 1px solid rgba(193,154,61,.45);
+      }
+      .strike-row .what {
+        font-size: .72rem; font-weight: 800;
+        letter-spacing: .18em; text-transform: uppercase;
+        color: var(--gold-soft);
+        flex: 0 0 auto; padding-top: 2px;
+      }
+      .strike-row .detail { font-size: .98rem; font-weight: 600; line-height: 1.5; text-align: right; }
+      .strike-row .detail .sub { display: block; font-size: .85rem; font-weight: 500; color: rgba(246,239,220,.78); }
+      .strike-math {
+        margin: 18px auto 0; max-width: 620px;
+        display: flex; align-items: flex-end; justify-content: space-between;
+        gap: 14px; flex-wrap: wrap; text-align: left;
+      }
+      .strike-math .breakdown { font-size: .95rem; line-height: 1.6; color: rgba(246,239,220,.92); }
+      .strike-math .breakdown strong { color: var(--cream); }
+      .strike-total {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800; font-size: clamp(2.2rem, 9vw, 3rem); line-height: .95;
+        color: var(--gold-soft); text-align: right;
+      }
+      .strike-total small {
+        display: block; font-family: "Libre Franklin", sans-serif;
+        font-weight: 600; font-size: .78rem; letter-spacing: .08em;
+        margin-top: 5px; color: rgba(246,239,220,.85);
+      }
+      .strike-badges { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+      .verified {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: .74rem; font-weight: 700; letter-spacing: .02em;
+        padding: 5px 9px; border-radius: 999px; line-height: 1.25;
+        background: #e9f0dd; color: #3c5a1e; border: 1px solid #b9cc96;
+      }
+      .verified svg { width: 13px; height: 13px; flex: 0 0 auto; }
+      .strike-option-label {
+        margin: 22px auto 0; max-width: 620px; text-align: left;
+        font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+        color: var(--coral-light);
+      }
+      .strike-option-label .deeper-note { color: var(--gold-soft); }
+      .strike-caveats {
+        margin: 12px auto 0; max-width: 620px; text-align: left;
+        font-size: .88rem; line-height: 1.55; color: rgba(246,239,220,.86);
+        background: rgba(246,239,220,.07);
+        border: 1px solid rgba(193,154,61,.45);
+        border-radius: 6px; padding: 10px 12px;
+      }
+      .strike-caveats strong { color: var(--gold-soft); letter-spacing: .04em; }
+      .strike-math.two-totals { align-items: flex-start; }
+      .strike-totals { display: flex; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
+      .strike-totals .strike-total { text-align: right; }
+      @media (max-width: 520px) {
+        .strike-totals { justify-content: flex-start; }
+        .strike-totals .strike-total { text-align: left; }
+      }
+      @media (max-width: 520px) {
+        .goldstrike { padding: 22px 12px 20px; }
+        .strike-line { gap: 6px; }
+        .strike-row .detail { text-align: left; }
+        .strike-total { text-align: left; }
+        .nuggets { gap: 3px; }
+        .nuggets svg { width: 19px; height: auto; }
+        .strike-phrase { font-size: 1.5rem; }
+      }
+
+      /* ---------- Window switcher ---------- */
+      .switcher-wrap { margin: 26px 0 4px; }
+      .switcher-label {
+        text-align: center; margin: 0 0 12px;
+        font-size: .78rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft);
+      }
+      .switcher { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .win-btn {
+        appearance: none; cursor: pointer;
+        min-height: 76px;
+        border-radius: 8px;
+        border: 1.5px solid var(--gold);
+        border-top-color: #ecd9a0;
+        background: linear-gradient(180deg, #fffdf4 0%, var(--cream) 55%, #eadfc0 100%);
+        color: var(--navy);
+        font-family: "Libre Franklin", sans-serif;
+        padding: 10px 6px 12px;
+        box-shadow: 0 5px 0 #a8843a, 0 9px 16px rgba(6,24,48,.18);
+        transition: transform .06s ease, box-shadow .06s ease, background .15s ease;
+      }
+      .win-btn .num {
+        display: block;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800; font-size: 1.9rem; line-height: 1;
+      }
+      .win-btn .lab { display: block; margin-top: 5px; font-size: .78rem; font-weight: 700; line-height: 1.3; }
+      .win-btn:hover { filter: brightness(1.02); }
+      .win-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #a8843a, 0 3px 8px rgba(6,24,48,.18); }
+      .win-btn.active {
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        border-color: #8f3320;
+        border-top-color: #ffb59f;
+        color: #fff8ea;
+        box-shadow: 0 5px 0 #7e2a1a, 0 9px 16px rgba(6,24,48,.22);
+      }
+      .win-btn.active:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.2); }
+      .win-btn:focus-visible, a:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      .window-range { text-align: center; margin: 14px 0 0; font-size: .9rem; color: var(--ink-soft); }
+      .window-range strong { color: var(--navy); }
+
+      /* ---------- Deal cards ---------- */
+      .panel-head {
+        margin: 22px 0 4px;
+        display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      }
+      .panel-head h2 {
+        margin: 0; font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800; font-size: 1.5rem; color: var(--navy);
+      }
+      .panel-head .count { font-size: .82rem; font-weight: 700; color: var(--ink-soft); letter-spacing: .04em; }
+      .gold-rule { border: 0; border-top: 1.5px solid var(--gold); margin: 8px 0 16px; position: relative; }
+      .gold-rule::after { content: ""; position: absolute; left: 0; right: 0; top: 3px; border-top: 1px solid rgba(193,154,61,.4); }
+      .cards { display: grid; grid-template-columns: 1fr; gap: 14px; }
+      @media (min-width: 680px) { .cards { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1020px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+      .card {
+        background: var(--paper);
+        border: 1px solid #ddd0a8;
+        border-top: 3px solid var(--gold);
+        border-radius: 6px;
+        padding: 16px 16px 14px;
+        box-shadow: 0 3px 10px rgba(6,24,48,.08);
+        display: flex; flex-direction: column;
+      }
+      .card-top { display: flex; gap: 12px; justify-content: space-between; }
+      .card-main { min-width: 0; }
+      .line-name {
+        margin: 0; font-size: .72rem; font-weight: 800;
+        letter-spacing: .16em; text-transform: uppercase; color: var(--coral-deep);
+      }
+      .ship-name {
+        margin: 3px 0 0; font-family: "Playfair Display", Georgia, serif;
+        font-weight: 700; font-size: 1.32rem; line-height: 1.15; color: var(--navy);
+      }
+      .ship-name .unnamed { font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
+      .meta { margin: 7px 0 0; font-size: .9rem; font-weight: 600; color: var(--ink); }
+      .sail-date { margin: 3px 0 0; font-size: .88rem; color: var(--ink-soft); }
+      .itin { margin: 7px 0 0; font-size: .87rem; line-height: 1.45; color: var(--ink-soft); }
+      .card-foot { margin-top: auto; padding-top: 13px; }
+      .price-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+      .price { font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 2rem; color: var(--navy); line-height: 1; }
+      .price .pp { font-family: "Libre Franklin", sans-serif; font-size: .78rem; font-weight: 600; color: var(--ink-soft); }
+      .card-badges { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 7px; }
+      .rank {
+        display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .14em;
+        color: var(--gold); text-transform: uppercase; margin-bottom: 2px;
+      }
+
+      /* ---------- Also tracked ---------- */
+      .also { margin-top: 20px; }
+      .also h3 {
+        margin: 0 0 8px; font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.08rem; font-weight: 700; color: var(--navy);
+      }
+      .also ul { margin: 0; padding: 0; list-style: none; }
+      .also li {
+        padding: 9px 2px; border-bottom: 1px solid #e2d5ae;
+        font-size: .88rem; line-height: 1.5; color: var(--ink);
+        display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      }
+      .also li .amt { font-weight: 800; color: var(--navy); white-space: nowrap; }
+      .also li .sub { color: var(--ink-soft); font-size: .8rem; }
+
+      /* ---------- Games strip ---------- */
+      .games {
+        margin: 34px 0 0;
+        background: linear-gradient(160deg, var(--navy-soft), var(--navy) 60%, var(--navy-deep));
+        border-top: 3px solid var(--gold);
+        border-bottom: 3px solid var(--gold);
+        color: var(--cream);
+        padding: 24px 20px 22px;
+        border-radius: 6px;
+        text-align: center;
+      }
+      .games h2 {
+        margin: 0; font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800; font-size: clamp(1.4rem, 5.6vw, 1.9rem); line-height: 1.2;
+      }
+      .games h2 .accent { color: var(--gold-soft); font-style: italic; }
+      .games p { margin: 8px auto 0; max-width: 520px; font-size: .9rem; line-height: 1.55; color: rgba(246,239,220,.85); }
+      .game-chips { margin: 16px auto 2px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 640px; }
+      .chip {
+        border: 1px solid rgba(227,205,143,.65); color: var(--cream);
+        border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 600;
+        background: rgba(246,239,220,.07);
+      }
+
+      /* ---------- Cross-promotion ---------- */
+      .crosspromo {
+        margin-top: 26px;
+        background: var(--cream);
+        border-top: 3px solid var(--gold);
+        color: var(--navy);
+        padding: 22px 18px 24px;
+        text-align: center;
+      }
+      .crosspromo-inner {
+        max-width: 860px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: center;
+        gap: 14px 22px; flex-wrap: wrap;
+      }
+      .crosspromo-text {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic; font-weight: 600;
+        font-size: clamp(1.15rem, 4.6vw, 1.5rem);
+        line-height: 1.3;
+        color: var(--navy);
+      }
+      .crosspromo-btn {
+        display: inline-block;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 8px;
+        border: 1.5px solid #8f3320;
+        border-top-color: #ffb59f;
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        color: #fff8ea;
+        font-family: "Libre Franklin", sans-serif;
+        font-weight: 700; font-size: .95rem; line-height: 1.3;
+        padding: 12px 20px;
+        box-shadow: 0 5px 0 #7e2a1a, 0 9px 16px rgba(6,24,48,.22);
+        transition: transform .06s ease, box-shadow .06s ease, filter .15s ease;
+      }
+      .crosspromo-btn:hover { filter: brightness(1.03); }
+      .crosspromo-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.2); }
+      .crosspromo-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+      /* ---------- Footer ---------- */
+      footer {
+        margin-top: 26px;
+        background: var(--navy-deep);
+        color: rgba(246,239,220,.88);
+        padding: 22px 18px 30px;
+        text-align: center;
+        border-top: 3px solid var(--gold);
+      }
+      footer .foot-brand {
+        font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.25rem; color: var(--cream); margin: 0 0 4px;
+      }
+      footer .foot-tag { font-family: "Playfair Display", Georgia, serif; font-style: italic; color: var(--gold-soft); margin: 0 0 14px; font-size: .95rem; }
+      footer p.fine { margin: 0 auto; max-width: 640px; font-size: .83rem; line-height: 1.65; }
+      .hidden { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="brand">
+        <span class="anchor-mark" aria-hidden="true">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAEAAQADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD49oopRgcnr2FfcHigB6nFG4LwAM+p5oJ55NNPWnYYrOx4yaQsc9aSjFMYdaXkUo4FGaAG0UrUmOM0AGSOlLk5zSUUAKWJoGPSkpR1oEBFJkilPXrRigYmc0UvbFJQAY9aXd6UlFABnnNLuJ6mkooAUn2p3GKZxn2p2OOKBCHHal4xSE5pKBi7jShyO5ptFAD9ynqv5cUbeMryKZShsUrCsLRS5DDIGD396SkIVcZyeg7etHOcmkJIwPxoz2podhRgHrSHFGaQnNOwWEOO1KOtJQBk0DHFuMCkFJ0ooAVqSiigAooo70AFFFKFJ6CgBKKbvj3bRIm703DNW4dO1G4GYNPvJR6x27t/IUN23ArUVcl03UIFzNpt7GPWS3dR+oqkXQNtLoG9CQD+VJO+wC04/d4pMH0pKYBRRRQAUuSKTvTuooENpccUnelzxQMSlxxmkooEFFLj3pKBi9BkZpxx1HSmhvWnDB4pCEcnefypuKUnJyaM4FMYlFL0PNAGaAEooooAKKMUUAFFFdl8Pvhb4z+JurtZ+F9M328TBbnUbhvKtbbP9+TH3vRFBY+lZVq9OhB1KslGK3b0RUYSm+WKuzje2a7jwP8ACD4i/EPbN4X8MXU9kTg6jcYt7Vf+2r4DfRdx9q+kvDXwi+Efwr1S2s9Zt7j4ieOCA8elwW3nLGexW3ztRR/fnJ9cCvYF0T4m+LVT+3ddi8GaXjammaEVmvNn917lhtj+ka8etfn+a8f0aXu4KPN/elovkt3+CPdw2RTlrWdvJbnz5p37KHhfwzaJqHxc+KdjpiYybTTisefbzZuW/wCAx13Xh/wX8ALAKvgz4NeJPHky8C8ubSaaFj6+ZOUix9Fr2nw78L/Avhy6+3WOgQXGoHltR1Em8umPqZZdxH4YrthkjDEkDpntXweM4tzHFN81aVuy91fhr+J6sMuw1LaF/XU8q0kePrUqnhb4E+D/AA5CB8pvr63iYfVbeMn9a23uf2gorZ55Ln4a6bAg3M0k12yoPdsACvQ4xkVwPxT1i88PXmga7Npaajo1tLJ9oimx5STHaI3kzwAB5gUtwGPUEivF+szqyvN3+bf5s2UFflgkivFeftA3FotzbX/wz1S3fO14Z7sI/wBGAIrJ1Q/Ee5jKeKPgl4N8Rxn732PUIJGP0W4iH86vfCnVL/xB4x8Q67b2kFro1wiDZa4MBuN38LD5WcJncVz95ASSOPT5RR9ZlSd4afNp/gxuCTcZJP5Hy5r/AIP+Bd9G3/Cb/ArxB4Mkb717ZWUscSH18y1Zkx9Vrhbz9lfwB4wt5Lv4SfFe3uXxkWWpFLjb7F4tsi/jGa+03LK3ykr9DiuO8SfDfwP4pl+06x4dszejlb+2BtrlD6iWPa2fxNetg+K8xwr9ytK3Z+8vuev4mM8uw1XeFvTQ/Pbxz8C/if8AD1Hude8MzTach51LTT9rtgPVmTlP+BqtedcFQynIPcV+ln/COfErwhIJvCPitfElin/MK8SNtnC/3Y7xBn8JFI9TXlXin4dfCP4qa9LpeqaLd/Djx3LlhGYUh+0t/eCAiG5X/aQq/vX3mVeIEKlo46Fv70btfOO69Vc8rE5FKOtB38nufE9FehfEv4M+N/hbfE67Yrc6U77INYssvbSHsrEjMb/7DgH0z1rz3pX6Hh8TSxNNVaMlKL2a1R4M4SpycZqzClIxSUZrYkKKMUUAFFFGKACnJ/rV+tJtNA6igBO9HeigdaAClJ7UpGeKaRg0AFFFBGKAFOaT3JAHqaMcZJAHqa+kPhD8ING8PaAnxN+KUSRwRKlxp+lXKbgAf9XLNH1d2OPLhxzkMwxgV5mbZtQyug69d+SS3b7LzOjC4WpiZ+zp/wDDGX8JP2fBrWlr42+Jtw+ieGI4/tKW0knkTXcfXe7H/Uwn+999/wCEAENX0ho1vrXizRbbSPBVq3gbwLAmyC7t7cQ3d4n/AE7REfuYz/z1fLt196v6P4S1XxnqMHif4gWrwWccgn07w1Kdyxn+Ge77STdwn3U9zXpajPJr8LzziPE5nV5qr0W0V8Mf/kn5vTsfa4LAUsLH3d+r6/8AARw3hvTNG8OWOtWXhSXRNDtdNdhO95G9zc6hKBl3kfepxnIySxJBPAxnrPC2uR+IvDVvqqRCJnLxyRhtwV0Yq2DgZGRkHA4I71xvjDwBotxe3niifxBHokDL5t7JcwxywqQMGQFyAhIAzncpIztyTnG0rxZrFz4WXTvhhp0Vn4ftEZpvGPigmK3bJLPLHGdrTEkk7jtT8MV4qi62q+//AD7s63aPU9mmurays3u724htrdBl5p5AiKPdiQBXDXHxs8Dm9ax8PSap4svFO0w+HbGS8APoZABGP++q+b/F/wAYfhBot/52pXes/GPxDETiW9l8jSoG/wCmceNhA/2Vf61554h/ao+LmrQmy0C903whpw4S10O0VCq+nmOCfyC19Tl3BuPxVpclk+svd/Czl+CPIxGZ4em7Xu/I+2U8afFO/G/SPg69nD2m17Wobb8SkYcj86qzeLvjBExW4uPhDpWePLu9YnkIHv8Adr83dY8VeLPEUrSeIfFWt6ozdftl9LKPyLY/SsM2kBbJiQn3UGvp6Ph47fvKqT8ot/nL9DzJ5ym/dgfp/b+LPi7NtSC9+D+oAcCO01aeM/QfexVuTxh8WbBBLqfwgi1CDvNoOuxTHHqElVCfzr8tRaW46RRj6KK2NK8ReJtBmEug+JdZ0t16GzvZYcfgrAU63h47e5VT9Yv9JChnKW8D9KIvjX4PjvFtPE9trfhC5Y42eIdPe3jz7TDdGf8Avqu4tb6y1KxS9028try1cArPbSrKjfRlJFfnj4b/AGpPjJoMQtNT1q18U6f0e0122WfePTzF2t+ZNeieFvjP8HPEGpC4kttY+EPiKQ5Op6HMX0+Vv+mkYG3Gf7yAf7VfL5jwXjsKnLk5l3j734aS+5M9TD5rQqO17PzPrrX9UXRPDt1qjx+b5KjbHu2hmZgqgnsNzDJ7DNcR4tGkXy6Rovi650LxNYapIimCG1aJrN2IVXjfezcMyjPytzkHjacWbxd4g07wi6+P7Gy8WeEb2IoPFXhf518s9HmgUkrjg74yQCM4rR8HeBvDNxJY+KNL8TnXtOVxNZtDHEkbMPutI6DLsp52naAcErkCvlpU5UdX9/8Al2frY9eNpa3Kt/YeJvAljPa3MNx448FTRmO5tLqMXF/ZxdwVIxdwgdj84HTOK+evif8As9ade6EfH3wYkXVNHmUzSaNA5leNR95rYn5nC94W+dccbug+02PTtjpXnniDwfqmi6vceLfh7HGt9M4k1HQy/l2+p4/jTtFcDs44bo3rXrZLxBicsq89GW+6fwy9ez/vL5nLjMDSxUbTWvfqv67H5vY+ag19V/Fb4U6P8TdGn+IPw3tTFr4Z/wC0tJMflPdSr/rFMf8Ayzu17r0k6j5iC3yqw25BBB6EEYxX7rk2c4fNaHtqOjWjT3i+z/R9T4vF4SphZ8k/k+4gOKSijrXrHKFFL04pKAF3GjqaP4c0g4NABRR2xQKAHE9MGkJzSUUAKMZ5oPJpK7X4V/D29+JXxItPD0Bkis1H2jULpBzb26kbiP8AaYkIv+0w9DWOIr08PTlWqu0Yq7fkioQlOSjFXbO9+B3wwtNRtn+JHi5YI9CsGZ7SK7H7q4kj+9NID1hjI6fxv8vIVgfqLwV4duvE+rW/jzxRBMkEZMuiaXdD5og3/L5OO87jlQf9WpHc5rP07RLDxb4uj8OWNjFb+DPCzRwzW8Y/d3d1GAY7Uf3ooRhn/vORnvXrua/nziLPKuZ4l1paLaK/lj/m92/kfd4HBxwtJQW/V93/AJLoPPC8Vz3i7xro/gvSorjUBPc3l0/k2Om2i77i9l7JGv8ANjwB1pvjPxjY+DfDgv7mGS8vJ5Bb2GnQf629nb7saD9SegHPpXzp8SPiS/wukl1PUJ7XWvirqsGAcb7bQbZvupGv8h1c5Zvl+95uWZZVx1WNKlG7ey/4PRLq/ktTor14UYOc3obHxH8a6V4WMHiD4wyxazrzfv8ASPAVjKGtbIfwyXB5Dt6uwI7Kp7fM/wARPiz44+KF8W8SaoY9NQ5g0i0zHawjt8mfnI/vNk+mOlcjf39/q2rXGq6tez31/cuZZ7m4cu8jHuSf8+lV6/cci4Ww+WxVSa5qnfov8K6eu76s+Nx2Z1MS3GOke3+YgAAwBS0UV9UeYWLCwvNU1S303TrWa6vLmRYYYIVLPI7HAVQOpNfSXhr9ljQ7GyhuPiz8RotBupl3JpWkw/ap19mbByfXapA9arfsi+FrfUPGGq+JZIkku7QJZWZYf6t5FZnce+xduewY1xHxd+Kmu+J/iBqWm6JfXVlpFtcvbRpauySXZRipkkZeWyQcL0UYAHWvhMxzPMcfmc8sy2ShGmk5zfn0X9d9T26GFw9HDLE4i7ctkj0TXv2WfC+qW8x+FvxNGp30KFzpmt2ptZHA/uthSPqUx6kV83atpOpaFrl1o+r2c1nfWkhint5lw0bDsf8AHoRyK7/4b/E3xN4N8Wac+pXV/eaJNcLFNBdM7hAW2s8LN9yRc54POCCOa9S/a38KQW11o3iqONFu2Y2F06jHmrs3xMfoA4+mB2qMDmmYZdmdPLswmqkKt+Wa7ro/66rUqthMPiMNKvQTjKO6fY+YaMA9RRRX3x4R1fgL4meN/hlqgu/COtS28DPun0+bMlrceoeMnGf9oYb3r6c+HfxA0Tx9qT6t8Mp7fwb46I82/wDC90+dO1nHLMgGMN1+ZQHXuCPmr44p8M09tdw3dnPLbXMLiSKaFyjxsOQysOQR6ivmM84Yw2ZRc0uWp37+Ul1X4ro0ejgsyqYZpbx7f5H6ceEPHWneLI7mye2m0vXbAhNR0a74mtm/vDs8Z/hccH2rqRgjGK+QPhl8Tj8VZLDS9Z1SLRPidpiEaPr6qFXUkA5hmUcNkZ3J0YZZcEEH6T8DeM18Wadc219ZHTNf01/s+p6YzZMMnZ0P8UTjlW9OOor8PzXKq2AqypVY2a/pNPqn36bPU+yw+IhXgpwehj+N/Ct/a6jL428IW2/U1QDU9NjO0arCvTHpcIMlH7/dPWvmf44fD3T9f8P/APC2vBSefDMvn6tHEm3eucG62fwuG+WZezfP/er7arynxDp0fgbxydcCxDwrr0/k6lC6gxWV5INomI6eVMDskHTJB7105DnNbLcTGtT1to1/NHt69YvvoRjMLDFU3Tn8n2f9bn559DQDivSvjb8M3+GnxHktLOKT+w78Nc6bI/O1M4eEnu0bHb7qUPevNa/obCYqni6MMRRd4yV0fBVaUqc3Ca1QuPlzSUoz2pK6CAzTjjbTaM8EUCDtRSkc4FJ0PNAwooo7UAHABJOAOSTX2X8LvC958MP2fLJ9PgUeOfG80a2iSLzDvUmEN6LFEWmb/abHYV85fBbwOPiF8btE8O3ERksBIbu/A6fZ4vncH/eO1P8AgdfcegIni341a14ofa1h4dDaJpoX7hnYBrqRfp8kQ9ga/NvEHNvZ04YGL396Xon7q+b1fkj6HIcLzSdd9NF69RdF/wCEc8JyR+BbrxHdaNYaXZI4uIdgmvp5AXeR3dWxk5PAySWycKBWj4b8XW914X1XU9WvAlrpcjebfTKI90IjEgdwMAMFbnAGeCAM4rU8QeDtF8STw3N+lzDdQrsS5tJjFJsznaTyGXOTgg4JOMZNeZ+N7fR5dYs/hjp5FroNin9ueI5nkLF4wd0ccrk5Yuyl2JP3UHavyaH752fz018/v6ebPqbJarf8DhfG3xJPh/SpfizrlsG1vUUaz8I6NcdLS3PWd1/vMCHc+hVB14+Rb6+vtU1W51TVLuW7vrqQzT3EzZeRzyST/nHSuo+J3ju5+IvxHu9ffclhH/o2nQHgRW6k7eOxb7x9zjsK5Cv3fhXIo5bhlOov3kt/JdIr0693dnxOa476zU5Yv3Vt/mFBopTX1Z5YlFGQPvMB9TXWeFPhp488bwXs/hTwtqGqR2MYluHiUIqKc45cgEna3Az0NY1sRSoR560lFd27fmVCEpu0Vc9X/Za8V6rpHjK70jSNO/tG8kkjvoLQyLEkpUNG6tIxCoMOpyf7uOuK9h0H4deFPDPimaw0TwvPq/iu/uHupIrm2EN1psjsW822uVYxiFSTwxwQMEseKwfAfg+T4e/Bu2tdJ0m11/xXrsZm+xXHh1i7koWESXEpHCgHkYHBNdh+z9o/xC8M+JdT1Xx54I1HTHnCBTBIs4kxvPC+YdgG4DGcHr61+H59ivrWKxOJwjtBtJq6Tl0vbdrq9NL6n2mEp+xo04VdZJO2m3Xf8PMpXF5f/FTwqPDPifQbC207UNQt9UuNVh2BbIW7p9onYceWXVQCe5c9e/k/7U3xCsvFOo2mnacCsMty16kZGCtuqeVASOxf53x6Y9a7zxX4I+KCeAdNsvD/AIBu9Rv4ppTLDPNGsSq2CrMokxLgqPkJxnBOcYr5/wDEPwc+N/2271jX/AXiOeZyZZ7nyRL0HJJQkAAD6AD0FehwjhKc68MVi60YxptuMXJXu9L2b0XXzZlm9TkjKnQg25JJtLS3+f5HmRGDRXX+KPhj4/8ABmmWN/4o8KajpttfLut5ZUDB+A2DtJ2nBBw2DXIcEkBgcdcHpX7BQxNGvHmozUl5O/5HyM6coO01YKO1FL2rVkCxyTW9xHcW00kE8TCSOWNirIwOQykcgg8g19a/D34kX3jrQLfxrpqofiD4YhEOp2afKNbsc/NkDucEj+649GFfJFdB4H8X6j4D8f6d4q03cz2r/voQcCeE8PGfqOnoQD2r5vibI45phnyr95HWP6p+T2+59D0csxrwtXX4Xv8A5/I/RS98aabeeBtJ8Q6TqDJp2qyxILxEDPBGyszYUgjzBsKYIIDHocYOVe6h4c1/xSPBtrf3+veH9WtZba6F84lKt5bOSj4B428jkAlSMEc8r4NuNAj8UHw2EjvPB3jSA6tpAJISK5wHliUjlSwxIuMEMpxzXqWieDdC8P3cl5p8NxJcunl/aLu5e4dUzkopcnapIBIHXAznFfgNVexfL+mv/Dp7+aPuUovX/hjxbxT4KvfiR8Gte+G+pnz/ABh4QlEljcN968UITBJ9JogY2/21B7V8RY9iPYjBFfpB47/4pTxv4f8AiHDlIRKui6uw720zfupD/wBc5cc+jmvjv9pLwOvgn49akLSBYtO1gf2raqgwq7yRKg+kgf8ABhX6l4fZvzc2Bm9H70f/AG5fql5s+Zz7C2tXj6P9DyKijvRX6ifNBRRR3oGL/FnrQ3XpQMbqD940AJRRSjGeeg60Az6l/ZhtofB3wb+IHxZuYQZ4o/7OsiR94oocgf70jwj/AIDX018PfDj+Ffhno+jz/NeJAJryQ9ZLiQ+ZKx997H8q8c8J6DFZ/s9fB7wHsKvr+px6rfp/ejUtdPn2x5Y/AV9HkqxLHqTmv534oxrxePrVL6OTS9I+6v1PvMuo+xw8I+V/vKd5dW+nabc6heyiO2tonnmc/wAKKpZj+QNfGPxX8WXml/BGa6uCY9d+IN699cDOGislxsj+mzy0/wCBNX0p8abtz8N4/Dls7LceIb+30hdp58t23Sn/AL9o3518XftEa/HrPx0vdOteLHQ4Y9LgQdFKjc+P+BNj/gNdvBeXLF4+HMtI+8/+3bW/8mafyM81xHscNJrd6ffv+B5VgdBSkUdBQTX7yfDhjnrSGlGKD1ppgfVP7Jet+D/DfhTxFq/iDQba+vW1CGGG6k083TQIIixAYKxQEn2zj2r6B1X4m6J4jk1Gz0tpJV1C3tNL22cRM6bpZc+XGQCzYfgYxzzxmvzo0XxHr/hy5a40HWr/AEyVsbmtJ2j3Y6ZAOD+NerfDz40+IJ/HmlW3jXVpry1a6jA1MALeWigMGETKOS4Yp8wONwI6V+W8T8K4+rXq4+lNShvy31SVr2Vmnt3+T2Ppctx+FUI0Zxaltfp5dT7B0TVdHtfi3qlx4n+2rNZWkcFvb6xqKXMymQks+FO1DhAuBzhj0ru18WeESuVsYG/3SDXyR8c/EN38PPGNvcDwL4bubXUIVMlpdLLO9i4yVSScP80rKSzDk8dTjNaHwR0/SvjTBfu/hbQtEe0nWD901w4kyhfP3xjpivgquTYpYRY/lXsr2v7r1va1rp7+X4Ht/WMO6vsm3zWv12sfU/8AwlfhPOWsIl46msrXfG/gVPDOpQNJYQySWsyLunQEkxsAOvWvk3xfqmkeEfh5ZeK08F6PeG6vfsf2aWefCfKzbs7ufu9Md682m+OV6sMkWneAvCFnvUrv+zSSsuRjILP1rpyrhjMMxp+2w0U43tf3Vqt+t/wIxWLwmGlyVZNP5s+37r4r+HbHVdDuLu5szHb281u4RhIdzJHgELk5+Ruo7GvAv2r/ABB4P8UfDjSNR0TQLezv4tVCPeppxtmlRoXJXeVXeMqDjnHFeM6l8dPE0kMJ8Oafp3hm5GfPutOUtJcEjByXyFHU8evWuE1zxV4l8TTLL4h17UdUZDlftdw0gU+wJwPwFfZ8OcHZlhcVTxWImoqL1V7t/crfj8jyMwzPB1KcqdKLbfXp/XyMjvRR3or9UPmQpfrSDrTmxQB9CfBbW73Xvg/q3he2nI1zwrcJruiMT8wCsWZB7bty49JRX2f4e1m18R+E9N8QWJzbX9slzH7Blzj8DkfhX50/BTxEfDXx18P3TybLe7m/s+4z0KTfKM/Rth/CvuD4Mv8A2do3iHwZIxB0HV5Y4FPUW8w86L8BucfhX4VxzlqwuPlKK0n7y+ekvxs/mfbZPiPbYZX3jp/l/l8jsvE/h+DxR4M1Tw7c/wCrv7Z7fd/dZh8rfg20/hXy98ebSXxr+yj4U8cXCZ1fQLv+zNSOPmUsfJkB/wC2scZ/4FX138vrXhms6FDqGjfG74c+Udt1b/27Yp6NLD5nH/baH9a8Th7GvB42lW6Rkr+j91/gzpx1L21CcPI+CdvpTT1pVPmIHHAYA4oIINf0efn4lAHNHSlzk0xidDQTk0HnmjHFAB705UadxAg+aQiNQPVjgfzpM8YrU8NQC48aaNAf+WmoWyfnMorOtPkpyn2TY4rmkkfoA9tHD+0D4T0iNMQaF4YmZFHRWZo4AfyU16Obr3rzI30cH7RHiS+upNkNr4etsueiqZ5Wb/0GunvtT1PStJsNY1fS4rTTb1gqP9sV5osnAMkYXAHqFZivfocfzDUjKdn5fnr+p+j6RsjnPGdyt/8AHHwZZSnMGm2d/rEg7ZCrEp/8eavz41fUpdZ8RajrE7ZkvruW6Y+7uW/rX3b4kuGHxQ8XXh+9p3gaVl9i0krH/wBBFfAcIxbRj/ZH8q/UvDmiv31Tyiv/AEp/qj53iGelOHq/yJDSGiiv0+x8yGcUUUcdqAFIwBT4JpILiOeJykkbB0YdQQcg/mKjOetFDSaswTsfXXhfUdB+PPwRHg7VrhIdathGkBAIeXU7iXaLhz3RVGMehx2Fdx+yt4I134fa74j8OeILXyrqPVnEUoB8u6ijjaMzRE/eTcpGexGDzXxDoHiDVvDOv22r6NeS2t1byLIjIxAJU5AI7ivsT4XfF/U/E/w4j1PV/D0722kRXtnDfWvzvbXkjLOkgb7w+uMdj1r8i4kyjEZVh6lGk74ack1/de9rfKya8k9rn1WBxMMZJSf8VJr1Xf8A4Hqeb/F9c/s36a5AyutLyPdJa+b+9faPxV+G9z4q+Dt7pnw2uodZt7S90+6itJJP9KkaZSpjQ4Cvhn74OPXHPxtf2V5pup3Gn6hay2t3byNDNBMpV4nU4ZWB6EEYxX0fAFSCwE6XMnJTk7X6O2pw5/eWIU0nay+8r0UUcdq+7PDFHWg9aMnGBRzQISig0UDFWeW2dbqFissLCVCOzKcj9QK/QPwXqgPxvkvYjiDxH4XttRA7F4nxn/vmUV+fnUYx14r7V+H125f4N35JL3Phm7tWPrtjjI/9Br818RqClSo1f8S/C/8A7afR8PT96pD0f9fefQwufeuCndYf2oNN+T9zq/h2a2m/2jDOCP8Ax2Q1rjUNWudDvtd06ysZdNspGjZ7i98qWYqcMY12EAZBALEZx2HNcnqOqRX3xe+HurWTEw3FtqAVmGDtMSNgjsQRgj1Br8lhBxvfs/yv+h9MrPY+BtYsf7L8SalpmMfZLua3x/uSMv8ASqVdT8TIRb/GrxdAvRdYusfjKx/rXLV/TWDq+1oU6j6xT+9XPzitHlqSj2bGdT0oOBTjwOKbnNdJAEHOKTOKMnNFMYVp+HJTD4x0ebONl/btn6SqazKfHIYJEnU4aNhIPqDn+lY4iHPSlBdU1+BVN8sk/M++bmOK6+NniW0uGbyrzQLaNtpwdvnTKce4zVUeF9Zu2hs9X1WGexifJkEsjO65yQsZG2Mt0J3NgE4HTFSTUEb4taTqSN8up6A4B7EpKkg/SQ1032onvX8w1G48vovw0/Q/T49bGJqam9+IXjyID57rwLJtx32vKD/6EK+DIiDbxk/3R/KvvfTHVvj9pMEn+r1fQ77TGz0JBWQD8t1fB9zZyWF7cWEylZbaV7d1PYoxU/yr9W8OaqcK0H2i/wD0pfofJ8RwtKD9f0IaKcOKXgjJ6V+m3PmRlFejeNfhXfeEvh34a8TF3lN/Yx3F/CV5tGlO6L/gJRowT2Y47ivOiMVy4LHUcZT9rQd1dr5p2/ryNq1GdGXLNagTmkoorrMhRX29+xQu3wJcMMgvrU3I9reL/GviAda+5v2L1C/DmI931q7P1xDCK+I8QHbKv+34/qetkq/fv/Czk73W/wDhXnw90/x/p4lEtnq1uJoUYlJV8xiGK9NykcYx1Ofbmvjt4Z0zxZ8NdP8Aip4ftIGu40EviHUgPLF3PcsHRFHRnjDAHuFK57Vo/E2Pd+yrfH+5qVsf/IrD+tJa28tt+wW0mqaVqV+v2WR7YTx/Z7K0DyH94pbBmmOQcjIHAHrXwOSOWFpUcwpN8/tnBrvFqP8Anb5rsj6TMbVak6E1pyJryev/AA/3ny1SkUH71AJAr91PhQOMCjIpScjAr0T4efCu/wDHHhjxDq6u8IsrCaSwQDm7uIxvK/7oVWBP94qPWuPG42jg6Xtq7tHRff8A19xpRozqy5YLU85PWlGOmKCQQGHcZoBArrMx3QV9n+DYWtNK+CMZyHTw9eXBz2DRpj/0Kvi19zIwQEsQQoHc9q+7Lq0XTPij4Z0BRj/hHvB0Fu/+zJIyr/KKvznxEqpUKNPu5P7lb/24+i4dg3Um/T8/+AXL7wxqRvrhNN1K2FhcSGTyboynySTkjYp2yAEkgEr6HIFJPbxWPxJ8AaZbO7R2cF/hnOWYeSoLH3JbP41rfajnrWClx9o+NenMx+Sw0eeZj6GSZEH6I1fkNOTbfo/yPr5LRHx18SZhc/GLxXOpyH1a5IP/AG0I/pXL9epq9rF3/aHiTUr8nP2i7mmz/vSMf61SGMV/TWAg6eFpQfSMV9yR+ZYiXNVk13YylGRzin4A7UhrquZXGdKPxpxI3UNjHFACD0oI4Kk8EUlFMZ9XeHtZ/tH4a/DzxLvy1pMun3DZ6LJG0Bz/AMCjj/OvRDdEcZrwD4OXj638LPEPg1XX7TE/2i0yfuucOhH/AG0jA/4FXremaxHqmjWuoRnC3ESy49CRyPwORX84Z9g3hMZVo2+GT+56r8GfpWX1VWoQn3S/yZa1vU/7I1nw74ozgaTqsMspHaGTMUn6OD+FfOHx88Onwx+0R4mtI02293cf2jBgcFJhv4/4FvH4V9C6lbxavot3pk5zHcxNEx9Mjg/gcGvNPjZZv4r+DfhT4hbCdT0knw/rPHIZThGP/Agf+/gr3+BcesPj4wltO8fm9V+Ka+Z53EGGc6HMumv+Z8+896ltYRc38Nseksix/wDfTAf1qIdKfFI0E6Tp96Ng4+oOf6V+2Tu4tLc+Hja6uffXxH0UTXFxZ2enw3slvpq3cFhKu6O9ggBhu7UqOu6ExSADnMIIwQDXyl8Q/hJd6Hoy+NvCKT6n4QuMN5o/eTaaT/yzuMfw9ll+6w67W4r601nX5tQ8OaN4y0KZFvrB4tStnJ+VkdQWVv8AZIbDexasDxPq6/DHRLv4reDbG41HwlqqkTaIiA/YLlyRLDMTkJBuyDweTtxgg1+CcM53jMDOMcOuZt2cXpfX8H5/efdZlgaNWL9porXT7f8AAPhoA5oIPJxWp4h1eHXPEt5q0Ojado6XMhkFjpqFIIc9kUk4H+eKoW1vNd3cdtboXllYIiDuSa/eY1H7NVKq5dLu72+ex8M4+9yx1/Uhr7k/ZFurTS/hFpt9qF1b2dudVv2aa4kEa8LDnk+wNeS+Ff2crfTLCDV/iZq9vYF8TWtkJVazvY+pQ3cTHyn9iP05r274d6Tp97pdvZ/CHwwItPjlmfT9Wu5xG9nOGCzJ5vzC4QnGeCSB1JANfl3GfEWEzDDfVMM3K0k3JfDpfS/67drn0mVZdVoSdWpommjB/wCEVTxH8NIPD3iW2XTdIu54r1brUpJLaK9VHL+VHKiMFJGOTg4PA7jxv4//ABG0rWZbfwVoFtcQ2unsvmuNVe8hO1cLGnOMDjtxgV6D8SL7V734A+J/ERvpLOaUwrJZaYTDa/NMFkYx8jLZPTA9s818lbSY94HyDjd2HtmseBcmp4pvG1Ze7Tm7R/vWXvdu2i3stdDoz3GTpfuUtZLV+Wun/B/zEJyaUcnikAyMjBHYg1f0XUItK1y11GbS7HU0t5BIbO+Vmhmx/C4Ugke2a/WaknGLcVd9u58lFJtJux3nw6+Et/4q0+TxXr7S6T4QtSTNfkbZLwr1htgfvN2L/dTqcnCn6s+GOjQWV9o6jT49P+3Wb3406MELZWBBgs4eecsHuJmJ5YyAnk1h+DNWPxb8Pw/EHxrp76H4G0NP3mmRxhYr2RCAlvbYxuiLEAjA5wvOSR1nh7W5WOs+OtbVYbrUJTOyg/LDBEvCL/sqF2j12Z71+DcU53jMZKcMSuWz5VBO9vV9X5/cfc5XgaNJL2evVv8AJHwLq9oLLxBf2afdgupYR9FcqP5VRqzf3hvtSub0/euJnmP/AAJi39arV+8UFJU4qe9kfDzs5O2x2Xwm8ON4t+N/hbw/5ZeKfUY3mAGcRRnzHz/wFCPxr6v/ALVj1r4n+MvEcZzFNqIsLdvWK2QR8excua8d/Z3tE8LeGfF/xbuoSz6fanStJUj/AFt1LjO31xmNf+BNXpGh2R0Xw5aaczlpI48yuf45CdzsfqxNfjXH2YKvjfYxekEo/N6y/wDbUfZ8PYZxo+0fX/hl+p1Qu/euQv8AWhp9j4/8Us/FpaJp8LZ7xxFjj/gcyj8K0p9Rhs7OW7ncLFCjSOT2CjJ/lXlXxP1OXRvgRYaNKdl7rVx9ruVPUF285gfoDEv4V8plGEeLxNOgvtSS+V7v7kj2MbV9jSlU7Jv/ACPAV4jAPXFKvSgrk5zSr0r+k/Q/MRaKQnjIoDZPNAhp+8aSg9aKoYUcUUUDOw+GXiE+HPiLZztN5cNz/o0h7DJ+U/gwFfQFj/xLtdvtKGFglb+0LQekcjHen/AJA4+hFfJ/cEHBByD6Gvozwx4gk8UfDyy1yCPzdT0Ys00S/eljCgToPXKASD3Q+tflPiBlbVWGMitJe6/VfC/nsfXcOYv3XQe61Xp1/wAzvxPDBGHnmjiQnG6RwoJ/GoIINLk1nUvCusqD4f8AGdv9meQciG9Vf3bjtlgAQf7yCtrwN420vwtrd1qFxpmn35u7ZRaz3joiiMrkhGfgHJyQDkjb1A4xbu0t/E2m6pCRHb291N5lvJbLtWKQAHzIuBgBxkEAA4JHBr83oz9jJTTaemv5W809fkfSVV7W8GtD5O8Q6BqfhXxTf+HtXi2XljMYZPRsdHH+ywww9jWbz1r6B+JPhq88feFZNeaJR4x8Pxi31S3Qc3sA5WVB3OMsPqy9hXz8GBGQcjsRX9AZBnMc0wqqr41pJeff0e6PzvMMFLCVXB7Pb0/4HU9m8M/GqXQfgbceH8M+t2wNnYM67k8h8/M3qY8sAO+5fQ16V8DPiq95o1zbXkQ1B1hEet6SyhzewgbBdRoeGcLhZEPDDGccEfJ+au6Rq+paDrVtq+kXklpe2ziSKaPqp/qD0IPBHBrycx4LwdelVeHXLVnLmT8+3+F/g3fodeHzmrGUFV1gla36+p9KfEr9mvTdXspPGnwgv7STTp1aY6RNNsUY5YQSvjpzmJ8MvTmtTwH4WtvgN8Jz4+8S2WvaZ4ivIN3mh7SSKOM8rH5LZfJyM5IJ9sVD8OPibp3jYDT7Jjpev3zJBqOhRuqW2sKxCsYS/wAqSbSTnhkGSCQOPSbtfAkPxQm0rxJB4XtLWCzEUSpbvfWauzYZZZZFILgKMNwBk881+eZjm2Z06X9mY+9otXWnM0ul9muz11t2se/h8JhpT+sULO6+X3dPNep8e+KPG/ir4k+KPs0Ubn7ZMEh0nTYyqTOW4/dLwzknsK/RT4BeB5vA3wu0Lw7dBDdafakXJQ5UXEjmSUA99pYLn/ZqPwd8O/D9uw1Pwtp/hu2ikGPteh2sCF1PUeagJAPsRXrWmadDptgsESgADHFTmecwzClTwmFoeypQ1t1b7v8Aq5yey9i5TqVOectPRHyd4X8O23i34Y6p4eu4Vliu0ZfLJADMsm9RkggZKgZIOM1wut/Grwd4F1zUPCS+DbeFvKNpfwf2asCuy/NFK8XQTIQAWXIbggnAr0X4N6rBNZGPeufMdcf8CNeweIfAng/X9HTVfFNh4fmSFdv2rV7aF1RfTe44HtnFfPZfXp08RKliYylDV2i7O/fVPse3jrqMZRaT7tXPlP4lfD3wX8XPC158Qvhlp0Fp4hu7x5hptpIqQSWkNupmkKgYV94PIxknB5NZPwy/ZlEMI8WfF25g03SLdRO2licBiDyPtEi5EYP9xcu3TAr2mOX4fWXxDj0rwbfxy2l9aPa39t4e01kW6CsGWCFlUKS+fnKj7qZJ4yPLfiD8QrLwdaf2f4gu/wC1dYsJpI9N8NJIDbaeATteYrwxAIAJJYgYBAGa+nwme5tVp/2dg3J8z06yS7X2S7vp5KyPMqYDCp/WKtlb7vu3f6lv42fFSDTfCtlZaVapp1okfl6DpCxiLYoBX7ZJGOECgkRp2JJOTuNeX6l8bptR+AP/AAjsxf8At+Vf7NllC4U2wAzLx/Ey/IR/vHvXk+va7qviTXrnWtavHur24bLyNwB6Ko6KoHAA4ArMr73LeCsJSoU/rS5qkZKTfmvs/wCH83r5HiV86quclR0g1a36+v5CtjPFWdM02+1jWrTSdMt2uL28mWCCJf4nY4H4evtmqte//CXw4/gbwzH4/wBR0/z/ABHqwNp4b0+QfMNwwZ2HYEHOeyf79e9nmbwyvCyrS1k9Iru/8lu/I4cDg5Yqqqa26vsj0CXSbDSxoXw30qRZNK8Jxi81KccLc6g4JGT/ALOWc+mQO1Wmu7e4z5FxHKRydjg4qXT9OHhfRLVpoxqkkd0L2/aVd/2qQks7MuCWXdtO3B+Veh6Vo+OfHi+Otasb1UsENquCbRt4ijCndvfGBk7cJ7ZwMV/PeJrPETdSTbbvr57tv1Z+i0Y+xShFaHJamP7SurTQWP7q6fzbvHa2jw0n/fXyoPdq8N+MPiQ6/wDEaWFGHk2C+SAp43k5fH44H4V6pq2vReH/AATqPjGdSLrUECWUbdRACfKGPV2zIf8AZVK+bpJJJneaZi0sjF3Y9STyTX6BwBlTniJYua0p6L/E9/uWnzPn+IsYlTVGO8tfktvvY0MfrSUoODSd6/XD44UdMZpQCCKbSjJ4oAO/NJmlNJSQgooo4oGFdn8NfF8nhLxjFLJM0dlcsqTEc7GB+V8ex/SuMyKDgiuHMcBTzDDTwtZaSX3dn8jfDYieHqxqw3R9Z2SQ6RqyadGoOl3+6fTz1WJh80ltn/ZzvT1RvY108JyvWvFvhT4xs9e0NvAfiO4kR/lNpcof3ileUdCf+WiHkeoLKeDXquk3t19rl0jVljj1S2UM/ln5LiM/dni9Ub/x05U8iv56zXLq2Cryo1l70d/NdJLyf5n6PhMVCvTU4bPb/L5C6zpN9Le2+v6DIsWs2YIQMcJdR9TC/sex7GvEviF4GtNTsrjxz4MsnS2Dt/aulbcSWMo++wT+7nJIHTqOCcfRUNZWr+HrxtRHiDw1NFa6uqhZYpOIb5B/BL6H0fqK2yTO62WV1UpPy12a7P8AR9H5XIx2Bp4um4S/4bz/AM+58YdeR0peK9r8V/DOw8VT3eoeC7X+ytch+a/8NXOI2Dd2hPTB/wC+T229K8YubW5sb2WzvLeW3uYW2SQzIUdD6EHkV+7ZRneGzSnz0XaS3i91/wADs1oz4DGYGrhJctRadH0f9di3oWpPo/iWw1RHlX7NcJKTE21ioPzAHsSMj8a+6xrI8UeE7bxr4U0vTNVH9mPcS6EG+zRQWKSBIoomwds5Ys2W4PIPTNfAldd4P+I/ibwXHdW+mXrtZ3UXlS2kjnYRu3AjHQg814nFvDc81jCtQs5x0s9FJdr909vV6q9zsynMVhW4Tdk+vb+v8j7G0jQ9B1XU/M0VPEHgXxGJnh+y3SvYStKn30jkU+XMR6KxyOcYrrdJ+LHjrwHrkWj/ABEZdW0aVxEmrCMR3Fsc4Bl2gK6epwGHXmvlXXv2ovF2v6Xd2V5plpIl7Kl1OJHJCXCqEEkeBlcgDI9h750PAP7QF1rGmt4M+J0y31tOPLtNXcfvIGPASX+8nYN1XvkdPzutwnm+HozrxptQW8eZN26tWvt978z6BZlg68406jTb62a++9tzovhhpnjjUp54vD8hsYGnf/StoZgNx+7ngfXmuv8AG1x8Ofh6RN8SfFF3ruuKNy6Z5xu7kfVSdsQ/3tv0rItPjv4E8Mzf8InYX01vbWQiW4vLZSBdtvAlhSReUULuG9cEnoQBzlzxfsyaXe3WrGO01OW1nZ3SW+kd7yBzuSVDuP8ApKE4IOQ2DkdM+dQy+bq+0x1KpGMtlGNnK/eT+Wye/c7KuKtHlw8ou27b2+X/AAx2Xw68S33jPTrjxkvhS40Xw5bxvBYw2WrQW0s6nG95pGYNt+UABFHfk18geNtatvEHxC1jWbOyWyt7m5Z44EkMgRRwPmJy2cZz3zXpfxa+NUHinT38NeHbSzfSwqqNTk0+O2u3UfwEoACOACcDPPArxQ8mv0rg3IZ4SdTG1afs+ZWjHW6jvrd3u9N9dHtex8znGOVZRoxlzW1b8/L/AIH6C5z1NAGafBBNdXcVrbQyTTzMEjiiQu7segVRyT7CvfPB/wAGNN8JW9l4i+K9vJPe3BB0zwfbDzLm8ft5qjoPVeg/iP8ADX1Oa5zhssp89d6vaK3fov12XU8vC4OriZctNfPojm/hl8M7KbSF+IPjtHg8OwODZ2bL+81WXPyqq9ShPH+1/ugmvoHRdI1K51B/FfieFY9Vnj8q2sxyunW/aJf9s9WP4VpaX4c1K/1iHxR4xSD7fCuNP0uA5t9LTGML2aXGAX7dBWvdDk1+D5/n1bNa7qVHpsktkuy7+b6+h99l2AhhIcsfm+7/AK2Ri3XTIrjtXUa1rH9g7nNpGon1R0bBWEn5YQezykY9lDHtXQa9qMtpJBYWEC3Wq3hKWlqWwDgZaRz/AAxoOWb046mvIvid4sh8G+Hm8IaPetdardlpr29Iw7u4w0hH8JI+VV/hQDuTXLlWX1cXWjSoq8pbfq35I3xeJhRpuU9lv/l8zgfix4x/4SXxa1laSL9gsmKgRjCM/QkD+6AAo9hXAZNJ0H8z60tf0NleXU8twsMNS2j+L6v5n5xi8TLE1XVl1EoPNLxmkNehc5xcUA4zQKBSAD1pKUjmkpoQtBFJRRYBe/SjjFJmlNKwx0MstvdR3FvI0U0bBkdTgqRX0j8P/Gdj8RtGt9F1O9XTvFFhl7K+25IJ+98v8aNj54+/3l+YV811LbXNxZ3kd3aTvBPEwZJIzgqR6GvnuIeHqWbUk0+WpH4X+j7pno5dmM8JPXWL3X6rzPs3S9RlfU5dH1W3Fjq9uoeW23blkQ9JYW/5aRHsw6dDgiujhHT0rxrwN8U/D/xAsbPw14+nbTdZtmzYa1CwjdHP8St0UnuD8j9wDzXpgvtT8MXcdj4xWIQOwS21yBStrc56LIP+WEh/ut8p7E1+E5jllbCVnSqx5ZLp+q7r8T73DYuFaClF3Xf/AD7Ms65oGk6/A9xNBfx3On9NV0+CRnsSRkbpUUhRjkq3GOoHWuP8UeHLXU9MjtPiT4dOt2aL+48VaCmLmBD0Msa5OO+RuU+ld7Z+K/Fuh6LeeGbGO6exuJXlSW1tvNMody+Q+QEb5sEtgDGckVreHbSey0O1trgoJkQlxGcqhJLbQe4GcA+1Z0MXPCyjUpSaa2d7P5Nar027oc6SqpxqJNP+tT5b1j9n7Wbq0bVfhrrVh4z0vrtt5Fjuo/ZkJwT9CD7V5Rq2j6roN+1lrmmXmmXCnBivIWhb/wAeAz+Ffe194C8NapfnUY7WXS9TP/MR0qU2s+fUleG/4EDSzeHvH8Wn/YU13QfF9hjH2PxTp43kenmxgg/UrX3mXeIWJpJRxMVNd/hf3pNP7kfP4nh+nJ3pPl/Ff5/mfn5g4zjijivtC/8Ahj4bvJWOv/s3qHJ+a48K6ugB9wm6M/pWBcfBj4Os+Z/hz8ZNPP8Acig84D8Rur6ijx9gJr34ST/7df5SPKnkVeL0af3/AOR8nAkUDPUV9b2fwU+DJYND8OPjTqTf3Gt/JB/E7f511Om/CTw1a7W8PfsuzSOPu3Hi7W0C/UpvkP4Yp1ePcBBXhCT/APAV+ciI5LXbs2kfFWl6Xqeu6gtjo2nXepXTHCwWULTOT9FBr1/Qf2a/FRsBrHxF1fTfAejj5mk1OVWuXHosQOAf9459q+trDwh8Sv7NWxXW/CvgWwPWz8JaWHkA9PNlwoPuEq3p/wALvCWm6ousXttda7q6cjU9cnN5MD6qG+VP+AqK+YzLxDrzTjhoqHn8T/FKK+6R6eGyGmtarv8AgeSeBfCOnaLZmD4QeFHt3ZSkvjrxRD+8de5toSASPoFX1zXZ+HdE8OaLefbhqNzq2tagCG1rUUfzLzHJWJ2UJs64SM4wO/Wu68TWdzqXhjULG1ZftE0DJHvOAT/dJ7A/dPsa8+1bXfG/i99N0XUrG7tls5UJJtWhWEKwbezn5WIC4UIWyccgZNfBYjGVMZKVStJtvd3u/m308lZeR9DRoqklGmkl/Wx0Vx0rkvEGtLp08Gn2dq+oaxeZFnp0TYaXHVmPRI16s54A96mvvEt7r2qzaL4Et4dRuY3KXWpyZNjYH0Zx/rZPSNM+5FeW+Ovih4d+GNveaR4VvP8AhIPFt5xf6xPhyCO3HACn7sa/KvfcaWAy2tiqsaVOHNJ7L9X2X9eZpXxMKMHKTsl1JPHvjGy+GGkXCy3cGreNdTjAmkQfJAnVURTysK9Qp5c/M3YV8u3l5d6hqM1/fTvPdTsXkkc5JJp2oahfatq0+palcyXN3OxeSWQ5JJqtiv3Xhzh2nlNLmm71Zbvt5LyR8HmWZSxcrLSK2X6sOBRn0o/Gk4r6ZHmC5zRikpTT9AE7UDk0Uo+8KYAeGpKcwAY855ptIQUUUUwCiiigYUtJRSaACORg4I5BHUV678OfjzrnhGz/ALC8RwLr/h918pra5wzIh6qCQQR/skEfTrXkYoxXl5plGFzKn7LExv2fVejOnC4urhpc1N/5H2r4Uh0LxDpx1L4O+KbVhjfJ4W1dzsT1ETZLxfhvT6Vt2/jG00y9TT/GFhd+F75jtVdRA8iU/wDTO4X5GH4g+1fCtle3um3iXenXc1rPG25ZInKkH14r27wj+1F4u0rT/wCyPGem2XivSmG10vUBkI/3sHd/wINX5fm3AmLotzw/7yP3S/yf5n1OEz6lNctT3X+B9aWjJJEs0bK8bDKuhyrfQjg1rW4FfPfhzx58B9emEvh/xHr/AMNtRfkx28hNrn3jO+M/98rXqWnQ/EWSBJ/C/i7wP44te24mznI9zEzLn/gIr4jEZfUoS5KicX2kmv8AgfiexGvCorxd0ejQKOKy9b8QW2neI9M0m91iTR7O5R5p72JVMmFZVCIWBVclsliCQAAMZyMD/hJviBpjhdX+EWsPjrJpN/b3S/gGKGqOueLNI16zjtvEHwz+IsLQsXimg0siWFiMEq6Oeo4I5B7jpWMKUou+n3pidnodr4I8TDVfE+q6PDqE+qWVsqz2t7cKokZC5QhioAYZGQ2AeGBzjNdzNjOK8e8M+N9C8N2csOh/DT4k3MszBppp9KLyzEDA3O7jgDgAYAycDk1tSfEDx9qJA0T4KeIjno+q31vZqPqAXP6U5UpPXT70jF6PTY7mbrWZckLGzkgKoyzHgD6ntXC6pqHxYMJm1zWvAPgS16lp5mvZ1H/AyiZ/A15H4s8d/BfTCZPGnxA8RfEe9Tn7FFIYrLPoI02R4/76qqOBqVpcsE5PtFNv/L8S/aRgrydkeqan8SNCOoSaV4ZiuvFWrKdps9GUSrGf+mk3+rjH1P4Vx3i+SCx006l8ZfFVrounMN8fhfRpmMlwPSaUYeQeoXanvXiPib9qbxC+lHQ/h1oOn+EdLUbU+yxqZQPrgAH3Cg+9eGalqmqa1qMl/rGoXF7cyNueWdy5Y+pJr7XKOBMXXanX/dx89ZfLovzPMxWeUaa5afvP8D2P4i/tCX+uaT/wivgLT08N+Ho1MSpbgI7p6fLwoPovXuWrxI5LlmYsxOSxPJpKXt71+qZVkuFyunyYaOr3e7fqz5bFY2riZc1R/LogxQfrRmjNepqcolLigdaDTYCUvakopgFFFOT76n3oAG6A/hTaeMH5ScA0zoaSEFFFLk0DEooopgFFFFABS5pKKTQBQKKWgBpRSckc1Ztr/ULKUSWd/cQOvRkcgj8ar0VlVoU6y5akU15q5cKkoO8XY7bS/jF8UtFCjTvHOsxKvRTdOR+ROK6OD9pr4326hV8a3L4/56Rxt/Na8mory6nDmWVHeVCP3W/I6VmGIX22euyftQfHGVCp8a3CZ7pHGp/Ra53VPjX8WtZUpqHj7W5EPVRdOo/IECuEopU+HMspu8aEfu/zB4/EP7bLN3qOpX8xlvtQubhz1aRySfxqqAAc4yfU0tFerSw9KirU4pLyVjmnUnN3k7hSgZ74pKK2ICiiigAooooAKKKKACiiigAp46E47cUynnjikxMSl6rjv2pKKQhCCDyMUlO47jNJt54I/lTGJRTtj5xtOfpTaYwoowRRQAUUUYoAKKKKACiiigAooooAKKKMUAFFKOaTFIA4oo69KUjAoASlyMcikwaKYBRS9ulJQAUUUu1s4wfyoASl6nFKBg84/nS5x0pAJjDdqKKKRJ//2Q==" alt="" />
+        </span>
+        <h1 class="wordmark">AnchorFare<sup class="tm" aria-label="trademark">&#8482;</sup></h1>
+      </div>
+      <p class="tagline">Sail more. Spend less.</p>
+      <p class="mast-sub">The cheapest verified sailings from U.S. ports across nine cruise lines — priced per person and per night, with the price basis labeled plain: all-in, or fare only.</p>
+    </header>
+
+    <main>
+      <!-- Featured hero: best price per night in the whole sweep -->
+      <section class="hero" aria-label="Featured deal — lowest price per night">
+        <div class="card-top">
+          <div class="card-main">
+            <p class="hero-kicker">★ Lowest price per night — all windows</p>
+            <p class="hero-line">MSC Cruises</p>
+            <h2 class="hero-ship">MSC Seascape</h2>
+            <p class="hero-meta">7 nights<span class="dot">•</span>Western Caribbean<span class="dot">•</span>from Galveston<br />Sails Sun, Nov 29, 2026</p>
+          </div>
+          <div class="porthole" aria-label="28 dollars per night">
+            <span class="amt">$28</span>
+            <span class="per">PER NIGHT</span>
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <div class="hero-price">$199<small>PER PERSON · INSIDE CABIN · FROM</small></div>
+        </div>
+        <div class="hero-badges">
+          <span class="basis fare">Fare only — taxes &amp; port fees extra</span>
+          <span class="tag fly">Fly &amp; Sail candidate — flight match coming</span>
+        </div>
+      </section>
+
+      <!-- Gold Strike: the verified Fly & Sail package (90-day window sailing) -->
+      <section class="goldstrike" aria-label="Gold Strike — Fly and Sail package deal">
+        <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="0.7" y2="1">
+              <stop offset="0" stop-color="#f6e27a" />
+              <stop offset="0.45" stop-color="#d9a92f" />
+              <stop offset="1" stop-color="#a87b14" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <p class="goldstrike-kicker">★ Fly &amp; Sail — Package Strike ★</p>
+        <div class="strike-line">
+          <span class="nuggets" aria-hidden="true">
+            <svg width="38" height="32" viewBox="0 0 48 40"><path d="M9 31 L4 20 L13 7 L27 3 L41 10 L45 23 L37 35 L19 38 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 7 L24 20 L19 38 M24 20 L45 23 M24 20 L27 3" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <svg width="30" height="26" viewBox="0 0 48 40" style="transform: rotate(14deg)"><path d="M7 27 L6 15 L18 5 L33 6 L44 17 L40 31 L24 37 L11 34 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M18 5 L22 19 L40 31 M22 19 L44 17" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <svg width="34" height="29" viewBox="0 0 48 40" style="transform: rotate(-9deg)"><path d="M10 34 L3 22 L10 9 L25 4 L39 8 L46 20 L41 33 L24 37 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 9 L26 18 L24 37 M26 18 L46 20" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </span>
+          <h2 class="strike-phrase">YOU JUST<br />STRUCK GOLD</h2>
+          <span class="nuggets" aria-hidden="true">
+            <svg width="34" height="29" viewBox="0 0 48 40" style="transform: rotate(8deg)"><path d="M11 33 L4 21 L12 8 L28 4 L42 11 L45 24 L36 35 L20 37 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8 L23 21 L20 37 M23 21 L45 24" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <svg width="30" height="26" viewBox="0 0 48 40" style="transform: rotate(-13deg)"><path d="M8 29 L5 17 L16 6 L32 5 L43 15 L41 30 L25 37 L12 33 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 6 L25 20 L25 37 M25 20 L43 15" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <svg width="38" height="32" viewBox="0 0 48 40"><path d="M9 30 L5 18 L15 6 L29 4 L42 12 L44 25 L35 35 L18 37 Z" fill="url(#goldGrad)" stroke="#7c5c0e" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 6 L22 19 L18 37 M22 19 L44 25 M22 19 L29 4" fill="none" stroke="#8a6414" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <p class="strike-spirit">A cheap cruise and a cheap flight on the same dates — that&rsquo;s the hard part, and that&rsquo;s the strike.</p>
+        <div class="strike-details">
+          <div class="strike-row">
+            <span class="what">The sailing</span>
+            <span class="detail">MSC Seashore · 3 nights · Port Canaveral<span class="sub">Sails Thu, Jan 14, 2027 · inside cabin</span></span>
+          </div>
+          <div class="strike-row">
+            <span class="what">The flight</span>
+            <span class="detail">Southwest · Knoxville (TYS) &rarr; Orlando<span class="sub">Out Wed, Jan 13, 2027 · arrives 12:10 PM</span><span class="sub">Nonstop back Sun, Jan 17 · 3:15–5:05 PM</span><span class="sub">$302.60</span></span>
+          </div>
+        </div>
+        <div class="strike-math">
+          <p class="breakdown">Cruise <strong>$209</strong> fare only<br />+ Flight <strong>$302.60</strong></p>
+          <div class="strike-total">$511.60<small>PER PERSON · + CRUISE TAXES &amp; PORT FEES</small></div>
+        </div>
+        <div class="strike-badges">
+          <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Southwest&rsquo;s site</span>
+          <span class="basis fare">Cruise fare only — taxes &amp; port fees extra</span>
+          <span class="tag fly">Fly &amp; Sail — flight matched to sailing dates</span>
+        </div>
+
+        <p class="strike-option-label">Deeper strike — <span class="deeper-note">Allegiant beats it</span></p>
+        <div class="strike-details" style="margin-top:8px">
+          <div class="strike-row">
+            <span class="what">The flight</span>
+            <span class="detail">Allegiant · Knoxville (TYS) &rarr; Orlando Sanford<span class="sub">Nonstop both ways</span><span class="sub">Out Tue, Jan 12, 2027 · back Sun, Jan 17</span><span class="sub">$131.50 with a personal item · $232.50 with a checked bag both ways</span></span>
+          </div>
+        </div>
+        <div class="strike-math two-totals">
+          <p class="breakdown">Cruise <strong>$209</strong> fare only<br />+ Flight <strong>$131.50</strong> / <strong>$232.50</strong></p>
+          <div class="strike-totals">
+            <div class="strike-total">$340.50<small>PER PERSON · PERSONAL ITEM<br />+ CRUISE TAXES &amp; PORT FEES</small></div>
+            <div class="strike-total">$441.50<small>PER PERSON · CHECKED BAG<br />+ CRUISE TAXES &amp; PORT FEES</small></div>
+          </div>
+        </div>
+        <p class="strike-caveats"><strong>Heads up:</strong> Flies out a day early — a night ashore near the port is on you. Lands at Sanford, not Orlando International. Bags cost extra.</p>
+        <div class="strike-badges">
+          <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Allegiant&rsquo;s site</span>
+          <span class="basis fare">Cruise fare only — taxes &amp; port fees extra</span>
+        </div>
+      </section>
+
+      <!-- Window switcher -->
+      <div class="switcher-wrap">
+        <p class="switcher-label">When do you sail?</p>
+        <div class="switcher" role="group" aria-label="Departure window">
+          <button type="button" class="win-btn active" data-window="a" aria-pressed="true">
+            <span class="num">30</span>
+            <span class="lab">Sailing in 30 days</span>
+          </button>
+          <button type="button" class="win-btn" data-window="b" aria-pressed="false">
+            <span class="num">60</span>
+            <span class="lab">Sailing in 60 days</span>
+          </button>
+          <button type="button" class="win-btn" data-window="c" aria-pressed="false">
+            <span class="num">90</span>
+            <span class="lab">Sailing in 90 days</span>
+          </button>
+        </div>
+        <p class="window-range" id="windowRange"></p>
+      </div>
+
+      <!-- Deal panels (rendered by script) -->
+      <section id="panel-a" class="panel" aria-label="Sailing in 30 days"></section>
+      <section id="panel-b" class="panel hidden" aria-label="Sailing in 60 days"></section>
+      <section id="panel-c" class="panel hidden" aria-label="Sailing in 90 days"></section>
+
+      <!-- Games strip -->
+      <section class="games" aria-label="Offline games">
+        <h2>12 offline games sail with you — <span class="accent">No network, no problem.</span></h2>
+        <p>Sea days have dead zones. These twelve ride in your pocket and play fully offline, bow to stern. All 12 games — $4.99.</p>
+        <div class="game-chips">
+          <span class="chip">Hatchet Toss</span>
+          <span class="chip">Block Party</span>
+          <span class="chip">Orb Pop</span>
+          <span class="chip">Pin Order</span>
+          <span class="chip">Flow Line</span>
+          <span class="chip">Pocket Golf</span>
+          <span class="chip">All Aboard!</span>
+          <span class="chip">Easy Does It</span>
+          <span class="chip">Ship Maze</span>
+          <span class="chip">Steady As She Goes</span>
+          <span class="chip">+ 2 more aboard</span>
+        </div>
+      </section>
+    </main>
+
+    <section class="crosspromo" aria-label="Weekend Wiings — cheap flights">
+      <div class="crosspromo-inner">
+        <p class="crosspromo-text">If you like to cruise, maybe you want to fly.</p>
+        <a class="crosspromo-btn" href="https://wkndwiings.com">Find cheap flights — Weekend Wiings</a>
+      </div>
+    </section>
+
+    <footer>
+      <p class="foot-brand">AnchorFare</p>
+      <p class="foot-tag">Sail more. Spend less.</p>
+      <p class="fine">Prices from the Nov 12, 2026 sweep, per person double occupancy — cruise prices move fast and every featured deal is re-verified before it is promoted. AnchorFare finds the fare; you book direct with the line or your agent.</p>
+    </footer>
+
+    <script>
+      /* Deal data — verbatim from the Nov 12, 2026 research sweep.
+         basis: "allin" = taxes & port fees included; "fare" = fare only.
+         portTag: "fly" | "drive" | null (badge logic per port).
+         The Norwegian Dawn Jacksonville Jan 7, 2027 row is excluded entirely:
+         its $119 vs $239 price conflict is unresolved. */
+      var WINDOWS = {
+        a: {
+          title: "Sailing in 30 days",
+          range: "Nov 13 – Dec 12, 2026",
+          deals: [
+            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Nov 16, 2026", nights: 4, port: "Palm Beach", itin: "Freeport (Grand Bahama) · Nassau", price: 149, perNight: 37.25, basis: "allin", portTag: "fly" },
+            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Dec 7, 2026", nights: 4, port: "Palm Beach", itin: "Freeport (Grand Bahama) · Nassau", price: 149, perNight: 37.25, basis: "allin", portTag: "fly" },
+            { line: "Margaritaville at Sea", ship: null, date: "Fri, Dec 11, 2026", nights: 3, port: "Palm Beach", itin: "Bahamas (ports not enumerated in source)", price: 155, perNight: 51.67, basis: "fare", portTag: "fly", fromPrice: true },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Joy", date: "Fri, Dec 11, 2026", nights: 3, port: "Miami", itin: "Nassau · Great Stirrup Cay", price: 179, perNight: 59.67, basis: "allin", portTag: "fly" },
+            { line: "Royal Caribbean", ship: "Brilliance of the Seas", date: "Mon, Nov 30, 2026", nights: 4, port: "Fort Lauderdale", itin: "Perfect Day at CocoCay · Freeport (Grand Bahama) · Nassau", price: 179, perNight: 44.75, basis: "allin", portTag: "fly" },
+            { line: "Carnival Cruise Line", ship: "Carnival Paradise", date: "Sun, Nov 15, 2026", nights: 4, port: "Tampa", itin: "Western Caribbean (ports not enumerated in source)", price: 187, perNight: 46.75, basis: "allin", portTag: "fly", cabin: "inside" },
+            { line: "Royal Caribbean", ship: "Serenade of the Seas", date: "Sun, Nov 29, 2026", nights: 4, port: "San Diego", itin: "Catalina Island · Ensenada", price: 190, perNight: 47.50, basis: "fare", portTag: "fly" },
+            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Nov 29, 2026", nights: 7, port: "Galveston", itin: "Western Caribbean (ports not enumerated in source)", price: 199, perNight: 28.43, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true, featured: true },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Dec 6, 2026", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 204, perNight: 51.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Carnival Cruise Line", ship: "Carnival Elation", date: "Mon, Dec 7, 2026", nights: 5, port: "Jacksonville", itin: "Bahamas — Half Moon Cay · Celebration Key", price: 206, perNight: 41.20, basis: "allin", portTag: "fly" },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Nov 30, 2026", nights: 4, port: "Port Canaveral", itin: "Nassau · Great Stirrup Cay", price: 209, perNight: 52.25, basis: "allin", portTag: "fly" },
+            { line: "Royal Caribbean", ship: "Freedom of the Seas", date: "Sat, Nov 28, 2026", nights: 5, port: "Miami", itin: "Nassau · Grand Cayman", price: 230, perNight: 46.00, basis: "allin", portTag: "fly" },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Nov 16, 2026", nights: 7, port: "Port Canaveral", itin: "Eastern Caribbean routing (ports not enumerated in source)", price: 239, perNight: 34.14, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Nov 15, 2026", nights: 7, port: "Galveston", itin: "Western Caribbean — Costa Maya · Roatán · Cozumel", price: 259, perNight: 37.00, basis: "allin", portTag: "fly", honor: "Cheapest all-in per night" },
+            { line: "Celebrity Cruises", ship: "Celebrity Reflection", date: "Mon, Nov 16, 2026", nights: 4, port: "Fort Lauderdale", itin: "Key West · Nassau", price: 263, perNight: 65.75, basis: "allin", portTag: "fly" }
+          ],
+          also: [
+            { text: "Royal Caribbean — Adventure of the Seas · Sun, Nov 29 · 6 nt · Fort Lauderdale → Nassau, Samana, Puerto Plata", amt: "$269", sub: "all-in" },
+            { text: "Carnival — ship not named in source · Sat, Nov 28 · 8 nt · Mobile → Bahamas · drive-to port", amt: "from $282", sub: "fare only · $35/nt" },
+            { text: "Royal Caribbean — Mariner of the Seas · Sat, Nov 14 · 7 nt · New Orleans → Cozumel, Grand Cayman, Falmouth · best all-in full week in this window, drive-to port", amt: "$289", sub: "all-in · $41/nt" },
+            { text: "Margaritaville at Sea — Islander · Fri, Nov 20 · 5 nt · Tampa → Cozumel, Progreso", amt: "$299", sub: "all-in" },
+            { text: "Carnival — Carnival Conquest · Fri, Nov 27 · 3 nt · Miami → Bahamas", amt: "$312", sub: "all-in" },
+            { text: "Norwegian — Norwegian Getaway · Mon, Nov 23 · 7 nt · Port Canaveral → Great Stirrup Cay, Montego Bay, Grand Cayman, Cozumel", amt: "$349", sub: "all-in" },
+            { text: "Norwegian — Norwegian Dawn · Wed, Nov 25 · 5 nt · Jacksonville → Bahamas", amt: "$389", sub: "all-in" },
+            { text: "Holland America — Zuiderdam · Sat, Nov 28 · 7 nt · Miami → Half Moon Cay, Amber Cove, Grand Turk, Nassau", amt: "$449", sub: "all-in" },
+            { text: "Holland America — Eurodam · Sat, Dec 12 · 7 nt · Fort Lauderdale → Nassau, Grand Turk, Amber Cove, Half Moon Cay", amt: "$449", sub: "all-in" },
+            { text: "Celebrity — Celebrity Summit · Sun, Nov 29 · 7 nt · Tampa → Key West, Bimini, Nassau", amt: "$476", sub: "all-in" },
+            { text: "Celebrity — Celebrity Silhouette · Sun, Nov 29 · 6 nt · Fort Lauderdale → Cozumel, Roatán, Costa Maya", amt: "$493", sub: "all-in" },
+            { text: "Celebrity — ship not named in source · Sat, Nov 28 · 7 nt · San Juan → Caribbean", amt: "from $511", sub: "fare only" },
+            { text: "Virgin Voyages — Resilient Lady · Mon, Nov 16 · 6 nt · Miami → Costa Maya, Cozumel, Beach Club at Bimini", amt: "$654", sub: "all-in" },
+            { text: "Virgin Voyages — Valiant Lady · Sat, Nov 28 · 7 nt · San Juan → St. Thomas, Tortola, St. Kitts, Antigua", amt: "$763", sub: "all-in" }
+          ]
+        },
+        b: {
+          title: "Sailing in 60 days",
+          range: "Dec 13, 2026 – Jan 11, 2027",
+          deals: [
+            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Dec 14, 2026", nights: 4, port: "Palm Beach", itin: "Bahamas", price: 159, perNight: 39.75, basis: "fare", portTag: "fly" },
+            { line: "Royal Caribbean", ship: "Voyager of the Seas", date: "Mon, Jan 4, 2027", nights: 4, port: "Los Angeles", itin: "Catalina Island · Ensenada", price: 179, perNight: 44.75, basis: "allin", portTag: "fly" },
+            { line: "Royal Caribbean", ship: "Brilliance of the Seas", date: "Mon, Dec 14, 2026", nights: 4, port: "Fort Lauderdale", itin: "Bahamas", price: 179, perNight: 44.75, basis: "fare", portTag: "fly" },
+            { line: "Carnival Cruise Line", ship: "Carnival Firenze", date: "Mon, Dec 14, 2026", nights: 4, port: "Long Beach (Los Angeles)", itin: "Baja Mexico: Catalina Island + Ensenada", price: 198, perNight: 49.50, basis: "allin", portTag: "fly" },
+            { line: "Margaritaville at Sea", ship: "Paradise", date: "Fri, Jan 1, 2027", nights: 3, port: "Palm Beach", itin: "Nassau (“Nassau Escape”)", price: 219, perNight: 73.00, basis: "allin", portTag: "fly" },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Dec 13, 2026", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 219, perNight: 54.75, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 7, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 221, perNight: 73.67, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 11, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 221, perNight: 55.25, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Jan 10, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 223, perNight: 55.75, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Royal Caribbean", ship: "Freedom of the Seas", date: "Sat, Jan 9, 2027", nights: 5, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 239, perNight: 47.80, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 4, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 260, perNight: 65.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Meraviglia", date: "Sun, Dec 13, 2026", nights: 6, port: "Miami", itin: "Caribbean (ports not enumerated in source)", price: 269, perNight: 44.83, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Carnival Cruise Line", ship: "Carnival Magic", date: "Sat, Jan 9, 2027", nights: 8, port: "Miami", itin: "Southern Caribbean (ports not enumerated in source)", price: 394, perNight: 49.25, basis: "allin", portTag: "fly", cabin: "inside" },
+            { line: "Princess Cruises", ship: "Sun Princess", date: "Sun, Dec 13, 2026", nights: 7, port: "Fort Lauderdale", itin: "Celebration Key (Grand Bahama) + Western Caribbean ports (not fully enumerated in source)", price: 399, perNight: 57.00, basis: "allin", portTag: "fly", cabin: "inside" }
+          ],
+          also: [
+            { text: "Royal Caribbean — Jewel of the Seas · Mon, Jan 11 · 5 nt · Tampa", amt: "$278", sub: "inside · fare only" },
+            { text: "MSC — MSC Seashore · Sun, Jan 3 · 4 nt · Port Canaveral", amt: "$284", sub: "inside · fare only" },
+            { text: "Princess — Crown Princess · Sun, Jan 3 · 5 nt · San Juan", amt: "from $299", sub: "oceanview · fare only" },
+            { text: "Norwegian — Norwegian Dawn · Thu, Dec 24 · 4 nt · Jacksonville → Bahamas", amt: "$369", sub: "all-in" },
+            { text: "Norwegian — Norwegian Joy · Fri, Dec 18 · 4 nt · Miami → Bahamas", amt: "$389", sub: "all-in" },
+            { text: "Virgin Voyages — Brilliant Lady · Thu, Jan 7 · 4 nt · Miami → Key West, Beach Club at Bimini", amt: "$436", sub: "all-in" },
+            { text: "Margaritaville at Sea — Paradise · Thu, Dec 24 · 4 nt · Palm Beach → Bahamas", amt: "$449", sub: "all-in" },
+            { text: "Carnival — Carnival Firenze · Thu, Dec 31 · 4 nt · Long Beach → Baja Mexico", amt: "$497", sub: "all-in" },
+            { text: "Celebrity — Celebrity Constellation · Sat, Dec 19 · 7 nt · San Juan → Tortola, St. Kitts, Roseau (Dominica), St. Lucia", amt: "$499", sub: "all-in" },
+            { text: "Margaritaville at Sea — Islander · Sat, Jan 2 · 7 nt · Tampa → Cozumel, Belize, Progreso", amt: "$529", sub: "all-in" },
+            { text: "Norwegian — Norwegian Gem · Mon, Dec 21 · 7 nt · Tampa → Harvest Caye, Roatán, Cozumel", amt: "$649", sub: "all-in" }
+          ]
+        },
+        c: {
+          title: "Sailing in 90 days",
+          range: "Jan 12 – Feb 10, 2027",
+          deals: [
+            { line: "Margaritaville at Sea", ship: "Paradise", date: "Fri, Jan 29, 2027", nights: 3, port: "Palm Beach", itin: "Bahamas", price: 189, perNight: 63.00, basis: "fare", portTag: "fly" },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 14, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 209, perNight: 69.67, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Jan 25, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas", price: 209, perNight: 52.25, basis: "fare", portTag: "fly" },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 21, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 213, perNight: 71.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seaside", date: "Fri, Jan 22, 2027", nights: 3, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 219, perNight: 73.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Feb 7, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 220, perNight: 55.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Carnival Cruise Line", ship: "Carnival Paradise", date: "Mon, Jan 18, 2027", nights: 5, port: "Tampa", itin: "Bahamas", price: 220, perNight: 44.00, basis: "fare", portTag: "fly" },
+            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 25, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 224, perNight: 56.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Jewel", date: "Mon, Jan 18, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 289, perNight: 72.25, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Jan 31, 2027", nights: 7, port: "Galveston", itin: "Western Caribbean (ports not enumerated in source)", price: 307, perNight: 43.86, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
+            { line: "Royal Caribbean", ship: "Jewel of the Seas", date: "Sat, Jan 16, 2027", nights: 5, port: "Tampa", itin: "Costa Maya · Cozumel", price: 308, perNight: 61.60, basis: "allin", portTag: "fly" },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Gem", date: "Mon, Feb 1, 2027", nights: 4, port: "Tampa", itin: "Great Stirrup Cay", price: 309, perNight: 77.25, basis: "allin", portTag: "fly" },
+            { line: "Royal Caribbean", ship: "Voyager of the Seas", date: "Fri, Jan 22, 2027", nights: 7, port: "Los Angeles", itin: "Ensenada · Cabo San Lucas · Mazatlan", price: 349, perNight: 49.86, basis: "allin", portTag: "fly" },
+            { line: "Norwegian Cruise Line", ship: "Norwegian Breakaway", date: "Sun, Jan 24, 2027", nights: 7, port: "New Orleans", itin: "Cozumel · Roatán · Belize · Costa Maya", price: 419, perNight: 59.86, basis: "allin", portTag: "drive" },
+            { line: "Holland America", ship: "Zuiderdam", date: "Sat, Jan 16, 2027", nights: 7, port: "San Diego", itin: "Pichilingue (La Paz) · Mazatlan · Cabo San Lucas", price: 549, perNight: 78.43, basis: "allin", portTag: null }
+          ],
+          also: [
+            { text: "MSC — MSC Seaside · Mon, Feb 8 · 5 nt · Miami", amt: "$248", sub: "inside · fare only" },
+            { text: "MSC — MSC Meraviglia · Sun, Jan 24 · 6 nt · Miami", amt: "$280", sub: "inside · fare only" },
+            { text: "MSC — MSC Grandiosa · Sat, Jan 30 · 7 nt · Port Canaveral", amt: "$309", sub: "inside · fare only" },
+            { text: "Royal Caribbean — Liberty of the Seas · Mon, Jan 18 · 5 nt · Galveston → Costa Maya, Cozumel", amt: "$342", sub: "all-in" },
+            { text: "Norwegian — Norwegian Viva · Sat, Jan 23 · 7 nt · Galveston → Cozumel, Roatán, Harvest Caye, Costa Maya", amt: "$519", sub: "all-in" }
+          ]
+        }
+      };
+
+      function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+      function money(n) { return "$" + n.toLocaleString("en-US"); }
+
+      function basisBadge(basis) {
+        if (basis === "allin") {
+          return '<span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>';
+        }
+        return '<span class="basis fare">Fare only — taxes &amp; port fees extra</span>';
+      }
+      function portBadge(tag) {
+        if (tag === "fly") {
+          return '<span class="tag fly"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 3.5 L3 10.8 L10 13.4 L12.6 20.4 L15.2 14.6 L21.5 3.5 Z M10.9 12.2 L19.2 5.6 L13.8 13.2 L10.9 12.2 Z"/></svg>Fly &amp; Sail candidate — flight match coming</span>';
+        }
+        if (tag === "drive") {
+          return '<span class="tag drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15 L5.6 8.6 C5.8 7.6 6.7 7 7.7 7 H16.3 C17.3 7 18.2 7.6 18.4 8.6 L20 15"/><path d="M3 15 H21 V18.5 H3 Z"/><circle cx="7.2" cy="18.6" r="1.5"/><circle cx="16.8" cy="18.6" r="1.5"/></svg>Drive-to port from Knoxville</span>';
+        }
+        return "";
+      }
+      function honorBadge(d) {
+        if (!d.honor) { return ""; }
+        return '<span class="tag honor">★ ' + esc(d.honor) + '</span>';
+      }
+
+      function renderPanel(key) {
+        var w = WINDOWS[key];
+        var html = "";
+        html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">' + w.deals.length + ' featured sailings · cheapest first</span></div>';
+        html += '<hr class="gold-rule" />';
+        html += '<div class="cards">';
+        w.deals.forEach(function (d, i) {
+          var shipHtml = d.ship ? esc(d.ship) : '<span class="unnamed">Ship not named in source listing</span>';
+          var priceLabel = (d.fromPrice ? "from " : "") + money(d.price);
+          var ppNote = "per person" + (d.cabin ? " · " + d.cabin : "");
+          html += '<article class="card">';
+          html += '<div class="card-top"><div class="card-main">';
+          html += '<span class="rank">No. ' + (i + 1) + ' cheapest</span>';
+          html += '<p class="line-name">' + esc(d.line) + '</p>';
+          html += '<h3 class="ship-name">' + shipHtml + '</h3>';
+          html += '<p class="meta">' + d.nights + ' nights · from ' + esc(d.port) + '</p>';
+          html += '<p class="sail-date">Sails ' + esc(d.date) + '</p>';
+          html += '<p class="itin">' + esc(d.itin) + '</p>';
+          html += '</div>';
+          html += '<div class="porthole small" aria-label="' + Math.round(d.perNight) + ' dollars per night"><span class="amt">$' + Math.round(d.perNight) + '</span><span class="per">PER NIGHT</span></div>';
+          html += '</div>';
+          html += '<div class="card-foot"><div class="price-row"><span class="price">' + priceLabel + '</span><span class="pp">' + ppNote + '</span></div>';
+          html += '<div class="card-badges">' + basisBadge(d.basis) + honorBadge(d) + portBadge(d.portTag) + '</div>';
+          html += '</div></article>';
+        });
+        html += '</div>';
+        if (w.also && w.also.length) {
+          html += '<div class="also"><h3>Also tracked in this window</h3><ul>';
+          w.also.forEach(function (a) {
+            html += '<li><span>' + esc(a.text) + '</span><span class="amt">' + esc(a.amt) + ' <span class="sub">· ' + esc(a.sub) + '</span></span></li>';
+          });
+          html += '</ul></div>';
+        }
+        document.getElementById("panel-" + key).innerHTML = html;
+      }
+
+      ["a", "b", "c"].forEach(renderPanel);
+
+      var rangeEl = document.getElementById("windowRange");
+      function showWindow(key) {
+        ["a", "b", "c"].forEach(function (k) {
+          document.getElementById("panel-" + k).classList.toggle("hidden", k !== key);
+        });
+        var btns = document.querySelectorAll(".win-btn");
+        btns.forEach(function (b) {
+          var on = b.getAttribute("data-window") === key;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        rangeEl.innerHTML = "<strong>" + esc(WINDOWS[key].title) + "</strong> · sails " + esc(WINDOWS[key].range) + " · sorted cheapest first";
+      }
+      document.querySelectorAll(".win-btn").forEach(function (b) {
+        b.addEventListener("click", function () { showWindow(b.getAttribute("data-window")); });
+      });
+      showWindow("a");
+    </script>
+  </body>
+</html>
