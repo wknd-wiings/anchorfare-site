@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light" />
+    <meta name="description" content="AnchorFare — the cheapest verified cruise deals from U.S. ports, priced per person and per night with the price basis labeled plain: all-in, or fare only. Sail more. Spend less." />
     <link rel="icon" href="data:," />
     <title>AnchorFare — Cruise Deal Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -487,6 +488,16 @@
       }
       footer .foot-tag { font-family: "Playfair Display", Georgia, serif; font-style: italic; color: var(--gold-soft); margin: 0 0 14px; font-size: .95rem; }
       footer p.fine { margin: 0 auto; max-width: 640px; font-size: .83rem; line-height: 1.65; }
+      /* ---------- Website launch banner ---------- */
+      .launch-banner {
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        color: #fff8ea; text-align: center; padding: 12px 18px;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 2px 8px rgba(6,24,48,.25);
+      }
+      .launch-banner p { margin: 0 auto; max-width: 720px; font-size: .98rem; line-height: 1.45; }
+      .launch-banner strong { font-weight: 800; }
+      footer .foot-op { margin: 10px 0 0; font-size: .83rem; font-weight: 600; color: var(--gold-soft); }
+
       .hidden { display: none !important; }
     </style>
   </head>
@@ -501,6 +512,10 @@
       <p class="tagline">Sail more. Spend less.</p>
       <p class="mast-sub">The cheapest verified sailings from U.S. ports across nine cruise lines — priced per person and per night, with the price basis labeled plain: all-in, or fare only.</p>
     </header>
+
+    <div class="launch-banner" role="note">
+      <p><strong>The AnchorFare app launches November 27 on iPhone</strong> — deals are live here now. No app needed: this page is the full tracker, for every phone.</p>
+    </div>
 
     <main>
       <!-- Featured hero: best price per night in the whole sweep -->
@@ -518,10 +533,10 @@
           </div>
         </div>
         <div class="hero-bottom">
-          <div class="hero-price">$199<small>PER PERSON · INSIDE CABIN · FROM</small></div>
+          <div class="hero-price">$198.79<small>PER PERSON · INSIDE CABIN</small></div>
         </div>
         <div class="hero-badges">
-          <span class="basis fare">Fare only — taxes &amp; port fees extra</span>
+          <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
           <span class="tag fly">Fly &amp; Sail candidate — flight match coming</span>
         </div>
       </section>
@@ -563,12 +578,12 @@
           </div>
         </div>
         <div class="strike-math">
-          <p class="breakdown">Cruise <strong>$209</strong> fare only<br />+ Flight <strong>$302.60</strong></p>
-          <div class="strike-total">$511.60<small>PER PERSON · + CRUISE TAXES &amp; PORT FEES</small></div>
+          <p class="breakdown">Cruise <strong>$222.64</strong> all-in<br />+ Flight <strong>$302.60</strong></p>
+          <div class="strike-total">$525.24<small>PER PERSON · CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
         </div>
         <div class="strike-badges">
           <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Southwest&rsquo;s site</span>
-          <span class="basis fare">Cruise fare only — taxes &amp; port fees extra</span>
+          <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
           <span class="tag fly">Fly &amp; Sail — flight matched to sailing dates</span>
         </div>
 
@@ -580,16 +595,16 @@
           </div>
         </div>
         <div class="strike-math two-totals">
-          <p class="breakdown">Cruise <strong>$209</strong> fare only<br />+ Flight <strong>$131.50</strong> / <strong>$232.50</strong></p>
+          <p class="breakdown">Cruise <strong>$222.64</strong> all-in<br />+ Flight <strong>$131.50</strong> / <strong>$232.50</strong></p>
           <div class="strike-totals">
-            <div class="strike-total">$340.50<small>PER PERSON · PERSONAL ITEM<br />+ CRUISE TAXES &amp; PORT FEES</small></div>
-            <div class="strike-total">$441.50<small>PER PERSON · CHECKED BAG<br />+ CRUISE TAXES &amp; PORT FEES</small></div>
+            <div class="strike-total">$354.14<small>PER PERSON · PERSONAL ITEM<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
+            <div class="strike-total">$455.14<small>PER PERSON · CHECKED BAG<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
           </div>
         </div>
         <p class="strike-caveats"><strong>Heads up:</strong> Flies out a day early — a night ashore near the port is on you. Lands at Sanford, not Orlando International. Bags cost extra.</p>
         <div class="strike-badges">
           <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Allegiant&rsquo;s site</span>
-          <span class="basis fare">Cruise fare only — taxes &amp; port fees extra</span>
+          <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
         </div>
       </section>
 
@@ -648,120 +663,953 @@
     <footer>
       <p class="foot-brand">AnchorFare</p>
       <p class="foot-tag">Sail more. Spend less.</p>
-      <p class="fine">Prices from the Nov 12, 2026 sweep, per person double occupancy — cruise prices move fast and every featured deal is re-verified before it is promoted. AnchorFare finds the fare; you book direct with the line or your agent.</p>
+      <p class="fine">Prices from the Nov 14, 2026 re-check, per person double occupancy — cruise prices move fast and every featured deal is re-verified before it is promoted. AnchorFare finds the fare; you book direct with the line or your agent.</p>
+      <p class="foot-op">AnchorFare &middot; operated by MVP Forge LLC</p>
     </footer>
 
     <script>
-      /* Deal data — verbatim from the Nov 12, 2026 research sweep.
-         basis: "allin" = taxes & port fees included; "fare" = fare only.
-         portTag: "fly" | "drive" | null (badge logic per port).
-         The Norwegian Dawn Jacksonville Jan 7, 2027 row is excluded entirely:
-         its $119 vs $239 price conflict is unresolved. */
+      /* Deal data — generated by build_site.py from deals.json (do not edit here).
+         Source: AnchorFare tracker, Nov 12, 2026 sweep + verified Nov 14, 2026
+         SmartCruiser re-check. basis: "allin" = taxes & port fees included;
+         "fare" = fare only. portTag: "fly" | "drive" | null. */
       var WINDOWS = {
-        a: {
-          title: "Sailing in 30 days",
-          range: "Nov 13 – Dec 12, 2026",
-          deals: [
-            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Nov 16, 2026", nights: 4, port: "Palm Beach", itin: "Freeport (Grand Bahama) · Nassau", price: 149, perNight: 37.25, basis: "allin", portTag: "fly" },
-            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Dec 7, 2026", nights: 4, port: "Palm Beach", itin: "Freeport (Grand Bahama) · Nassau", price: 149, perNight: 37.25, basis: "allin", portTag: "fly" },
-            { line: "Margaritaville at Sea", ship: null, date: "Fri, Dec 11, 2026", nights: 3, port: "Palm Beach", itin: "Bahamas (ports not enumerated in source)", price: 155, perNight: 51.67, basis: "fare", portTag: "fly", fromPrice: true },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Joy", date: "Fri, Dec 11, 2026", nights: 3, port: "Miami", itin: "Nassau · Great Stirrup Cay", price: 179, perNight: 59.67, basis: "allin", portTag: "fly" },
-            { line: "Royal Caribbean", ship: "Brilliance of the Seas", date: "Mon, Nov 30, 2026", nights: 4, port: "Fort Lauderdale", itin: "Perfect Day at CocoCay · Freeport (Grand Bahama) · Nassau", price: 179, perNight: 44.75, basis: "allin", portTag: "fly" },
-            { line: "Carnival Cruise Line", ship: "Carnival Paradise", date: "Sun, Nov 15, 2026", nights: 4, port: "Tampa", itin: "Western Caribbean (ports not enumerated in source)", price: 187, perNight: 46.75, basis: "allin", portTag: "fly", cabin: "inside" },
-            { line: "Royal Caribbean", ship: "Serenade of the Seas", date: "Sun, Nov 29, 2026", nights: 4, port: "San Diego", itin: "Catalina Island · Ensenada", price: 190, perNight: 47.50, basis: "fare", portTag: "fly" },
-            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Nov 29, 2026", nights: 7, port: "Galveston", itin: "Western Caribbean (ports not enumerated in source)", price: 199, perNight: 28.43, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true, featured: true },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Dec 6, 2026", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 204, perNight: 51.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Carnival Cruise Line", ship: "Carnival Elation", date: "Mon, Dec 7, 2026", nights: 5, port: "Jacksonville", itin: "Bahamas — Half Moon Cay · Celebration Key", price: 206, perNight: 41.20, basis: "allin", portTag: "fly" },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Nov 30, 2026", nights: 4, port: "Port Canaveral", itin: "Nassau · Great Stirrup Cay", price: 209, perNight: 52.25, basis: "allin", portTag: "fly" },
-            { line: "Royal Caribbean", ship: "Freedom of the Seas", date: "Sat, Nov 28, 2026", nights: 5, port: "Miami", itin: "Nassau · Grand Cayman", price: 230, perNight: 46.00, basis: "allin", portTag: "fly" },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Nov 16, 2026", nights: 7, port: "Port Canaveral", itin: "Eastern Caribbean routing (ports not enumerated in source)", price: 239, perNight: 34.14, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Nov 15, 2026", nights: 7, port: "Galveston", itin: "Western Caribbean — Costa Maya · Roatán · Cozumel", price: 259, perNight: 37.00, basis: "allin", portTag: "fly", honor: "Cheapest all-in per night" },
-            { line: "Celebrity Cruises", ship: "Celebrity Reflection", date: "Mon, Nov 16, 2026", nights: 4, port: "Fort Lauderdale", itin: "Key West · Nassau", price: 263, perNight: 65.75, basis: "allin", portTag: "fly" }
-          ],
-          also: [
-            { text: "Royal Caribbean — Adventure of the Seas · Sun, Nov 29 · 6 nt · Fort Lauderdale → Nassau, Samana, Puerto Plata", amt: "$269", sub: "all-in" },
-            { text: "Carnival — ship not named in source · Sat, Nov 28 · 8 nt · Mobile → Bahamas · drive-to port", amt: "from $282", sub: "fare only · $35/nt" },
-            { text: "Royal Caribbean — Mariner of the Seas · Sat, Nov 14 · 7 nt · New Orleans → Cozumel, Grand Cayman, Falmouth · best all-in full week in this window, drive-to port", amt: "$289", sub: "all-in · $41/nt" },
-            { text: "Margaritaville at Sea — Islander · Fri, Nov 20 · 5 nt · Tampa → Cozumel, Progreso", amt: "$299", sub: "all-in" },
-            { text: "Carnival — Carnival Conquest · Fri, Nov 27 · 3 nt · Miami → Bahamas", amt: "$312", sub: "all-in" },
-            { text: "Norwegian — Norwegian Getaway · Mon, Nov 23 · 7 nt · Port Canaveral → Great Stirrup Cay, Montego Bay, Grand Cayman, Cozumel", amt: "$349", sub: "all-in" },
-            { text: "Norwegian — Norwegian Dawn · Wed, Nov 25 · 5 nt · Jacksonville → Bahamas", amt: "$389", sub: "all-in" },
-            { text: "Holland America — Zuiderdam · Sat, Nov 28 · 7 nt · Miami → Half Moon Cay, Amber Cove, Grand Turk, Nassau", amt: "$449", sub: "all-in" },
-            { text: "Holland America — Eurodam · Sat, Dec 12 · 7 nt · Fort Lauderdale → Nassau, Grand Turk, Amber Cove, Half Moon Cay", amt: "$449", sub: "all-in" },
-            { text: "Celebrity — Celebrity Summit · Sun, Nov 29 · 7 nt · Tampa → Key West, Bimini, Nassau", amt: "$476", sub: "all-in" },
-            { text: "Celebrity — Celebrity Silhouette · Sun, Nov 29 · 6 nt · Fort Lauderdale → Cozumel, Roatán, Costa Maya", amt: "$493", sub: "all-in" },
-            { text: "Celebrity — ship not named in source · Sat, Nov 28 · 7 nt · San Juan → Caribbean", amt: "from $511", sub: "fare only" },
-            { text: "Virgin Voyages — Resilient Lady · Mon, Nov 16 · 6 nt · Miami → Costa Maya, Cozumel, Beach Club at Bimini", amt: "$654", sub: "all-in" },
-            { text: "Virgin Voyages — Valiant Lady · Sat, Nov 28 · 7 nt · San Juan → St. Thomas, Tortola, St. Kitts, Antigua", amt: "$763", sub: "all-in" }
-          ]
-        },
-        b: {
-          title: "Sailing in 60 days",
-          range: "Dec 13, 2026 – Jan 11, 2027",
-          deals: [
-            { line: "Margaritaville at Sea", ship: "Paradise", date: "Mon, Dec 14, 2026", nights: 4, port: "Palm Beach", itin: "Bahamas", price: 159, perNight: 39.75, basis: "fare", portTag: "fly" },
-            { line: "Royal Caribbean", ship: "Voyager of the Seas", date: "Mon, Jan 4, 2027", nights: 4, port: "Los Angeles", itin: "Catalina Island · Ensenada", price: 179, perNight: 44.75, basis: "allin", portTag: "fly" },
-            { line: "Royal Caribbean", ship: "Brilliance of the Seas", date: "Mon, Dec 14, 2026", nights: 4, port: "Fort Lauderdale", itin: "Bahamas", price: 179, perNight: 44.75, basis: "fare", portTag: "fly" },
-            { line: "Carnival Cruise Line", ship: "Carnival Firenze", date: "Mon, Dec 14, 2026", nights: 4, port: "Long Beach (Los Angeles)", itin: "Baja Mexico: Catalina Island + Ensenada", price: 198, perNight: 49.50, basis: "allin", portTag: "fly" },
-            { line: "Margaritaville at Sea", ship: "Paradise", date: "Fri, Jan 1, 2027", nights: 3, port: "Palm Beach", itin: "Nassau (“Nassau Escape”)", price: 219, perNight: 73.00, basis: "allin", portTag: "fly" },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Dec 13, 2026", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 219, perNight: 54.75, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 7, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 221, perNight: 73.67, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 11, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 221, perNight: 55.25, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Jan 10, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 223, perNight: 55.75, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Royal Caribbean", ship: "Freedom of the Seas", date: "Sat, Jan 9, 2027", nights: 5, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 239, perNight: 47.80, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 4, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 260, perNight: 65.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Meraviglia", date: "Sun, Dec 13, 2026", nights: 6, port: "Miami", itin: "Caribbean (ports not enumerated in source)", price: 269, perNight: 44.83, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Carnival Cruise Line", ship: "Carnival Magic", date: "Sat, Jan 9, 2027", nights: 8, port: "Miami", itin: "Southern Caribbean (ports not enumerated in source)", price: 394, perNight: 49.25, basis: "allin", portTag: "fly", cabin: "inside" },
-            { line: "Princess Cruises", ship: "Sun Princess", date: "Sun, Dec 13, 2026", nights: 7, port: "Fort Lauderdale", itin: "Celebration Key (Grand Bahama) + Western Caribbean ports (not fully enumerated in source)", price: 399, perNight: 57.00, basis: "allin", portTag: "fly", cabin: "inside" }
-          ],
-          also: [
-            { text: "Royal Caribbean — Jewel of the Seas · Mon, Jan 11 · 5 nt · Tampa", amt: "$278", sub: "inside · fare only" },
-            { text: "MSC — MSC Seashore · Sun, Jan 3 · 4 nt · Port Canaveral", amt: "$284", sub: "inside · fare only" },
-            { text: "Princess — Crown Princess · Sun, Jan 3 · 5 nt · San Juan", amt: "from $299", sub: "oceanview · fare only" },
-            { text: "Norwegian — Norwegian Dawn · Thu, Dec 24 · 4 nt · Jacksonville → Bahamas", amt: "$369", sub: "all-in" },
-            { text: "Norwegian — Norwegian Joy · Fri, Dec 18 · 4 nt · Miami → Bahamas", amt: "$389", sub: "all-in" },
-            { text: "Virgin Voyages — Brilliant Lady · Thu, Jan 7 · 4 nt · Miami → Key West, Beach Club at Bimini", amt: "$436", sub: "all-in" },
-            { text: "Margaritaville at Sea — Paradise · Thu, Dec 24 · 4 nt · Palm Beach → Bahamas", amt: "$449", sub: "all-in" },
-            { text: "Carnival — Carnival Firenze · Thu, Dec 31 · 4 nt · Long Beach → Baja Mexico", amt: "$497", sub: "all-in" },
-            { text: "Celebrity — Celebrity Constellation · Sat, Dec 19 · 7 nt · San Juan → Tortola, St. Kitts, Roseau (Dominica), St. Lucia", amt: "$499", sub: "all-in" },
-            { text: "Margaritaville at Sea — Islander · Sat, Jan 2 · 7 nt · Tampa → Cozumel, Belize, Progreso", amt: "$529", sub: "all-in" },
-            { text: "Norwegian — Norwegian Gem · Mon, Dec 21 · 7 nt · Tampa → Harvest Caye, Roatán, Cozumel", amt: "$649", sub: "all-in" }
-          ]
-        },
-        c: {
-          title: "Sailing in 90 days",
-          range: "Jan 12 – Feb 10, 2027",
-          deals: [
-            { line: "Margaritaville at Sea", ship: "Paradise", date: "Fri, Jan 29, 2027", nights: 3, port: "Palm Beach", itin: "Bahamas", price: 189, perNight: 63.00, basis: "fare", portTag: "fly" },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 14, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 209, perNight: 69.67, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Getaway", date: "Mon, Jan 25, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas", price: 209, perNight: 52.25, basis: "fare", portTag: "fly" },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Thu, Jan 21, 2027", nights: 3, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 213, perNight: 71.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seaside", date: "Fri, Jan 22, 2027", nights: 3, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 219, perNight: 73.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seashore", date: "Sun, Feb 7, 2027", nights: 4, port: "Port Canaveral", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 220, perNight: 55.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Carnival Cruise Line", ship: "Carnival Paradise", date: "Mon, Jan 18, 2027", nights: 5, port: "Tampa", itin: "Bahamas", price: 220, perNight: 44.00, basis: "fare", portTag: "fly" },
-            { line: "MSC Cruises", ship: "MSC Seaside", date: "Mon, Jan 25, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 224, perNight: 56.00, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Jewel", date: "Mon, Jan 18, 2027", nights: 4, port: "Miami", itin: "Bahamas / Caribbean (ports not enumerated in source)", price: 289, perNight: 72.25, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "MSC Cruises", ship: "MSC Seascape", date: "Sun, Jan 31, 2027", nights: 7, port: "Galveston", itin: "Western Caribbean (ports not enumerated in source)", price: 307, perNight: 43.86, basis: "fare", portTag: "fly", cabin: "inside", fromPrice: true },
-            { line: "Royal Caribbean", ship: "Jewel of the Seas", date: "Sat, Jan 16, 2027", nights: 5, port: "Tampa", itin: "Costa Maya · Cozumel", price: 308, perNight: 61.60, basis: "allin", portTag: "fly" },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Gem", date: "Mon, Feb 1, 2027", nights: 4, port: "Tampa", itin: "Great Stirrup Cay", price: 309, perNight: 77.25, basis: "allin", portTag: "fly" },
-            { line: "Royal Caribbean", ship: "Voyager of the Seas", date: "Fri, Jan 22, 2027", nights: 7, port: "Los Angeles", itin: "Ensenada · Cabo San Lucas · Mazatlan", price: 349, perNight: 49.86, basis: "allin", portTag: "fly" },
-            { line: "Norwegian Cruise Line", ship: "Norwegian Breakaway", date: "Sun, Jan 24, 2027", nights: 7, port: "New Orleans", itin: "Cozumel · Roatán · Belize · Costa Maya", price: 419, perNight: 59.86, basis: "allin", portTag: "drive" },
-            { line: "Holland America", ship: "Zuiderdam", date: "Sat, Jan 16, 2027", nights: 7, port: "San Diego", itin: "Pichilingue (La Paz) · Mazatlan · Cabo San Lucas", price: 549, perNight: 78.43, basis: "allin", portTag: null }
-          ],
-          also: [
-            { text: "MSC — MSC Seaside · Mon, Feb 8 · 5 nt · Miami", amt: "$248", sub: "inside · fare only" },
-            { text: "MSC — MSC Meraviglia · Sun, Jan 24 · 6 nt · Miami", amt: "$280", sub: "inside · fare only" },
-            { text: "MSC — MSC Grandiosa · Sat, Jan 30 · 7 nt · Port Canaveral", amt: "$309", sub: "inside · fare only" },
-            { text: "Royal Caribbean — Liberty of the Seas · Mon, Jan 18 · 5 nt · Galveston → Costa Maya, Cozumel", amt: "$342", sub: "all-in" },
-            { text: "Norwegian — Norwegian Viva · Sat, Jan 23 · 7 nt · Galveston → Cozumel, Roatán, Harvest Caye, Costa Maya", amt: "$519", sub: "all-in" }
-          ]
-        }
-      };
+  "a": {
+    "title": "Sailing in 30 days",
+    "range": "Nov 13 – Dec 12, 2026",
+    "deals": [
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Nov 16, 2026",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 124.8,
+        "perNight": 31.2,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Nov 16, 2026",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Freeport (Grand Bahama) · Nassau",
+        "price": 149,
+        "perNight": 37.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Dec 7, 2026",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Freeport (Grand Bahama) · Nassau",
+        "price": 149,
+        "perNight": 37.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Nov 30, 2026",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Freeport (Grand Bahama) · Nassau",
+        "price": 149,
+        "perNight": 37.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Dec 11, 2026",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Bahamas (ports not enumerated in source)",
+        "price": 159,
+        "perNight": 53,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Sun, Nov 29, 2026",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 171.04,
+        "perNight": 42.76,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Nov 30, 2026",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 175.8,
+        "perNight": 43.95,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Meraviglia",
+        "date": "Sun, Nov 29, 2026",
+        "nights": 6,
+        "port": "Miami",
+        "itin": "Caribbean (ports not enumerated in source)",
+        "price": 178.64,
+        "perNight": 29.77,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Nov 27, 2026",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Bahamas (ports not enumerated in source)",
+        "price": 189,
+        "perNight": 63,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Serenade of the Seas",
+        "date": "Sun, Nov 29, 2026",
+        "nights": 4,
+        "port": "San Diego",
+        "itin": "Catalina Island · Ensenada",
+        "price": 190.34,
+        "perNight": 47.59,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Thu, Dec 3, 2026",
+        "nights": 3,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 194.64,
+        "perNight": 64.88,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seascape",
+        "date": "Sun, Nov 15, 2026",
+        "nights": 7,
+        "port": "Galveston",
+        "itin": "Western Caribbean — Costa Maya · Roatán · Cozumel",
+        "price": 198.79,
+        "perNight": 28.4,
+        "basis": "allin",
+        "portTag": "fly",
+        "honor": "Cheapest all-in per night"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seascape",
+        "date": "Sun, Nov 29, 2026",
+        "nights": 7,
+        "port": "Galveston",
+        "itin": "Western Caribbean (ports not enumerated in source)",
+        "price": 198.79,
+        "perNight": 28.4,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside",
+        "featured": true
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Serenade of the Seas",
+        "date": "Sun, Dec 6, 2026",
+        "nights": 4,
+        "port": "San Diego",
+        "itin": "Catalina Island · Ensenada",
+        "price": 199.34,
+        "perNight": 49.84,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Sun, Dec 6, 2026",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 204,
+        "perNight": 51,
+        "basis": "fare",
+        "portTag": "fly",
+        "cabin": "inside",
+        "fromPrice": true
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Grandiosa",
+        "date": "Sat, Nov 28, 2026",
+        "nights": 7,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 211.6,
+        "perNight": 30.23,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Elation",
+        "date": "Mon, Dec 7, 2026",
+        "nights": 5,
+        "port": "Jacksonville",
+        "itin": "Bahamas — Half Moon Cay · Celebration Key",
+        "price": 216,
+        "perNight": 43.2,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Getaway",
+        "date": "Mon, Nov 30, 2026",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Nassau · Great Stirrup Cay",
+        "price": 229,
+        "perNight": 57.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Freedom of the Seas",
+        "date": "Sat, Nov 28, 2026",
+        "nights": 5,
+        "port": "Miami",
+        "itin": "Nassau · Grand Cayman",
+        "price": 248.53,
+        "perNight": 49.71,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Breakaway",
+        "date": "Sun, Dec 6, 2026",
+        "nights": 7,
+        "port": "New Orleans",
+        "itin": "Western Caribbean (ports not enumerated in source)",
+        "price": 249,
+        "perNight": 35.57,
+        "basis": "allin",
+        "portTag": "drive"
+      },
+      {
+        "line": "Celebrity Cruises",
+        "ship": "Celebrity Reflection",
+        "date": "Mon, Nov 16, 2026",
+        "nights": 4,
+        "port": "Fort Lauderdale",
+        "itin": "Key West · Nassau",
+        "price": 262.53,
+        "perNight": 65.63,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Paradise",
+        "date": "Sun, Nov 15, 2026",
+        "nights": 4,
+        "port": "Tampa",
+        "itin": "Western Caribbean (ports not enumerated in source)",
+        "price": 267,
+        "perNight": 66.75,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Joy",
+        "date": "Fri, Dec 11, 2026",
+        "nights": 3,
+        "port": "Miami",
+        "itin": "Nassau · Great Stirrup Cay",
+        "price": 279,
+        "perNight": 93,
+        "basis": "allin",
+        "portTag": "fly"
+      }
+    ],
+    "also": [
+      {
+        "text": "Royal Caribbean — Adventure of the Seas · Sun, Nov 29 · 6 nt · Fort Lauderdale → Nassau, Samana, Puerto Plata",
+        "amt": "$269",
+        "sub": "all-in"
+      },
+      {
+        "text": "Carnival — ship not named in source · Sat, Nov 28 · 8 nt · Mobile → Bahamas · drive-to port",
+        "amt": "from $282",
+        "sub": "fare only · $35/nt"
+      },
+      {
+        "text": "Royal Caribbean — Mariner of the Seas · Sat, Nov 14 · 7 nt · New Orleans → Cozumel, Grand Cayman, Falmouth · best all-in full week in this window, drive-to port",
+        "amt": "$289",
+        "sub": "all-in · $41/nt"
+      },
+      {
+        "text": "Margaritaville at Sea — Islander · Fri, Nov 20 · 5 nt · Tampa → Cozumel, Progreso",
+        "amt": "$299",
+        "sub": "all-in"
+      },
+      {
+        "text": "Carnival — Carnival Conquest · Fri, Nov 27 · 3 nt · Miami → Bahamas",
+        "amt": "$312",
+        "sub": "all-in"
+      },
+      {
+        "text": "Norwegian — Norwegian Getaway · Mon, Nov 23 · 7 nt · Port Canaveral → Great Stirrup Cay, Montego Bay, Grand Cayman, Cozumel",
+        "amt": "$399",
+        "sub": "all-in"
+      },
+      {
+        "text": "Norwegian — Norwegian Dawn · Wed, Nov 25 · 5 nt · Jacksonville → Bahamas",
+        "amt": "$449",
+        "sub": "all-in"
+      },
+      {
+        "text": "Holland America — Zuiderdam · Sat, Nov 28 · 7 nt · Miami → Half Moon Cay, Amber Cove, Grand Turk, Nassau",
+        "amt": "$399",
+        "sub": "all-in"
+      },
+      {
+        "text": "Holland America — Eurodam · Sat, Dec 12 · 7 nt · Fort Lauderdale → Nassau, Grand Turk, Amber Cove, Half Moon Cay",
+        "amt": "$449",
+        "sub": "all-in"
+      },
+      {
+        "text": "Celebrity — Celebrity Summit · Sun, Nov 29 · 7 nt · Tampa → Key West, Bimini, Nassau",
+        "amt": "$425.93",
+        "sub": "all-in"
+      },
+      {
+        "text": "Celebrity — Celebrity Silhouette · Sun, Nov 29 · 6 nt · Fort Lauderdale → Cozumel, Roatán, Costa Maya",
+        "amt": "$493",
+        "sub": "all-in"
+      },
+      {
+        "text": "Celebrity — ship not named in source · Sat, Nov 28 · 7 nt · San Juan → Caribbean",
+        "amt": "from $511",
+        "sub": "fare only"
+      },
+      {
+        "text": "Virgin Voyages — Resilient Lady · Mon, Nov 16 · 6 nt · Miami → Costa Maya, Cozumel, Beach Club at Bimini",
+        "amt": "$654",
+        "sub": "all-in"
+      },
+      {
+        "text": "Virgin Voyages — Valiant Lady · Sat, Nov 28 · 7 nt · San Juan → St. Thomas, Tortola, St. Kitts, Antigua",
+        "amt": "$763",
+        "sub": "all-in"
+      }
+    ]
+  },
+  "b": {
+    "title": "Sailing in 60 days",
+    "range": "Dec 13, 2026 – Jan 11, 2027",
+    "deals": [
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 149,
+        "perNight": 37.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 175.8,
+        "perNight": 43.95,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Brilliance of the Seas",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 4,
+        "port": "Fort Lauderdale",
+        "itin": "Bahamas",
+        "price": 179,
+        "perNight": 44.75,
+        "basis": "fare",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Jan 11, 2027",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 185.8,
+        "perNight": 46.45,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Sun, Dec 13, 2026",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 198.79,
+        "perNight": 49.7,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Dec 18, 2026",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 199,
+        "perNight": 66.33,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Jan 4, 2027",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 199,
+        "perNight": 49.75,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Voyager of the Seas",
+        "date": "Mon, Jan 4, 2027",
+        "nights": 4,
+        "port": "Los Angeles",
+        "itin": "Catalina Island · Ensenada",
+        "price": 199.39,
+        "perNight": 49.85,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Sun, Jan 10, 2027",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 210.79,
+        "perNight": 52.7,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Firenze",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 4,
+        "port": "Long Beach (Los Angeles)",
+        "itin": "Baja Mexico: Catalina Island + Ensenada",
+        "price": 213,
+        "perNight": 53.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Thu, Jan 7, 2027",
+        "nights": 3,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 216.64,
+        "perNight": 72.21,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Jan 4, 2027",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 218.8,
+        "perNight": 54.7,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Freedom of the Seas",
+        "date": "Sat, Jan 9, 2027",
+        "nights": 5,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 239,
+        "perNight": 47.8,
+        "basis": "fare",
+        "portTag": "fly",
+        "cabin": "inside",
+        "fromPrice": true
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Conquest",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas (ports not enumerated in source)",
+        "price": 244,
+        "perNight": 61,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Jan 1, 2027",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Nassau (“Nassau Escape”)",
+        "price": 249,
+        "perNight": 83,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Islander",
+        "date": "Mon, Dec 14, 2026",
+        "nights": 5,
+        "port": "Tampa",
+        "itin": "Western Caribbean (ports not enumerated in source)",
+        "price": 249,
+        "perNight": 49.8,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Meraviglia",
+        "date": "Sun, Dec 13, 2026",
+        "nights": 6,
+        "port": "Miami",
+        "itin": "Caribbean (ports not enumerated in source)",
+        "price": 288.64,
+        "perNight": 48.11,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Magic",
+        "date": "Sat, Jan 9, 2027",
+        "nights": 8,
+        "port": "Miami",
+        "itin": "Southern Caribbean (ports not enumerated in source)",
+        "price": 394,
+        "perNight": 49.25,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Princess Cruises",
+        "ship": "Sun Princess",
+        "date": "Sun, Dec 13, 2026",
+        "nights": 7,
+        "port": "Fort Lauderdale",
+        "itin": "Celebration Key (Grand Bahama) + Western Caribbean ports (not fully enumerated in source)",
+        "price": 619,
+        "perNight": 88.43,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      }
+    ],
+    "also": [
+      {
+        "text": "Royal Caribbean — Jewel of the Seas · Mon, Jan 11 · 5 nt · Tampa",
+        "amt": "$278",
+        "sub": "inside · fare only"
+      },
+      {
+        "text": "MSC — MSC Seashore · Sun, Jan 3 · 4 nt · Port Canaveral",
+        "amt": "$284",
+        "sub": "inside · fare only"
+      },
+      {
+        "text": "Princess — Crown Princess · Sun, Jan 3 · 5 nt · San Juan",
+        "amt": "$689",
+        "sub": "all-in · outside cabin (inside sold out)"
+      },
+      {
+        "text": "Norwegian — Norwegian Dawn · Thu, Dec 24 · 4 nt · Jacksonville → Bahamas",
+        "amt": "$369",
+        "sub": "all-in"
+      },
+      {
+        "text": "Norwegian — Norwegian Joy · Fri, Dec 18 · 4 nt · Miami → Bahamas",
+        "amt": "$389",
+        "sub": "all-in"
+      },
+      {
+        "text": "Virgin Voyages — Brilliant Lady · Thu, Jan 7 · 4 nt · Miami → Key West, Beach Club at Bimini",
+        "amt": "$436",
+        "sub": "all-in"
+      },
+      {
+        "text": "Margaritaville at Sea — Paradise · Thu, Dec 24 · 4 nt · Palm Beach → Bahamas",
+        "amt": "$717",
+        "sub": "all-in"
+      },
+      {
+        "text": "Carnival — Carnival Firenze · Thu, Dec 31 · 4 nt · Long Beach → Baja Mexico",
+        "amt": "$497",
+        "sub": "all-in"
+      },
+      {
+        "text": "Celebrity — Celebrity Constellation · Sat, Dec 19 · 7 nt · San Juan → Tortola, St. Kitts, Roseau (Dominica), St. Lucia",
+        "amt": "$499",
+        "sub": "all-in"
+      },
+      {
+        "text": "Margaritaville at Sea — Islander · Sat, Jan 2 · 7 nt · Tampa → Cozumel, Belize, Progreso",
+        "amt": "$499",
+        "sub": "all-in"
+      },
+      {
+        "text": "Norwegian — Norwegian Gem · Mon, Dec 21 · 7 nt · Tampa → Harvest Caye, Roatán, Cozumel",
+        "amt": "$649",
+        "sub": "all-in"
+      }
+    ]
+  },
+  "c": {
+    "title": "Sailing in 90 days",
+    "range": "Jan 12 – Feb 10, 2027",
+    "deals": [
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Jan 29, 2027",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 189,
+        "perNight": 63,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Mon, Feb 1, 2027",
+        "nights": 4,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 189,
+        "perNight": 47.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Elation",
+        "date": "Mon, Jan 18, 2027",
+        "nights": 5,
+        "port": "Jacksonville",
+        "itin": "Bahamas (ports not enumerated in source)",
+        "price": 199,
+        "perNight": 39.8,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Margaritaville at Sea",
+        "ship": "Paradise",
+        "date": "Fri, Jan 22, 2027",
+        "nights": 3,
+        "port": "Palm Beach",
+        "itin": "Bahamas",
+        "price": 199,
+        "perNight": 66.33,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Carnival Cruise Line",
+        "ship": "Carnival Paradise",
+        "date": "Mon, Jan 18, 2027",
+        "nights": 5,
+        "port": "Tampa",
+        "itin": "Bahamas",
+        "price": 200,
+        "perNight": 40,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Thu, Jan 21, 2027",
+        "nights": 3,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 207.64,
+        "perNight": 69.21,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Fri, Jan 22, 2027",
+        "nights": 3,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 209,
+        "perNight": 69.67,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Getaway",
+        "date": "Mon, Jan 25, 2027",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas",
+        "price": 209,
+        "perNight": 52.25,
+        "basis": "fare",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Thu, Jan 28, 2027",
+        "nights": 3,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 217.64,
+        "perNight": 72.55,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Thu, Jan 14, 2027",
+        "nights": 3,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 222.64,
+        "perNight": 74.21,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seaside",
+        "date": "Mon, Jan 25, 2027",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 224,
+        "perNight": 56,
+        "basis": "fare",
+        "portTag": "fly",
+        "cabin": "inside",
+        "fromPrice": true
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seashore",
+        "date": "Sun, Feb 7, 2027",
+        "nights": 4,
+        "port": "Port Canaveral",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 228.79,
+        "perNight": 57.2,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Jewel of the Seas",
+        "date": "Sat, Jan 16, 2027",
+        "nights": 5,
+        "port": "Tampa",
+        "itin": "Costa Maya · Cozumel",
+        "price": 277.82,
+        "perNight": 55.56,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Jewel",
+        "date": "Mon, Jan 18, 2027",
+        "nights": 4,
+        "port": "Miami",
+        "itin": "Bahamas / Caribbean (ports not enumerated in source)",
+        "price": 289,
+        "perNight": 72.25,
+        "basis": "fare",
+        "portTag": "fly",
+        "cabin": "inside",
+        "fromPrice": true
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Gem",
+        "date": "Mon, Feb 1, 2027",
+        "nights": 4,
+        "port": "Tampa",
+        "itin": "Great Stirrup Cay",
+        "price": 309,
+        "perNight": 77.25,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "Royal Caribbean",
+        "ship": "Voyager of the Seas",
+        "date": "Fri, Jan 22, 2027",
+        "nights": 7,
+        "port": "Los Angeles",
+        "itin": "Ensenada · Cabo San Lucas · Mazatlan",
+        "price": 349,
+        "perNight": 49.86,
+        "basis": "allin",
+        "portTag": "fly"
+      },
+      {
+        "line": "MSC Cruises",
+        "ship": "MSC Seascape",
+        "date": "Sun, Jan 31, 2027",
+        "nights": 7,
+        "port": "Galveston",
+        "itin": "Western Caribbean (ports not enumerated in source)",
+        "price": 359.79,
+        "perNight": 51.4,
+        "basis": "allin",
+        "portTag": "fly",
+        "cabin": "inside"
+      },
+      {
+        "line": "Norwegian Cruise Line",
+        "ship": "Norwegian Breakaway",
+        "date": "Sun, Jan 24, 2027",
+        "nights": 7,
+        "port": "New Orleans",
+        "itin": "Cozumel · Roatán · Belize · Costa Maya",
+        "price": 419,
+        "perNight": 59.86,
+        "basis": "allin",
+        "portTag": "drive"
+      },
+      {
+        "line": "Holland America",
+        "ship": "Zuiderdam",
+        "date": "Sat, Jan 16, 2027",
+        "nights": 7,
+        "port": "San Diego",
+        "itin": "Pichilingue (La Paz) · Mazatlan · Cabo San Lucas",
+        "price": 549,
+        "perNight": 78.43,
+        "basis": "allin",
+        "portTag": null
+      }
+    ],
+    "also": [
+      {
+        "text": "MSC — MSC Seaside · Mon, Feb 8 · 5 nt · Miami",
+        "amt": "$248",
+        "sub": "inside · fare only"
+      },
+      {
+        "text": "MSC — MSC Meraviglia · Sun, Jan 24 · 6 nt · Miami",
+        "amt": "$280",
+        "sub": "inside · fare only"
+      },
+      {
+        "text": "MSC — MSC Grandiosa · Sat, Jan 30 · 7 nt · Port Canaveral",
+        "amt": "$330.60",
+        "sub": "all-in"
+      },
+      {
+        "text": "Royal Caribbean — Liberty of the Seas · Mon, Jan 18 · 5 nt · Galveston → Costa Maya, Cozumel",
+        "amt": "$299.59",
+        "sub": "all-in"
+      },
+      {
+        "text": "Norwegian — Norwegian Viva · Sat, Jan 23 · 7 nt · Galveston → Cozumel, Roatán, Harvest Caye, Costa Maya",
+        "amt": "$529",
+        "sub": "all-in"
+      }
+    ]
+  }
+};
 
       function esc(s) {
         return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
       }
-      function money(n) { return "$" + n.toLocaleString("en-US"); }
+      function money(n) { return "$" + (Number.isInteger(n) ? n.toLocaleString("en-US") : n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })); }
 
       function basisBadge(basis) {
         if (basis === "allin") {
