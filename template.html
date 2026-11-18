@@ -474,6 +474,16 @@
         padding-top: 16px;
       }
       .pc-bundles-btns { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .pc-bundles-deal { margin-top: 12px; }
+      /* Combined-bundle deal button (Douglas, Nov 18): both bundles for
+         $8.99 — the deal of the strip, so the coral pressable base is
+         sized up with a gold ring. */
+      .crosspromo-btn--deal {
+        font-size: 1.05rem; padding: 15px 26px;
+        border-color: #8a6a1f; border-top-color: var(--gold-soft);
+        box-shadow: 0 5px 0 #7e2a1a, 0 0 0 2px var(--gold), 0 12px 20px rgba(6,24,48,.28);
+      }
+      .crosspromo-btn--deal:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 0 0 2px var(--gold), 0 3px 8px rgba(6,24,48,.2); }
       .games p.pc-bundles-note { margin-top: 12px; font-size: .8rem; color: rgba(246,239,220,.7); }
       /* ---------- Game preview panel ---------- */
       .game-preview {
@@ -786,6 +796,9 @@
           <div class="pc-bundles-btns">
             <a class="crosspromo-btn" href="https://buy.stripe.com/9B614n7wydafbBMeyT7g400" target="_blank" rel="noopener">Got Games — $4.99</a>
             <a class="crosspromo-btn" href="https://buy.stripe.com/3cI4gz5oqgmr49k2Qb7g401" target="_blank" rel="noopener">One More Try Lab — $4.99</a>
+          </div>
+          <div class="pc-bundles-deal">
+            <a class="crosspromo-btn crosspromo-btn--deal" href="https://buy.stripe.com/9B6fZhcQ5dafaxIfCX7g402" target="_blank" rel="noopener">Get both bundles — $8.99 · Save a dollar</a>
           </div>
           <p class="pc-bundles-note">For iPhone &amp; iPad (iOS) — Android coming later.</p>
         </div>
