@@ -546,6 +546,18 @@
       .crosspromo-btn:hover { filter: brightness(1.03); }
       .crosspromo-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.2); }
       .crosspromo-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      /* Cross-promo button to Weekend Wiings wears the DESTINATION brand's
+         color: Wiings blue, matched exactly to .ww-btn-primary on
+         wkndwiings.com (gradient, highlight, shadow, pressed state).
+         Scoped to the banner button only - the games buttons stay coral. */
+      .crosspromo-btn--wiings {
+        border-color: #173a8f;
+        border-top: 1.5px solid rgba(255,255,255,.35);
+        background: linear-gradient(180deg, #4a90e2 0%, #2563eb 55%, #1d4ed8 100%);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 6px 16px rgba(37,99,235,.35), 0 2px 4px rgba(0,0,0,.4);
+      }
+      .crosspromo-btn--wiings:hover { filter: brightness(1.12); }
+      .crosspromo-btn--wiings:active { transform: translateY(1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 2px 6px rgba(37,99,235,.3), 0 1px 2px rgba(0,0,0,.4); }
       /* Cross-promo nested in the launch banner: cream inset panel on the coral band */
       .crosspromo--banner {
         margin: 12px auto 2px;
@@ -600,7 +612,7 @@
       <section class="crosspromo crosspromo--banner" aria-label="Weekend Wiings — cheap flights">
         <div class="crosspromo-inner">
           <p class="crosspromo-text">If you like to cruise, maybe you want to fly.</p>
-          <a class="crosspromo-btn" href="https://wkndwiings.com">Find cheap flights — Weekend Wiings</a>
+          <a class="crosspromo-btn crosspromo-btn--wiings" href="https://wkndwiings.com">Find cheap flights — Weekend Wiings</a>
         </div>
       </section>
     </div>
