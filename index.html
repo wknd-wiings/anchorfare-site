@@ -464,6 +464,16 @@
       button.chip:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
       button.chip[aria-expanded="true"] { background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%); color: var(--navy); border-color: #8a6a1f; }
       .games-buy { margin: 18px auto 0; }
+      /* ---------- Computer bundles strip (inside the games band) ----------
+         The McKrazies Windows bundles, sold on the web via Stripe — separate
+         from the in-app 12-game pack above (Douglas, Nov 18). Buttons reuse
+         the coral .crosspromo-btn pressable style: AnchorFare's own colors. */
+      .pc-bundles {
+        margin: 22px auto 2px; max-width: 560px;
+        border-top: 1px solid rgba(227,205,143,.45);
+        padding-top: 16px;
+      }
+      .pc-bundles-btns { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
       /* ---------- Game preview panel ---------- */
       .game-preview {
         position: relative;
@@ -765,6 +775,17 @@
           <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
           <a class="crosspromo-btn game-preview-cta" href="#app-launch">Get all 12 games — $4.99</a>
           <p class="game-preview-note">In the AnchorFare app · Launches November 27</p>
+        </div>
+        <!-- Computer bundles strip — the McKrazies Windows bundles via live
+             Stripe checkout (Douglas, Nov 18). NOT the in-app pack: the
+             #app-launch buttons above stay untouched. Band click handler
+             ignores clicks on links, so these go straight to Stripe. -->
+        <div class="pc-bundles">
+          <p>Prefer to play on your computer? Get the McKrazies bundles for Windows — download, install, desktop icon and play.</p>
+          <div class="pc-bundles-btns">
+            <a class="crosspromo-btn" href="https://buy.stripe.com/9B614n7wydafbBMeyT7g400" target="_blank" rel="noopener">Got Games — $4.99</a>
+            <a class="crosspromo-btn" href="https://buy.stripe.com/3cI4gz5oqgmr49k2Qb7g401" target="_blank" rel="noopener">One More Try Lab — $4.99</a>
+          </div>
         </div>
       </section>
 
