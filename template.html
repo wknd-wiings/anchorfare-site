@@ -487,7 +487,6 @@
         font-size: 1.35rem; line-height: 1.2; color: var(--cream); display: block;
       }
       .game-card-sub { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-soft); display: block; margin-top: 5px; }
-      .game-preview-name { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.3rem; }
       .game-preview-desc { margin: 8px auto 0; max-width: 460px; font-size: .92rem; line-height: 1.55; color: var(--navy); }
       .games p.game-preview-desc { color: var(--navy); }
       .game-preview-facts { margin: 10px auto 0; font-size: .8rem; font-weight: 600; color: #5a4a22; }
@@ -749,7 +748,6 @@
             <span class="game-card-name" id="gpCardName"></span>
             <span class="game-card-sub">AnchorFare Games</span>
           </div>
-          <h3 class="game-preview-name" id="gpName"></h3>
           <p class="game-preview-desc" id="gpDesc"></p>
           <p class="game-preview-facts">All 12 games — $4.99 · fully offline · bow to stern</p>
           <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
@@ -880,12 +878,12 @@
           pinorder: { name: "Pin Order", desc: "Pull-the-pin puzzle — tap the pins in the right order to route every gold coin home, past the lava and the water." },
           flowline: { name: "Flow Line", desc: "Pipe puzzle — turn the pieces to run water from the tank to the thirsty little ship with no leaks." },
           pocketgolf: { name: "Pocket Golf", desc: "Six holes of mini golf in your pocket — pull back to aim, let go to putt, and sink it under par." },
-          allaboard: { name: "All Aboard!", desc: "One of the 12 offline games packed into the AnchorFare app." },
-          easydoesit: { name: "Easy Does It", desc: "One of the 12 offline games packed into the AnchorFare app." },
-          shipmaze: { name: "Ship Maze", desc: "One of the 12 offline games packed into the AnchorFare app." },
-          steady: { name: "Steady As She Goes", desc: "One of the 12 offline games packed into the AnchorFare app." },
-          manoverboard: { name: "Man Overboard!", desc: "One of the 12 offline games packed into the AnchorFare app." },
-          deckshuffleboard: { name: "Deck Shuffleboard", desc: "One of the 12 offline games packed into the AnchorFare app." }
+          allaboard: { name: "All Aboard!", desc: "Swipe to hurry every passenger up the gangway before the ship sails — your timing decides who makes it aboard." },
+          easydoesit: { name: "Easy Does It", desc: "Set the cargo down with a gentle touch — the force of your press decides whether it settles soft or comes down hard." },
+          shipmaze: { name: "Ship Maze", desc: "Tilt to steer the ship through the maze — the angle of your tilt sets her speed and her line." },
+          steady: { name: "Steady As She Goes", desc: "Hold the ship steady on her course — small, careful corrections keep her true, and oversteering sends her drifting." },
+          manoverboard: { name: "Man Overboard!", desc: "Throw the life ring to the swimmer in the water — the force and timing of your throw decide whether it lands close enough to reach." },
+          deckshuffleboard: { name: "Deck Shuffleboard", desc: "Slide the disc down the deck with a real push — how hard you slide it decides where it stops and what it scores." }
         };
         var band = document.getElementById("gamesBand");
         var panel = document.getElementById("gamePreview");
@@ -900,7 +898,6 @@
           var g = GAMES[key];
           if (!g) return;
           document.getElementById("gpCardName").textContent = g.name;
-          document.getElementById("gpName").textContent = g.name;
           document.getElementById("gpDesc").textContent = g.desc;
           panel.classList.remove("hidden");
           setExpanded(chip);
