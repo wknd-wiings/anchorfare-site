@@ -445,7 +445,6 @@
          the sections stay clean — buy buttons only — and each bundle's
          game list lives inside the purchase panel that its buy button
          opens (see .buy-list below). */
-      .games-buy { margin: 18px auto 0; }
       /* ---------- Purchase panel game lists ---------- */
       .buy-panel-title {
         margin: 2px auto 0; max-width: 460px;
@@ -490,22 +489,12 @@
       }
       .crosspromo-btn--deal:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 0 0 2px var(--gold), 0 3px 8px rgba(6,24,48,.2); }
       .games p.pc-bundles-note { margin-top: 12px; font-size: .8rem; color: rgba(246,239,220,.7); }
-      /* ---------- Also on iOS: One More Try Lab sub-block ----------
-         One More Try Lab is a SEPARATE iOS app from the 12 AnchorFare
-         games above, so it gets its own entry inside the iOS section
-         as well as in the Windows strip below (Douglas, Nov 18). */
-      .ios-lab {
-        margin: 22px auto 2px; max-width: 560px;
-        border-top: 1px solid rgba(227,205,143,.45);
-        padding-top: 16px;
-      }
-      .games p.ios-lab-big {
-        margin: 8px auto 0; max-width: 560px;
-        font-family: "Playfair Display", Georgia, serif;
-        font-size: clamp(1.3rem, 5vw, 1.6rem); font-weight: 800; line-height: 1.25;
-        color: var(--cream);
-      }
-      .ios-lab-buy { margin: 14px auto 0; }
+      /* ---------- Consolidated iOS block ----------
+         One iOS block mirroring the Windows strip below it: the two
+         app buttons side by side in one row, the bundle tab under
+         them (Douglas, Nov 18). No separate Lab block. */
+      .ios-btns { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .ios-deal { margin-top: 12px; }
       /* ---------- Game preview panel ---------- */
       .game-preview {
         position: relative;
@@ -780,10 +769,22 @@
         <p class="games-eyebrow">For iPhone &amp; iPad (iOS)</p>
         <h2>12 offline games sail with you — <span class="accent">No network, no problem.</span></h2>
         <p>Sea days have dead zones. These twelve ride in your pocket and play fully offline, bow to stern. All 12 games — $4.99 on iPhone &amp; iPad, launching November 27.</p>
-        <!-- No game-name pills on the band (Douglas, Nov 18): the buy tab
-             opens the purchase panel below, and the panel is where the
-             12 games are listed. -->
-        <button type="button" class="crosspromo-btn games-buy" data-buy="ios12" aria-expanded="false" aria-controls="buyPanel">Got Games $4.99</button>
+        <!-- No game-name pills on the band (Douglas, Nov 18): the buy
+             tabs open the purchase panel below, and the panel is where
+             the games are listed. One consolidated iOS block mirroring
+             the Windows strip below: the two apps side by side in one
+             row, the bundle tab under them. Buttons are named by
+             product, not platform; the iOS bundle tab carries NO $8.99
+             promise (the App Store sells the apps at $4.99 each — the
+             $8.99 bundle price is for the Windows downloads, and the
+             panel says so). -->
+        <div class="ios-btns">
+          <button type="button" class="crosspromo-btn" data-buy="ios12" aria-expanded="false" aria-controls="buyPanel">Got Games $4.99</button>
+          <button type="button" class="crosspromo-btn" data-buy="ioslab" aria-expanded="false" aria-controls="buyPanel">One More Try Lab $4.99</button>
+        </div>
+        <div class="ios-deal">
+          <button type="button" class="crosspromo-btn crosspromo-btn--deal" data-buy="iosboth" aria-expanded="false" aria-controls="buyPanel">Get both bundles</button>
+        </div>
         <!-- Purchase panel — every buy button in this band (iOS tabs and
              Windows bundle buttons) opens this panel with that bundle's
              game list and its own buy button inside. Content is set by
@@ -795,25 +796,6 @@
           <div class="buy-list" id="bpList"></div>
           <a class="crosspromo-btn game-preview-cta" id="bpCta" href="#app-launch">Buy</a>
           <p class="game-preview-note" id="bpNote"></p>
-        </div>
-        <!-- Also on iOS — One More Try Lab is a separate iPhone & iPad app
-             from the 12 AnchorFare games above, so it is listed here in
-             the iOS section too, not only in the Windows strip below
-             (Douglas, Nov 18). Its buy route here is the app itself at
-             launch, same #app-launch convention as the band above. -->
-        <div class="ios-lab">
-          <p class="games-eyebrow">Also on iPhone &amp; iPad</p>
-          <p class="ios-lab-big">One More Try Lab</p>
-          <p>One More Try Lab — coming to iPhone &amp; iPad on November 27, $4.99. A separate app from the 12 AnchorFare games above — also fully offline.</p>
-          <button type="button" class="crosspromo-btn ios-lab-buy" data-buy="ioslab" aria-expanded="false" aria-controls="buyPanel">One More Try Lab — iOS $4.99</button>
-        </div>
-        <!-- iOS bundle tab (Douglas, Nov 18): the iOS section carries the
-             same three tabs as the Windows strip. NO $8.99 on this tab —
-             the App Store has no $8.99 bundle; the two apps are $4.99
-             each there. The $8.99 bundle price is Windows-only and the
-             panel says so. -->
-        <div class="ios-both">
-          <button type="button" class="crosspromo-btn crosspromo-btn--deal" data-buy="iosboth" aria-expanded="false" aria-controls="buyPanel">Get both bundles</button>
         </div>
         <!-- Computer bundles strip — the McKrazies Windows bundles via live
              Stripe checkout (Douglas, Nov 18). NOT the in-app pack. The
@@ -991,7 +973,7 @@
             title: "One More Try Lab — iPhone & iPad",
             facts: "$4.99 · fully offline · a separate app from the 12 AnchorFare games",
             list: labListHtml(),
-            cta: { label: "One More Try Lab — iOS $4.99", href: "#app-launch" },
+            cta: { label: "One More Try Lab $4.99", href: "#app-launch" },
             note: "One More Try Lab is its own app — coming to the App Store on November 27 for $4.99 · the Windows bundles below are available now"
           },
           iosboth: {
