@@ -431,6 +431,10 @@
         border-radius: 6px;
         text-align: center;
       }
+      .games-eyebrow {
+        margin: 0 0 8px; font-size: .78rem; font-weight: 800;
+        letter-spacing: .22em; text-transform: uppercase; color: var(--gold-soft);
+      }
       .games h2 {
         margin: 0; font-family: "Playfair Display", Georgia, serif;
         font-weight: 800; font-size: clamp(1.4rem, 5.6vw, 1.9rem); line-height: 1.2;
@@ -475,6 +479,12 @@
         padding-top: 16px;
       }
       .pc-bundles-btns { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .games p.pc-bundles-big {
+        margin: 12px auto 0; max-width: 560px;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(1.3rem, 5vw, 1.6rem); font-weight: 800; line-height: 1.25;
+        color: var(--cream);
+      }
       .pc-bundles-deal { margin-top: 12px; }
       /* Combined-bundle deal button (Douglas, Nov 18): both bundles for
          $8.99 — the deal of the strip, so the coral pressable base is
@@ -757,6 +767,7 @@
 
       <!-- Games strip -->
       <section class="games" id="gamesBand" aria-label="Offline games">
+        <p class="games-eyebrow">For iPhone &amp; iPad (iOS)</p>
         <h2>12 offline games sail with you — <span class="accent">No network, no problem.</span></h2>
         <p>Sea days have dead zones. These twelve ride in your pocket and play fully offline, bow to stern. All 12 games — $4.99 on iPhone &amp; iPad.</p>
         <div class="game-chips">
@@ -795,6 +806,7 @@
              ignores clicks on links, so these go straight to Stripe. -->
         <div class="pc-bundles">
           <p>Prefer to play on your computer? Get the McKrazies bundles for Windows — download, install, desktop icon and play.</p>
+          <p class="pc-bundles-big">We have the bundles for Windows as well</p>
           <div class="pc-bundles-btns">
             <a class="crosspromo-btn" href="https://buy.stripe.com/9B614n7wydafbBMeyT7g400" target="_blank" rel="noopener">Got Games $4.99</a>
             <a class="crosspromo-btn" href="https://buy.stripe.com/3cI4gz5oqgmr49k2Qb7g401" target="_blank" rel="noopener">One More Try Lab — $4.99</a>
