@@ -443,6 +443,69 @@
         border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 600;
         background: rgba(246,239,220,.07);
       }
+      /* Game pills as real pressable buttons + the whole band surface is
+         clickable for the bundle (Douglas's ruling, Nov 18). Pills stop
+         propagation; keyboard users use the visible bundle button. */
+      .games { cursor: pointer; transition: filter .15s ease; }
+      .games:hover { filter: brightness(1.07); }
+      .games:active { filter: brightness(1.13); }
+      button.chip {
+        font-family: "Libre Franklin", sans-serif;
+        cursor: pointer;
+        background: linear-gradient(180deg, rgba(246,239,220,.20) 0%, rgba(246,239,220,.08) 55%, rgba(6,24,48,.18) 100%);
+        border: 1px solid rgba(227,205,143,.8);
+        border-top-color: rgba(255,244,214,.95);
+        box-shadow: 0 3px 0 rgba(3,12,26,.55), 0 6px 12px rgba(3,12,26,.35), inset 0 1px 0 rgba(255,255,255,.35);
+        padding: 9px 15px;
+        transition: transform .06s ease, box-shadow .06s ease, filter .15s ease;
+      }
+      button.chip:hover { filter: brightness(1.12); }
+      button.chip:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(3,12,26,.55), 0 3px 6px rgba(3,12,26,.35), inset 0 1px 0 rgba(255,255,255,.25); }
+      button.chip:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
+      button.chip[aria-expanded="true"] { background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%); color: var(--navy); border-color: #8a6a1f; }
+      .games-buy { margin: 18px auto 0; }
+      /* ---------- Game preview panel ---------- */
+      .game-preview {
+        position: relative;
+        margin: 18px auto 4px; max-width: 560px;
+        background: var(--cream); color: var(--navy);
+        border: 2px solid var(--gold); border-radius: 12px;
+        padding: 18px 18px 20px;
+        box-shadow: 0 10px 24px rgba(3,12,26,.45);
+        text-align: center;
+        cursor: default;
+      }
+      .game-card {
+        background: linear-gradient(160deg, var(--navy-soft), var(--navy) 60%, var(--navy-deep));
+        border: 2px solid var(--gold); border-radius: 10px;
+        padding: 20px 14px 16px; margin: 0 auto 14px; max-width: 420px;
+        color: var(--gold-soft);
+      }
+      .game-card svg { width: 44px; height: 44px; display: block; margin: 0 auto 8px; }
+      .game-card-name {
+        font-family: "Playfair Display", Georgia, serif; font-weight: 800;
+        font-size: 1.35rem; line-height: 1.2; color: var(--cream); display: block;
+      }
+      .game-card-sub { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-soft); display: block; margin-top: 5px; }
+      .game-preview-name { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.3rem; }
+      .game-preview-desc { margin: 8px auto 0; max-width: 460px; font-size: .92rem; line-height: 1.55; color: var(--navy); }
+      .games p.game-preview-desc { color: var(--navy); }
+      .game-preview-facts { margin: 10px auto 0; font-size: .8rem; font-weight: 600; color: #5a4a22; }
+      .games p.game-preview-facts { color: #5a4a22; }
+      .game-preview-cta { margin-top: 14px; }
+      .game-preview-note { margin: 9px auto 0; font-size: .78rem; color: #5a4a22; }
+      .games p.game-preview-note { color: #5a4a22; }
+      .game-preview-close {
+        position: absolute; top: 8px; right: 8px;
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1.5px solid #8f3320; border-top-color: #ffb59f;
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        color: #fff8ea; font-size: 1.15rem; font-weight: 700; line-height: 1;
+        cursor: pointer; box-shadow: 0 3px 0 #7e2a1a, 0 5px 10px rgba(6,24,48,.25);
+        transition: transform .06s ease, box-shadow .06s ease;
+      }
+      .game-preview-close:active { transform: translateY(2px); box-shadow: 0 1px 0 #7e2a1a, 0 2px 5px rgba(6,24,48,.25); }
+      .game-preview-close:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
 
       /* ---------- Cross-promotion ---------- */
       .crosspromo {
@@ -484,6 +547,15 @@
       .crosspromo-btn:hover { filter: brightness(1.03); }
       .crosspromo-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.2); }
       .crosspromo-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      /* Cross-promo nested in the launch banner: cream inset panel on the coral band */
+      .crosspromo--banner {
+        margin: 12px auto 2px;
+        max-width: 860px;
+        border: 2px solid var(--gold);
+        border-radius: 12px;
+        padding: 14px 18px 16px;
+        box-shadow: 0 4px 14px rgba(6,24,48,.25);
+      }
 
       /* ---------- Footer ---------- */
       footer {
@@ -524,8 +596,14 @@
       <p class="mast-sub">The cheapest verified sailings from U.S. ports across nine cruise lines — priced per person and per night, with the price basis labeled plain: all-in, or fare only.</p>
     </header>
 
-    <div class="launch-banner" role="note">
+    <div class="launch-banner" id="app-launch" role="note">
       <p><strong>The AnchorFare app launches November 27 on iPhone</strong> — deals are live here now. No app needed: this page is the full tracker, for every phone.</p>
+      <section class="crosspromo crosspromo--banner" aria-label="Weekend Wiings — cheap flights">
+        <div class="crosspromo-inner">
+          <p class="crosspromo-text">If you like to cruise, maybe you want to fly.</p>
+          <a class="crosspromo-btn" href="https://wkndwiings.com">Find cheap flights — Weekend Wiings</a>
+        </div>
+      </section>
     </div>
 
     <main>
@@ -645,31 +723,48 @@
       <section id="panel-c" class="panel hidden" aria-label="Sailing in 90 days"></section>
 
       <!-- Games strip -->
-      <section class="games" aria-label="Offline games">
+      <section class="games" id="gamesBand" aria-label="Offline games">
         <h2>12 offline games sail with you — <span class="accent">No network, no problem.</span></h2>
         <p>Sea days have dead zones. These twelve ride in your pocket and play fully offline, bow to stern. All 12 games — $4.99.</p>
         <div class="game-chips">
-          <span class="chip">Hatchet Toss</span>
-          <span class="chip">Block Party</span>
-          <span class="chip">Orb Pop</span>
-          <span class="chip">Pin Order</span>
-          <span class="chip">Flow Line</span>
-          <span class="chip">Pocket Golf</span>
-          <span class="chip">All Aboard!</span>
-          <span class="chip">Easy Does It</span>
-          <span class="chip">Ship Maze</span>
-          <span class="chip">Steady As She Goes</span>
-          <span class="chip">+ 2 more aboard</span>
+          <button type="button" class="chip" data-game="hatchet" aria-expanded="false" aria-controls="gamePreview">Hatchet Toss</button>
+          <button type="button" class="chip" data-game="blockparty" aria-expanded="false" aria-controls="gamePreview">Block Party</button>
+          <button type="button" class="chip" data-game="orbpop" aria-expanded="false" aria-controls="gamePreview">Orb Pop</button>
+          <button type="button" class="chip" data-game="pinorder" aria-expanded="false" aria-controls="gamePreview">Pin Order</button>
+          <button type="button" class="chip" data-game="flowline" aria-expanded="false" aria-controls="gamePreview">Flow Line</button>
+          <button type="button" class="chip" data-game="pocketgolf" aria-expanded="false" aria-controls="gamePreview">Pocket Golf</button>
+          <button type="button" class="chip" data-game="allaboard" aria-expanded="false" aria-controls="gamePreview">All Aboard!</button>
+          <button type="button" class="chip" data-game="easydoesit" aria-expanded="false" aria-controls="gamePreview">Easy Does It</button>
+          <button type="button" class="chip" data-game="shipmaze" aria-expanded="false" aria-controls="gamePreview">Ship Maze</button>
+          <button type="button" class="chip" data-game="steady" aria-expanded="false" aria-controls="gamePreview">Steady As She Goes</button>
+          <button type="button" class="chip" data-game="manoverboard" aria-expanded="false" aria-controls="gamePreview">Man Overboard!</button>
+          <button type="button" class="chip" data-game="deckshuffleboard" aria-expanded="false" aria-controls="gamePreview">Deck Shuffleboard</button>
+        </div>
+        <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
+        <a class="crosspromo-btn games-buy" href="#app-launch">Get all 12 games — $4.99</a>
+        <div class="game-preview hidden" id="gamePreview" role="region" aria-label="Game preview">
+          <button type="button" class="game-preview-close" id="gamePreviewClose" aria-label="Close game preview">&times;</button>
+          <div class="game-card" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.1"/><path d="M12 6.1 V20.5"/><path d="M7.6 9.6 H16.4"/><path d="M4.2 14.2 C4.2 18 7.6 20.5 12 20.5 C16.4 20.5 19.8 18 19.8 14.2"/><path d="M4.2 14.2 L2.9 17.3 M4.2 14.2 L7 16.6"/><path d="M19.8 14.2 L21.1 17.3 M19.8 14.2 L17 16.6"/></svg>
+            <span class="game-card-name" id="gpCardName"></span>
+            <span class="game-card-sub">AnchorFare Games</span>
+          </div>
+          <h3 class="game-preview-name" id="gpName"></h3>
+          <p class="game-preview-desc" id="gpDesc"></p>
+          <p class="game-preview-facts">All 12 games — $4.99 · fully offline · bow to stern</p>
+          <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
+          <a class="crosspromo-btn game-preview-cta" href="#app-launch">Get all 12 games — $4.99</a>
+          <p class="game-preview-note">In the AnchorFare app · Launches November 27</p>
         </div>
       </section>
-    </main>
 
-    <section class="crosspromo" aria-label="Weekend Wiings — cheap flights">
-      <div class="crosspromo-inner">
-        <p class="crosspromo-text">If you like to cruise, maybe you want to fly.</p>
-        <a class="crosspromo-btn" href="https://wkndwiings.com">Find cheap flights — Weekend Wiings</a>
-      </div>
-    </section>
+      <!-- "Also tracked in this window" slots — filled by the panel renderer,
+           kept below the games band so the band sits between the deals list
+           and this section for whichever window is showing. -->
+      <div id="also-a" class="also-slot"></div>
+      <div id="also-b" class="also-slot hidden"></div>
+      <div id="also-c" class="also-slot hidden"></div>
+    </main>
 
     <footer>
       <p class="foot-brand">AnchorFare</p>
@@ -736,14 +831,18 @@
           html += '</div></article>';
         });
         html += '</div>';
-        if (w.also && w.also.length) {
-          html += '<div class="also"><h3>Also tracked in this window</h3><ul>';
-          w.also.forEach(function (a) {
-            html += '<li><span>' + esc(a.text) + '</span><span class="amt">' + esc(a.amt) + ' <span class="sub">· ' + esc(a.sub) + '</span></span></li>';
-          });
-          html += '</ul></div>';
-        }
         document.getElementById("panel-" + key).innerHTML = html;
+        /* "Also tracked" renders into its own slot BELOW the games band,
+           so the band sits between the deals list and this section. */
+        var alsoHtml = "";
+        if (w.also && w.also.length) {
+          alsoHtml += '<div class="also"><h3>Also tracked in this window</h3><ul>';
+          w.also.forEach(function (a) {
+            alsoHtml += '<li><span>' + esc(a.text) + '</span><span class="amt">' + esc(a.amt) + ' <span class="sub">· ' + esc(a.sub) + '</span></span></li>';
+          });
+          alsoHtml += '</ul></div>';
+        }
+        document.getElementById("also-" + key).innerHTML = alsoHtml;
       }
 
       ["a", "b", "c"].forEach(renderPanel);
@@ -752,6 +851,7 @@
       function showWindow(key) {
         ["a", "b", "c"].forEach(function (k) {
           document.getElementById("panel-" + k).classList.toggle("hidden", k !== key);
+          document.getElementById("also-" + k).classList.toggle("hidden", k !== key);
         });
         var btns = document.querySelectorAll(".win-btn");
         btns.forEach(function (b) {
@@ -765,6 +865,70 @@
         b.addEventListener("click", function () { showWindow(b.getAttribute("data-window")); });
       });
       showWindow("a");
+    </script>
+    <script>
+      /* Games band: per-game preview panel + whole-band bundle click.
+         Pills open their own panel (stop propagation); a click anywhere else
+         on the band surface follows the bundle route (#app-launch, same as
+         the buy buttons). Keyboard users are covered by the visible
+         "Get all 12 games — $4.99" links. */
+      (function () {
+        var GAMES = {
+          hatchet: { name: "Hatchet Toss", desc: "Tap to throw hatchets at a spinning log — stick every hatchet you carry without landing on one already stuck, and the round clears." },
+          blockparty: { name: "Block Party", desc: "Falling-block puzzle — slide, turn and drop the pieces to fill a row wall to wall; stack to the top and the party's over." },
+          orbpop: { name: "Orb Pop", desc: "Bubble shooter — aim with a press, let go to launch, and match 3 or more of a color to pop them and clear the field." },
+          pinorder: { name: "Pin Order", desc: "Pull-the-pin puzzle — tap the pins in the right order to route every gold coin home, past the lava and the water." },
+          flowline: { name: "Flow Line", desc: "Pipe puzzle — turn the pieces to run water from the tank to the thirsty little ship with no leaks." },
+          pocketgolf: { name: "Pocket Golf", desc: "Six holes of mini golf in your pocket — pull back to aim, let go to putt, and sink it under par." },
+          allaboard: { name: "All Aboard!", desc: "One of the 12 offline games packed into the AnchorFare app." },
+          easydoesit: { name: "Easy Does It", desc: "One of the 12 offline games packed into the AnchorFare app." },
+          shipmaze: { name: "Ship Maze", desc: "One of the 12 offline games packed into the AnchorFare app." },
+          steady: { name: "Steady As She Goes", desc: "One of the 12 offline games packed into the AnchorFare app." },
+          manoverboard: { name: "Man Overboard!", desc: "One of the 12 offline games packed into the AnchorFare app." },
+          deckshuffleboard: { name: "Deck Shuffleboard", desc: "One of the 12 offline games packed into the AnchorFare app." }
+        };
+        var band = document.getElementById("gamesBand");
+        var panel = document.getElementById("gamePreview");
+        var closeBtn = document.getElementById("gamePreviewClose");
+        var openKey = null, lastChip = null;
+        function setExpanded(chip) {
+          band.querySelectorAll("button.chip").forEach(function (c) {
+            c.setAttribute("aria-expanded", c === chip ? "true" : "false");
+          });
+        }
+        function openGame(key, chip) {
+          var g = GAMES[key];
+          if (!g) return;
+          document.getElementById("gpCardName").textContent = g.name;
+          document.getElementById("gpName").textContent = g.name;
+          document.getElementById("gpDesc").textContent = g.desc;
+          panel.classList.remove("hidden");
+          setExpanded(chip);
+          openKey = key; lastChip = chip;
+        }
+        function closeGame(focusBack) {
+          panel.classList.add("hidden");
+          setExpanded(null);
+          openKey = null;
+          if (focusBack && lastChip) lastChip.focus();
+        }
+        band.querySelectorAll("button.chip").forEach(function (chip) {
+          chip.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var key = chip.getAttribute("data-game");
+            if (openKey === key) { closeGame(false); } else { openGame(key, chip); }
+          });
+        });
+        panel.addEventListener("click", function (e) { e.stopPropagation(); });
+        closeBtn.addEventListener("click", function () { closeGame(true); });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && openKey) closeGame(true);
+        });
+        band.addEventListener("click", function (e) {
+          if (e.target.closest("a, button")) return;
+          window.location.hash = "app-launch";
+        });
+      })();
     </script>
   </body>
 </html>
