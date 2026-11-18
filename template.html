@@ -441,34 +441,28 @@
       }
       .games h2 .accent { color: var(--gold-soft); font-style: italic; }
       .games p { margin: 8px auto 0; max-width: 520px; font-size: .9rem; line-height: 1.55; color: rgba(246,239,220,.85); }
-      .game-chips { margin: 16px auto 2px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 640px; }
-      .chip {
-        border: 1px solid rgba(227,205,143,.65); color: var(--cream);
-        border-radius: 999px; padding: 7px 13px; font-size: .82rem; font-weight: 600;
-        background: rgba(246,239,220,.07);
-      }
-      /* Game pills as real pressable buttons + the whole band surface is
-         clickable for the bundle (Douglas's ruling, Nov 18). Pills stop
-         propagation; keyboard users use the visible bundle button. */
-      .games { cursor: pointer; transition: filter .15s ease; }
-      .games:hover { filter: brightness(1.07); }
-      .games:active { filter: brightness(1.13); }
-      button.chip {
-        font-family: "Libre Franklin", sans-serif;
-        cursor: pointer;
-        background: linear-gradient(180deg, rgba(246,239,220,.20) 0%, rgba(246,239,220,.08) 55%, rgba(6,24,48,.18) 100%);
-        border: 1px solid rgba(227,205,143,.8);
-        border-top-color: rgba(255,244,214,.95);
-        box-shadow: 0 3px 0 rgba(3,12,26,.55), 0 6px 12px rgba(3,12,26,.35), inset 0 1px 0 rgba(255,255,255,.35);
-        padding: 9px 15px;
-        transition: transform .06s ease, box-shadow .06s ease, filter .15s ease;
-      }
-      button.chip:hover { filter: brightness(1.12); }
-      button.chip:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(3,12,26,.55), 0 3px 6px rgba(3,12,26,.35), inset 0 1px 0 rgba(255,255,255,.25); }
-      button.chip:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
-      button.chip[aria-expanded="true"] { background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%); color: var(--navy); border-color: #8a6a1f; }
+      /* Game-name pills are GONE from the band (Douglas, Nov 18, 15:24):
+         the sections stay clean — buy buttons only — and each bundle's
+         game list lives inside the purchase panel that its buy button
+         opens (see .buy-list below). */
       .games-buy { margin: 18px auto 0; }
-      .games p.games-includes { margin: 12px auto 0; max-width: 560px; font-size: .8rem; line-height: 1.6; color: rgba(246,239,220,.75); }
+      /* ---------- Purchase panel game lists ---------- */
+      .buy-panel-title {
+        margin: 2px auto 0; max-width: 460px;
+        font-family: "Playfair Display", Georgia, serif; font-weight: 800;
+        font-size: 1.3rem; line-height: 1.25; color: var(--navy);
+      }
+      .buy-list { margin: 12px auto 0; max-width: 480px; text-align: left; }
+      .buy-list-head {
+        margin: 14px 0 2px; font-size: .72rem; font-weight: 800;
+        letter-spacing: .18em; text-transform: uppercase; color: #8a6a1f;
+      }
+      .buy-list-head:first-child { margin-top: 0; }
+      .buy-list ul { margin: 0; padding: 0; list-style: none; }
+      .buy-list li { padding: 5px 0; border-bottom: 1px solid rgba(138,106,31,.18); font-size: .88rem; line-height: 1.45; color: var(--navy); }
+      .buy-list li:last-child { border-bottom: none; }
+      .buy-list .bl-name { font-weight: 700; }
+      .buy-list .bl-desc { color: #44506b; }
       /* ---------- Computer bundles strip (inside the games band) ----------
          The McKrazies Windows bundles, sold on the web via Stripe — separate
          from the in-app 12-game pack above (Douglas, Nov 18). Buttons reuse
@@ -512,7 +506,6 @@
         color: var(--cream);
       }
       .ios-lab-buy { margin: 14px auto 0; }
-      .games p.ios-lab-includes { margin: 12px auto 0; max-width: 560px; font-size: .8rem; line-height: 1.6; color: rgba(246,239,220,.75); }
       /* ---------- Game preview panel ---------- */
       .game-preview {
         position: relative;
@@ -787,35 +780,21 @@
         <p class="games-eyebrow">For iPhone &amp; iPad (iOS)</p>
         <h2>12 offline games sail with you — <span class="accent">No network, no problem.</span></h2>
         <p>Sea days have dead zones. These twelve ride in your pocket and play fully offline, bow to stern. All 12 games — $4.99 on iPhone &amp; iPad.</p>
-        <div class="game-chips">
-          <button type="button" class="chip" data-game="hatchet" aria-expanded="false" aria-controls="gamePreview">Hatchet Toss</button>
-          <button type="button" class="chip" data-game="blockparty" aria-expanded="false" aria-controls="gamePreview">Block Party</button>
-          <button type="button" class="chip" data-game="orbpop" aria-expanded="false" aria-controls="gamePreview">Orb Pop</button>
-          <button type="button" class="chip" data-game="pinorder" aria-expanded="false" aria-controls="gamePreview">Pin Order</button>
-          <button type="button" class="chip" data-game="flowline" aria-expanded="false" aria-controls="gamePreview">Flow Line</button>
-          <button type="button" class="chip" data-game="pocketgolf" aria-expanded="false" aria-controls="gamePreview">Pocket Golf</button>
-          <button type="button" class="chip" data-game="allaboard" aria-expanded="false" aria-controls="gamePreview">All Aboard!</button>
-          <button type="button" class="chip" data-game="easydoesit" aria-expanded="false" aria-controls="gamePreview">Easy Does It</button>
-          <button type="button" class="chip" data-game="shipmaze" aria-expanded="false" aria-controls="gamePreview">Ship Maze</button>
-          <button type="button" class="chip" data-game="steady" aria-expanded="false" aria-controls="gamePreview">Steady As She Goes</button>
-          <button type="button" class="chip" data-game="manoverboard" aria-expanded="false" aria-controls="gamePreview">Man Overboard!</button>
-          <button type="button" class="chip" data-game="deckshuffleboard" aria-expanded="false" aria-controls="gamePreview">Deck Shuffleboard</button>
-        </div>
-        <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
-        <a class="crosspromo-btn games-buy" href="#app-launch">iOS $4.99</a>
-        <p class="games-includes">The 12 games: Hatchet Toss · Block Party · Orb Pop · Pin Order · Flow Line · Pocket Golf · All Aboard! · Easy Does It · Ship Maze · Steady As She Goes · Man Overboard! · Deck Shuffleboard</p>
-        <div class="game-preview hidden" id="gamePreview" role="region" aria-label="Game preview">
-          <button type="button" class="game-preview-close" id="gamePreviewClose" aria-label="Close game preview">&times;</button>
-          <div class="game-card" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.1"/><path d="M12 6.1 V20.5"/><path d="M7.6 9.6 H16.4"/><path d="M4.2 14.2 C4.2 18 7.6 20.5 12 20.5 C16.4 20.5 19.8 18 19.8 14.2"/><path d="M4.2 14.2 L2.9 17.3 M4.2 14.2 L7 16.6"/><path d="M19.8 14.2 L21.1 17.3 M19.8 14.2 L17 16.6"/></svg>
-            <span class="game-card-name" id="gpCardName"></span>
-            <span class="game-card-sub">AnchorFare Games</span>
-          </div>
-          <p class="game-preview-desc" id="gpDesc"></p>
-          <p class="game-preview-facts">All 12 games — $4.99 · fully offline · bow to stern</p>
-          <!-- BUY LINK: at app launch (Nov 27), swap this href to the App Store URL — one line. -->
-          <a class="crosspromo-btn game-preview-cta" href="#app-launch">iOS $4.99</a>
-          <p class="game-preview-note">In the AnchorFare app · Launches November 27</p>
+        <!-- No game-name pills on the band (Douglas, Nov 18): the buy tab
+             opens the purchase panel below, and the panel is where the
+             12 games are listed. -->
+        <button type="button" class="crosspromo-btn games-buy" data-buy="ios12" aria-expanded="false" aria-controls="buyPanel">iOS $4.99</button>
+        <!-- Purchase panel — every buy button in this band (iOS tabs and
+             Windows bundle buttons) opens this panel with that bundle's
+             game list and its own buy button inside. Content is set by
+             the games script at the bottom of the page. -->
+        <div class="game-preview hidden" id="buyPanel" role="region" aria-label="Purchase details">
+          <button type="button" class="game-preview-close" id="buyPanelClose" aria-label="Close purchase details">&times;</button>
+          <h3 class="buy-panel-title" id="bpTitle"></h3>
+          <p class="game-preview-facts" id="bpFacts"></p>
+          <div class="buy-list" id="bpList"></div>
+          <a class="crosspromo-btn game-preview-cta" id="bpCta" href="#app-launch">Buy</a>
+          <p class="game-preview-note" id="bpNote"></p>
         </div>
         <!-- Also on iOS — One More Try Lab is a separate iPhone & iPad app
              from the 12 AnchorFare games above, so it is listed here in
@@ -826,24 +805,21 @@
           <p class="games-eyebrow">Also on iPhone &amp; iPad</p>
           <p class="ios-lab-big">One More Try Lab</p>
           <p>One More Try Lab — $4.99 on iPhone &amp; iPad. A separate app from the 12 AnchorFare games above — also fully offline.</p>
-          <p class="ios-lab-includes">One More Try Lab includes: Run the Edge · Five of Five · Split Second · Last Light — plus the Vegas casino tab: Roulette · Blackjack · Poker · Craps · Slots.</p>
-          <a class="crosspromo-btn ios-lab-buy" href="#app-launch">One More Try Lab — iOS $4.99</a>
+          <button type="button" class="crosspromo-btn ios-lab-buy" data-buy="ioslab" aria-expanded="false" aria-controls="buyPanel">One More Try Lab — iOS $4.99</button>
         </div>
         <!-- Computer bundles strip — the McKrazies Windows bundles via live
-             Stripe checkout (Douglas, Nov 18). NOT the in-app pack: the
-             #app-launch buttons above stay untouched. Band click handler
-             ignores clicks on links, so these go straight to Stripe. -->
+             Stripe checkout (Douglas, Nov 18). NOT the in-app pack. The
+             buttons here open the purchase panel above with that bundle's
+             games listed; the Stripe buy button lives inside the panel. -->
         <div class="pc-bundles">
           <p>Prefer to play on your computer? Get the McKrazies bundles for Windows — download, install, desktop icon and play.</p>
           <p class="pc-bundles-big">We have the bundles for Windows as well</p>
           <div class="pc-bundles-btns">
-            <a class="crosspromo-btn" href="https://buy.stripe.com/9B614n7wydafbBMeyT7g400" target="_blank" rel="noopener">Got Games $4.99</a>
-            <a class="crosspromo-btn" href="https://buy.stripe.com/3cI4gz5oqgmr49k2Qb7g401" target="_blank" rel="noopener">One More Try Lab — $4.99</a>
+            <button type="button" class="crosspromo-btn" data-buy="wingot" aria-expanded="false" aria-controls="buyPanel">Got Games $4.99</button>
+            <button type="button" class="crosspromo-btn" data-buy="winlab" aria-expanded="false" aria-controls="buyPanel">One More Try Lab — $4.99</button>
           </div>
-          <p class="pc-bundles-note">Got Games for Windows includes all 26 games: You Were That Close · Stack the Suitcases · Baggage Claim · Turbulence! · Gate Dash · Runway Lights · Tray Table Tidy · Passport Stamp · Coffee Pour · Parachute Panic · Jet Stream · Final Call · Sky Pairs · Customs Line · Layover · Bag Pop! · Buckle Up! · De-Ice! · Bag Sort! · Sky Swap · Hatchet Toss · Block Party · Orb Pop · Pin Order · Flow Line · Pocket Golf.</p>
-          <p class="pc-bundles-note">One More Try Lab includes: Run the Edge · Five of Five · Split Second · Last Light — plus the Vegas casino tab: Roulette · Blackjack · Poker · Craps · Slots. One More Try Lab is also available on iPhone &amp; iPad (iOS).</p>
           <div class="pc-bundles-deal">
-            <a class="crosspromo-btn crosspromo-btn--deal" href="https://buy.stripe.com/9B6fZhcQ5dafaxIfCX7g402" target="_blank" rel="noopener">Get both bundles — $8.99 · Save a dollar</a>
+            <button type="button" class="crosspromo-btn crosspromo-btn--deal" data-buy="winboth" aria-expanded="false" aria-controls="buyPanel">Get both bundles — $8.99 · Save a dollar</button>
           </div>
           <p class="pc-bundles-note">For iPhone &amp; iPad (iOS) — Android coming later.</p>
         </div>
@@ -958,65 +934,129 @@
       showWindow("a");
     </script>
     <script>
-      /* Games band: per-game preview panel + whole-band bundle click.
-         Pills open their own panel (stop propagation); a click anywhere else
-         on the band surface follows the bundle route (#app-launch, same as
-         the buy buttons). Keyboard users are covered by the visible
-         "iOS $4.99" links. */
+      /* Games band purchase panel (Douglas, Nov 18): no game-name pills
+         on the band — every buy button (the iOS tabs and the Windows
+         bundle buttons) opens this panel, which lists that bundle's
+         games and carries that bundle's own buy button inside. iOS
+         bundles buy in the app at launch (#app-launch); Windows bundles
+         buy through the existing Stripe links. Prices and Stripe links
+         unchanged. */
       (function () {
-        var GAMES = {
-          hatchet: { name: "Hatchet Toss", desc: "Tap to throw hatchets at a spinning log — stick every hatchet you carry without landing on one already stuck, and the round clears." },
-          blockparty: { name: "Block Party", desc: "Falling-block puzzle — slide, turn and drop the pieces to fill a row wall to wall; stack to the top and the party's over." },
-          orbpop: { name: "Orb Pop", desc: "Bubble shooter — aim with a press, let go to launch, and match 3 or more of a color to pop them and clear the field." },
-          pinorder: { name: "Pin Order", desc: "Pull-the-pin puzzle — tap the pins in the right order to route every gold coin home, past the lava and the water." },
-          flowline: { name: "Flow Line", desc: "Pipe puzzle — turn the pieces to run water from the tank to the thirsty little ship with no leaks." },
-          pocketgolf: { name: "Pocket Golf", desc: "Six holes of mini golf in your pocket — pull back to aim, let go to putt, and sink it under par." },
-          allaboard: { name: "All Aboard!", desc: "Swipe to hurry every passenger up the gangway before the ship sails — your timing decides who makes it aboard." },
-          easydoesit: { name: "Easy Does It", desc: "Set the cargo down with a gentle touch — the force of your press decides whether it settles soft or comes down hard." },
-          shipmaze: { name: "Ship Maze", desc: "Tilt to steer the ship through the maze — the angle of your tilt sets her speed and her line." },
-          steady: { name: "Steady As She Goes", desc: "Hold the ship steady on her course — small, careful corrections keep her true, and oversteering sends her drifting." },
-          manoverboard: { name: "Man Overboard!", desc: "Throw the life ring to the swimmer in the water — the force and timing of your throw decide whether it lands close enough to reach." },
-          deckshuffleboard: { name: "Deck Shuffleboard", desc: "Slide the disc down the deck with a real push — how hard you slide it decides where it stops and what it scores." }
+        var AF_GAMES = [
+          ["Hatchet Toss", "Tap to throw hatchets at a spinning log — stick every hatchet you carry without landing on one already stuck, and the round clears."],
+          ["Block Party", "Falling-block puzzle — slide, turn and drop the pieces to fill a row wall to wall; stack to the top and the party's over."],
+          ["Orb Pop", "Bubble shooter — aim with a press, let go to launch, and match 3 or more of a color to pop them and clear the field."],
+          ["Pin Order", "Pull-the-pin puzzle — tap the pins in the right order to route every gold coin home, past the lava and the water."],
+          ["Flow Line", "Pipe puzzle — turn the pieces to run water from the tank to the thirsty little ship with no leaks."],
+          ["Pocket Golf", "Six holes of mini golf in your pocket — pull back to aim, let go to putt, and sink it under par."],
+          ["All Aboard!", "Swipe to hurry every passenger up the gangway before the ship sails — your timing decides who makes it aboard."],
+          ["Easy Does It", "Set the cargo down with a gentle touch — the force of your press decides whether it settles soft or comes down hard."],
+          ["Ship Maze", "Tilt to steer the ship through the maze — the angle of your tilt sets her speed and her line."],
+          ["Steady As She Goes", "Hold the ship steady on her course — small, careful corrections keep her true, and oversteering sends her drifting."],
+          ["Man Overboard!", "Throw the life ring to the swimmer in the water — the force and timing of your throw decide whether it lands close enough to reach."],
+          ["Deck Shuffleboard", "Slide the disc down the deck with a real push — how hard you slide it decides where it stops and what it scores."]
+        ];
+        var GOT_26 = ["You Were That Close", "Stack the Suitcases", "Baggage Claim", "Turbulence!", "Gate Dash", "Runway Lights", "Tray Table Tidy", "Passport Stamp", "Coffee Pour", "Parachute Panic", "Jet Stream", "Final Call", "Sky Pairs", "Customs Line", "Layover", "Bag Pop!", "Buckle Up!", "De-Ice!", "Bag Sort!", "Sky Swap", "Hatchet Toss", "Block Party", "Orb Pop", "Pin Order", "Flow Line", "Pocket Golf"];
+        function itemsHtml(items) {
+          return "<ul>" + items.map(function (it) {
+            if (Array.isArray(it)) {
+              return '<li><span class="bl-name">' + esc(it[0]) + '</span> — <span class="bl-desc">' + esc(it[1]) + "</span></li>";
+            }
+            return '<li><span class="bl-name">' + esc(it) + "</span></li>";
+          }).join("") + "</ul>";
+        }
+        function labListHtml() {
+          return '<p class="buy-list-head">The four labs</p>' +
+            itemsHtml(["Run the Edge", "Five of Five", "Split Second", "Last Light"]) +
+            '<p class="buy-list-head">Plus the Vegas casino tab</p>' +
+            itemsHtml(["Roulette", "Blackjack", "Poker", "Craps", "Slots"]);
+        }
+        var BUY = {
+          ios12: {
+            title: "12 AnchorFare games — iPhone & iPad",
+            facts: "All 12 games — $4.99 · fully offline · bow to stern",
+            list: itemsHtml(AF_GAMES),
+            cta: { label: "iOS $4.99", href: "#app-launch" },
+            note: "In the AnchorFare app · Launches November 27"
+          },
+          ioslab: {
+            title: "One More Try Lab — iPhone & iPad",
+            facts: "$4.99 · fully offline · a separate app from the 12 AnchorFare games",
+            list: labListHtml(),
+            cta: { label: "One More Try Lab — iOS $4.99", href: "#app-launch" },
+            note: "One More Try Lab is its own app on iPhone & iPad"
+          },
+          wingot: {
+            title: "Got Games — for Windows",
+            facts: "All 26 games — $4.99 · Windows download · fully offline",
+            list: '<p class="buy-list-head">All 26 games</p>' + itemsHtml(GOT_26),
+            cta: { label: "Buy Got Games — $4.99", href: "https://buy.stripe.com/9B614n7wydafbBMeyT7g400", external: true },
+            note: "Secure checkout on Stripe · download, install, desktop icon and play"
+          },
+          winlab: {
+            title: "One More Try Lab — for Windows",
+            facts: "$4.99 · Windows download · fully offline",
+            list: labListHtml(),
+            cta: { label: "Buy One More Try Lab — $4.99", href: "https://buy.stripe.com/3cI4gz5oqgmr49k2Qb7g401", external: true },
+            note: "Secure checkout on Stripe · One More Try Lab is also available on iPhone & iPad (iOS)"
+          },
+          winboth: {
+            title: "Both bundles — for Windows",
+            facts: "Got Games + One More Try Lab — $8.99 · save a dollar · Windows download · fully offline",
+            list: '<p class="buy-list-head">Got Games — all 26 games</p>' + itemsHtml(GOT_26) +
+              '<p class="buy-list-head">One More Try Lab — the four labs</p>' +
+              itemsHtml(["Run the Edge", "Five of Five", "Split Second", "Last Light"]) +
+              '<p class="buy-list-head">One More Try Lab — Vegas casino tab</p>' +
+              itemsHtml(["Roulette", "Blackjack", "Poker", "Craps", "Slots"]),
+            cta: { label: "Get both bundles — $8.99", href: "https://buy.stripe.com/9B6fZhcQ5dafaxIfCX7g402", external: true },
+            note: "Secure checkout on Stripe · both bundles for one price"
+          }
         };
         var band = document.getElementById("gamesBand");
-        var panel = document.getElementById("gamePreview");
-        var closeBtn = document.getElementById("gamePreviewClose");
-        var openKey = null, lastChip = null;
-        function setExpanded(chip) {
-          band.querySelectorAll("button.chip").forEach(function (c) {
-            c.setAttribute("aria-expanded", c === chip ? "true" : "false");
+        var panel = document.getElementById("buyPanel");
+        var closeBtn = document.getElementById("buyPanelClose");
+        var cta = document.getElementById("bpCta");
+        var openKey = null, lastBtn = null;
+        function setExpanded(btn) {
+          band.querySelectorAll("[data-buy]").forEach(function (b) {
+            b.setAttribute("aria-expanded", b === btn ? "true" : "false");
           });
         }
-        function openGame(key, chip) {
-          var g = GAMES[key];
-          if (!g) return;
-          document.getElementById("gpCardName").textContent = g.name;
-          document.getElementById("gpDesc").textContent = g.desc;
+        function openBuy(key, btn) {
+          var b = BUY[key];
+          if (!b) return;
+          document.getElementById("bpTitle").textContent = b.title;
+          document.getElementById("bpFacts").textContent = b.facts;
+          document.getElementById("bpList").innerHTML = b.list;
+          document.getElementById("bpNote").textContent = b.note;
+          cta.textContent = b.cta.label;
+          cta.setAttribute("href", b.cta.href);
+          if (b.cta.external) {
+            cta.setAttribute("target", "_blank");
+            cta.setAttribute("rel", "noopener");
+          } else {
+            cta.removeAttribute("target");
+            cta.removeAttribute("rel");
+          }
           panel.classList.remove("hidden");
-          setExpanded(chip);
-          openKey = key; lastChip = chip;
+          setExpanded(btn);
+          openKey = key; lastBtn = btn;
         }
-        function closeGame(focusBack) {
+        function closeBuy(focusBack) {
           panel.classList.add("hidden");
           setExpanded(null);
           openKey = null;
-          if (focusBack && lastChip) lastChip.focus();
+          if (focusBack && lastBtn) lastBtn.focus();
         }
-        band.querySelectorAll("button.chip").forEach(function (chip) {
-          chip.addEventListener("click", function (e) {
-            e.stopPropagation();
-            var key = chip.getAttribute("data-game");
-            if (openKey === key) { closeGame(false); } else { openGame(key, chip); }
+        band.querySelectorAll("[data-buy]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var key = btn.getAttribute("data-buy");
+            if (openKey === key) { closeBuy(false); } else { openBuy(key, btn); }
           });
         });
-        panel.addEventListener("click", function (e) { e.stopPropagation(); });
-        closeBtn.addEventListener("click", function () { closeGame(true); });
+        closeBtn.addEventListener("click", function () { closeBuy(true); });
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && openKey) closeGame(true);
-        });
-        band.addEventListener("click", function (e) {
-          if (e.target.closest("a, button")) return;
-          window.location.hash = "app-launch";
+          if (e.key === "Escape" && openKey) closeBuy(true);
         });
       })();
     </script>
