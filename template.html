@@ -783,7 +783,7 @@
         <!-- No game-name pills on the band (Douglas, Nov 18): the buy tab
              opens the purchase panel below, and the panel is where the
              12 games are listed. -->
-        <button type="button" class="crosspromo-btn games-buy" data-buy="ios12" aria-expanded="false" aria-controls="buyPanel">iOS $4.99</button>
+        <button type="button" class="crosspromo-btn games-buy" data-buy="ios12" aria-expanded="false" aria-controls="buyPanel">Got Games $4.99</button>
         <!-- Purchase panel — every buy button in this band (iOS tabs and
              Windows bundle buttons) opens this panel with that bundle's
              game list and its own buy button inside. Content is set by
@@ -806,6 +806,14 @@
           <p class="ios-lab-big">One More Try Lab</p>
           <p>One More Try Lab — coming to iPhone &amp; iPad on November 27, $4.99. A separate app from the 12 AnchorFare games above — also fully offline.</p>
           <button type="button" class="crosspromo-btn ios-lab-buy" data-buy="ioslab" aria-expanded="false" aria-controls="buyPanel">One More Try Lab — iOS $4.99</button>
+        </div>
+        <!-- iOS bundle tab (Douglas, Nov 18): the iOS section carries the
+             same three tabs as the Windows strip. NO $8.99 on this tab —
+             the App Store has no $8.99 bundle; the two apps are $4.99
+             each there. The $8.99 bundle price is Windows-only and the
+             panel says so. -->
+        <div class="ios-both">
+          <button type="button" class="crosspromo-btn crosspromo-btn--deal" data-buy="iosboth" aria-expanded="false" aria-controls="buyPanel">Get both bundles</button>
         </div>
         <!-- Computer bundles strip — the McKrazies Windows bundles via live
              Stripe checkout (Douglas, Nov 18). NOT the in-app pack. The
@@ -976,7 +984,7 @@
             title: "12 AnchorFare games — iPhone & iPad",
             facts: "All 12 games — $4.99 · fully offline · bow to stern",
             list: itemsHtml(AF_GAMES),
-            cta: { label: "iOS $4.99", href: "#app-launch" },
+            cta: { label: "Got Games $4.99", href: "#app-launch" },
             note: "In the AnchorFare app · Launches November 27 · the Windows bundles below are available now"
           },
           ioslab: {
@@ -985,6 +993,14 @@
             list: labListHtml(),
             cta: { label: "One More Try Lab — iOS $4.99", href: "#app-launch" },
             note: "One More Try Lab is its own app — coming to the App Store on November 27 for $4.99 · the Windows bundles below are available now"
+          },
+          iosboth: {
+            title: "Both apps — iPhone & iPad",
+            facts: "Got Games + One More Try Lab · fully offline",
+            list: '<p class="buy-list-head">Got Games — the 12 AnchorFare games</p>' + itemsHtml(AF_GAMES) +
+              '<p class="buy-list-head">One More Try Lab</p>' + labListHtml(),
+            cta: { label: "Get both bundles", href: "#app-launch" },
+            note: "Both apps are $4.99 each in the App Store · the $8.99 bundle price applies to the Windows downloads below · launches November 27"
           },
           wingot: {
             title: "Got Games — for Windows",
