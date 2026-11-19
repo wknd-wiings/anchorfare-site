@@ -1192,11 +1192,27 @@
             return !isNaN(s) && s >= today && s >= start && s <= end;
           }).sort(function (a, b) { return a.price - b.price; });
           if (!hits.length) return false;
+          /* Audience conjunction (Douglas, 2026-11-19): every
+             weekend card carries its type, and the section's
+             Adults Only / Family-Friendly switch filters this
+             panel too — so a visitor knows what kind of cruise
+             weekend it is. A deal's own audience field wins;
+             otherwise the line decides: Virgin Voyages is 18+
+             by the line's own policy; every other tracked line
+             sails families. */
+          function audOf(d) { return d.audience || (d.line === "Virgin Voyages" ? "adults" : "family"); }
           wrap.innerHTML = hits.map(function (d) {
             var basis = d.basis === "allin" ? "Per person &middot; All-in — taxes &amp; port fees included" : "Per person &middot; Fare only — taxes &amp; fees extra";
-            return '<article class="cs-card"><span class="cs-aud">Weekend sailing</span><h3>' + d.ship + '</h3><p class="cs-price">$' + Number(d.price).toFixed(2) + '</p><p class="cs-detail">' + d.line + ' &middot; ' + d.nights + ' nights &middot; from ' + d.port + '<br />Sails ' + d.date + ' &middot; ' + d.itin + '</p><p class="cs-source">' + basis + '</p></article>';
+            var aud = audOf(d);
+            var audLabel = aud === "adults" ? "Adults Only · 18+" : "Family-Friendly";
+            return '<article class="cs-card" data-audience="' + aud + '"><span class="cs-aud">Weekend sailing · ' + audLabel + '</span><h3>' + d.ship + '</h3><p class="cs-price">$' + Number(d.price).toFixed(2) + '</p><p class="cs-detail">' + d.line + ' &middot; ' + d.nights + ' nights &middot; from ' + d.port + '<br />Sails ' + d.date + ' &middot; ' + d.itin + '</p><p class="cs-source">' + basis + '</p></article>';
           }).join("");
-          if (intro) intro.textContent = "It's a cruise weekend — these ships sail " + fmtDay(start) + " – " + fmtDay(end) + ". Got a little money? Jump on one:";
+          if (intro) {
+            var nA = hits.filter(function (d) { return audOf(d) === "adults"; }).length;
+            var nF = hits.length - nA;
+            var mix = nA && nF ? " A mix this weekend: " + nA + " adults-only, " + nF + " family-friendly." : nA ? " All adults-only (18+) this weekend." : " All family-friendly this weekend.";
+            intro.textContent = "It's a cruise weekend — these ships sail " + fmtDay(start) + " – " + fmtDay(end) + "." + mix + " Got a little money? Jump on one:";
+          }
           btn.hidden = false;
           btn.classList.add("cs-tab-blink");
           return true;
