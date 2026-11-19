@@ -874,7 +874,7 @@
         <div class="cs-track" role="group" aria-label="Cruise and Stay views">
           <button type="button" class="cs-tab" data-cs-tab="weekend" id="cs-tab-weekend" aria-pressed="false" hidden>Weekend Now</button>
           <button type="button" class="cs-tab active" data-cs-tab="taste" aria-pressed="true">The Taste</button>
-          <button type="button" class="cs-tab" data-cs-tab="weeklong" aria-pressed="false">Week Long</button>
+          <button type="button" class="cs-tab" data-cs-tab="weeklong" id="cs-tab-weeklong" aria-pressed="false" hidden>Week Long</button>
         </div>
         <div class="cs-filter" role="group" aria-label="Audience filter for The Taste and Week Long">
           <span class="cs-filter-label">Show:</span>
@@ -904,7 +904,7 @@
         </div>
 
         <div class="cs-panel hidden" id="cs-panel-weeklong">
-          <p class="cs-panel-intro">One cruise + stay deal a day — verified, with its dates. Not the cheapest week out there; it&rsquo;s one we checked: a real sailing from the tracker plus a real 7-night stay, added up for two people. Miss today&rsquo;s and it&rsquo;s gone — a new one posts tomorrow. Only stays a tracked sailing can actually reach ride this rotation — Nassau made the cut; Punta Cana and St. Thomas wait for a sailing that names their port.</p>
+          <p class="cs-panel-intro">A cruise + stay week that came in under $2,500 for two — verified, with its dates. These don&rsquo;t show up often; when one does, this button pops up. It&rsquo;s a real sailing from the tracker plus a real 7-night stay, added up for two people — book to lock the prices in.</p>
           <div class="cs-cards" id="cs-week-cards"></div>
           <p class="cs-note">San Juan &amp; Miami: no true all-inclusive — we won&rsquo;t fake one. (San Juan and Miami/Fort Lauderdale have no true all-inclusive resorts, per 2026 guides.)</p>
         </div>
@@ -1214,18 +1214,22 @@
           return true;
         }
         var weekendLive = setupWeekend();
-        /* Week Long — daily rotation (Douglas, 2026-11-19): ONE
-           verified cruise + stay pairing per day, honestly framed.
+        /* Week Long — CONDITIONAL, like Weekend Now (Douglas,
+           2026-11-19): the button stays hidden until a verified
+           cruise + stay pairing comes in UNDER $2,500 FOR TWO
+           (under $2,000 is the stretch). Then it pops up, blinking.
            Stay prices verified Nov 19, 2026 for Dec 10–17, 2026
-           (Expedia quotes, taxes & fees included); the sailing is
-           from the tracker. Only Nassau stays have a tracked sailing
-           that names their port in the window, so only Nassau rides
-           this rotation. The rotating card is exempt from the
-           audience filter below — it's the one deal of the day for
-           everybody. */
+           (Expedia quotes, taxes & fees included); sailings are
+           from the tracker, and only Nassau stays have a tracked
+           sailing that names their port in the window. Both pairings
+           below are over the line today, so the button is away —
+           when a pairing under the line gets verified and added
+           here, it appears on its own. The card is exempt from the
+           audience filter below. */
         var CS_WEEK_DEALS = [
           {
             audience: "adults",
+            total: 5381.25,
             name: "Warwick Paradise Island, Nassau + Eurodam",
             price: "$5,381.25 for two",
             detail: "Holland America Eurodam sails Sat, Dec 12, 2026 from Fort Lauderdale &middot; 7 nights &middot; Nassau, Grand Turk, Amber Cove, Half Moon Cay &middot; $449 per person, all-in.<br />Stay: Warwick Paradise Island — 7 nights, Dec 10–17, 2026, all-inclusive, $4,483.25 for two incl. taxes &amp; fees (includes a $420 resort fee due at the property).",
@@ -1233,6 +1237,7 @@
           },
           {
             audience: "adults",
+            total: 7166.29,
             name: "Sandals Royal Bahamian, Nassau + Eurodam",
             price: "$7,166.29 for two",
             detail: "Holland America Eurodam sails Sat, Dec 12, 2026 from Fort Lauderdale &middot; 7 nights &middot; Nassau, Grand Turk, Amber Cove, Half Moon Cay &middot; $449 per person, all-in.<br />Stay: Sandals Royal Bahamian — 7 nights, Dec 10–17, 2026, all-inclusive, $6,268.29 for two incl. taxes &amp; fees (cheapest room offered for these dates was a Club Level suite).",
@@ -1240,10 +1245,16 @@
           }
         ];
         function setupWeekLong() {
+          var btn = document.getElementById("cs-tab-weeklong");
           var wrap = document.getElementById("cs-week-cards");
-          if (!wrap) return;
-          var d = CS_WEEK_DEALS[Math.floor(Date.now() / 86400000) % CS_WEEK_DEALS.length];
+          if (!btn || !wrap) return false;
+          var deals = CS_WEEK_DEALS.filter(function (d) { return d.total < 2500; });
+          if (!deals.length) return false;
+          var d = deals[Math.floor(Date.now() / 86400000) % deals.length];
           wrap.innerHTML = '<article class="cs-card" data-audience="' + d.audience + '"><span class="cs-aud">Adults Only &middot; Today&rsquo;s Week Long deal</span><h3>' + d.name + '</h3><p class="cs-price">' + d.price + '</p><p class="cs-detail">' + d.detail + '</p><p class="cs-source">' + d.source + '</p></article>';
+          btn.hidden = false;
+          btn.classList.add("cs-tab-blink");
+          return true;
         }
         setupWeekLong();
         var fBtns = document.querySelectorAll(".cs-filter-btn");
