@@ -625,6 +625,36 @@
       .launch-banner strong { font-weight: 800; }
       footer .foot-op { margin: 10px 0 0; font-size: .83rem; font-weight: 600; color: var(--gold-soft); }
 
+
+      /* ---------- Cruise & Stay ---------- */
+      .cs-section { margin: 34px 0 6px; background: var(--paper); border: 1px solid #ddd0a8; border-top: 3px solid var(--gold); border-radius: 6px; padding: 22px 18px 20px; box-shadow: 0 3px 10px rgba(6,24,48,.08); }
+      .cs-section h2 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: clamp(1.6rem, 6vw, 2rem); color: var(--navy); }
+      .cs-intro { margin: 8px 0 0; font-size: .95rem; line-height: 1.55; color: var(--ink-soft); }
+      .cs-honesty { margin: 12px 0 0; font-size: .83rem; line-height: 1.5; color: #5a4a22; background: #fdf3e3; border: 1px solid #dfc98c; border-radius: 6px; padding: 9px 11px; }
+      .cs-track { margin: 16px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #e7dcc0; border: 1px solid #cfc090; border-radius: 10px; padding: 6px; box-shadow: inset 0 2px 6px rgba(6,24,48,.18); }
+      .cs-tab { appearance: none; cursor: pointer; min-height: 48px; border-radius: 7px; border: 1.5px solid #8a6a1f; border-top-color: #ecd9a0; background: linear-gradient(180deg, #fffdf4 0%, var(--cream) 55%, #eadfc0 100%); color: var(--navy); font-family: "Libre Franklin", sans-serif; font-weight: 700; font-size: .9rem; padding: 10px 6px; box-shadow: 0 3px 0 #a8843a, 0 5px 10px rgba(6,24,48,.15), inset 0 1px 0 rgba(255,255,255,.8); transition: transform .12s ease, box-shadow .12s ease; }
+      .cs-tab:active { transform: translateY(1px); box-shadow: 0 1px 0 #a8843a, 0 2px 5px rgba(6,24,48,.15); }
+      .cs-tab:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      .cs-tab.active { background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%); border-color: #8f3320; border-top-color: #ffb59f; color: #fff8ea; box-shadow: 0 4px 0 #7e2a1a, 0 7px 14px rgba(6,24,48,.22), inset 0 1px 0 rgba(255,255,255,.35); transform: translateY(-1px); }
+      .cs-filter { margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .cs-filter-label { font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); margin-right: 2px; }
+      .cs-filter-btn { appearance: none; cursor: pointer; min-height: 44px; border-radius: 999px; border: 1.5px solid var(--navy); border-top-color: #5b7aa8; background: linear-gradient(180deg, #2a4a7a 0%, var(--navy) 55%, var(--navy-deep) 100%); color: var(--cream); font-family: "Libre Franklin", sans-serif; font-weight: 700; font-size: .85rem; padding: 9px 16px; box-shadow: 0 3px 0 #04122a, 0 5px 10px rgba(6,24,48,.2), inset 0 1px 0 rgba(255,255,255,.25); transition: transform .12s ease, box-shadow .12s ease, filter .15s ease; opacity: .72; }
+      .cs-filter-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #04122a, 0 2px 5px rgba(6,24,48,.2); }
+      .cs-filter-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      .cs-filter-btn.active { opacity: 1; filter: brightness(1.12); box-shadow: 0 4px 0 #04122a, 0 7px 14px rgba(6,24,48,.25), inset 0 1px 0 rgba(255,255,255,.35); }
+      .cs-panel { margin-top: 16px; }
+      .cs-panel-intro { margin: 0 0 12px; font-size: .92rem; line-height: 1.55; color: var(--ink); }
+      .cs-cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      @media (min-width: 680px) { .cs-cards { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1020px) { .cs-cards { grid-template-columns: 1fr 1fr 1fr; } }
+      .cs-card { background: #fff; border: 1px solid #ddd0a8; border-top: 3px solid var(--coral); border-radius: 6px; padding: 14px; display: flex; flex-direction: column; }
+      .cs-card h3 { margin: 4px 0 0; font-family: "Playfair Display", Georgia, serif; font-size: 1.15rem; color: var(--navy); line-height: 1.2; }
+      .cs-aud { font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--coral-deep); }
+      .cs-price { margin: 8px 0 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.5rem; color: var(--navy); }
+      .cs-detail { margin: 6px 0 0; font-size: .87rem; line-height: 1.5; color: var(--ink-soft); }
+      .cs-source { margin: 8px 0 0; font-size: .78rem; color: var(--ink-soft); }
+      .cs-note { margin: 14px 0 0; font-size: .88rem; line-height: 1.55; color: var(--ink-soft); font-style: italic; }
+      @media (max-width: 520px) { .cs-track { grid-template-columns: 1fr; } }
       .hidden { display: none !important; }
     </style>
   </head>
@@ -823,6 +853,64 @@
       <div id="also-a" class="also-slot"></div>
       <div id="also-b" class="also-slot hidden"></div>
       <div id="also-c" class="also-slot hidden"></div>
+
+      <!-- Cruise & Stay — added for Nov 27 launch (Douglas): cruise-first tabs -->
+      <section class="cs-section" id="cruise-stay" aria-label="Cruise and Stay">
+        <h2>Cruise &amp; Stay</h2>
+        <p class="cs-intro">Weekend sailing now, a taste of the resort at port, or the full week — cruise first.</p>
+        <p class="cs-honesty"><strong>Honesty note:</strong> Prices below are as reported by the named sources in Nov 2026 research; they are not live-checked availability. AnchorFare verifies before promoting.</p>
+        <div class="cs-track" role="group" aria-label="Cruise and Stay views">
+          <button type="button" class="cs-tab active" data-cs-tab="weekend" aria-pressed="true">Weekend Now</button>
+          <button type="button" class="cs-tab" data-cs-tab="taste" aria-pressed="false">The Taste</button>
+          <button type="button" class="cs-tab" data-cs-tab="weeklong" aria-pressed="false">Week Long</button>
+        </div>
+        <div class="cs-filter" role="group" aria-label="Audience filter for The Taste and Week Long">
+          <span class="cs-filter-label">Show:</span>
+          <button type="button" class="cs-filter-btn active" data-cs-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="cs-filter-btn" data-cs-filter="adults" aria-pressed="false">Adults Only</button>
+          <button type="button" class="cs-filter-btn" data-cs-filter="family" aria-pressed="false">Family-Friendly</button>
+        </div>
+
+        <div class="cs-panel" id="cs-panel-weekend">
+          <p class="cs-panel-intro">The weekend sailings live in the tracker above — 30/60/90-day windows, cheapest first, verified. Three featured sailings from the tracker:</p>
+          <!-- Weekend Now cards hardcoded from deals.json current contents (window a, cheapest first) -->
+          <div class="cs-cards">
+            <article class="cs-card"><span class="cs-aud">Weekend sailing</span><h3>MSC Seaside</h3><p class="cs-price">$124.80</p><p class="cs-detail">MSC Cruises &middot; 4 nights &middot; from Miami<br />Sails Mon, Nov 16, 2026 &middot; Bahamas / Caribbean</p><p class="cs-source">Per person &middot; All-in — taxes &amp; port fees included (as in deals.json)</p></article>
+            <article class="cs-card"><span class="cs-aud">Weekend sailing</span><h3>Paradise</h3><p class="cs-price">$149</p><p class="cs-detail">Margaritaville at Sea &middot; 4 nights &middot; from Palm Beach<br />Sails Mon, Nov 16, 2026 &middot; Freeport (Grand Bahama) &middot; Nassau</p><p class="cs-source">Per person &middot; All-in — taxes &amp; port fees included (as in deals.json)</p></article>
+            <article class="cs-card"><span class="cs-aud">Weekend sailing</span><h3>MSC Seashore</h3><p class="cs-price">$171.04</p><p class="cs-detail">MSC Cruises &middot; 4 nights &middot; from Port Canaveral<br />Sails Sun, Nov 29, 2026 &middot; Bahamas / Caribbean</p><p class="cs-source">Per person &middot; All-in — taxes &amp; port fees included (as in deals.json)</p></article>
+          </div>
+          <p class="cs-note"><a href="#panel-a">See all sailings in the tracker above &uarr;</a></p>
+        </div>
+
+        <div class="cs-panel hidden" id="cs-panel-taste">
+          <p class="cs-panel-intro">All-inclusive resort day passes at port — per person, as reported. The day pass is &ldquo;a tease to come back&rdquo; — taste the resort on a port day, come back for the full week.</p>
+          <div class="cs-cards">
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Margaritaville Beach Resort, Nassau</h3><p class="cs-price">$86.90</p><p class="cs-detail">Day pass, per person as reported.</p><p class="cs-source">Source: aggregator listing, as reported</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Occidental Cozumel</h3><p class="cs-price">$99 <span style="font-size:.85rem">adult / $49 child</span></p><p class="cs-detail">9am&ndash;5pm &middot; lunch + unlimited drinks.</p><p class="cs-source">Source: Gangwaze</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Breezes Bahamas, Nassau</h3><p class="cs-price">from $100</p><p class="cs-detail">Day pass, per person as reported. Note: ages 14+ only (teens, not young kids).</p><p class="cs-source">Source: as reported</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Iberostar Cozumel</h3><p class="cs-price">$104</p><p class="cs-detail">Day pass, per person as reported.</p><p class="cs-source">Source: Resort for a Day</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Sunscape Splash Montego Bay</h3><p class="cs-price">$145</p><p class="cs-detail">Day pass &middot; lunch included.</p><p class="cs-source">Source: Shore Excursions Group</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Iberostar Rose Hall, Falmouth Jamaica</h3><p class="cs-price">$159</p><p class="cs-detail">Day pass incl. transport.</p><p class="cs-source">Source: as reported</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>RIU Palace Paradise Island, Nassau</h3><p class="cs-price">from $160</p><p class="cs-detail">18+ &middot; 10am&ndash;6pm.</p><p class="cs-source">Source: Gangwaze listing</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Hedonism II, Montego Bay/Negril</h3><p class="cs-price">$171.99</p><p class="cs-detail">Strictly 18+.</p><p class="cs-source">Source: Shore Excursions Group</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>RIU Montego Bay</h3><p class="cs-price">$208.99</p><p class="cs-detail">Adults-only resort &middot; day pass as reported.</p><p class="cs-source">Source: Shore Excursions Group</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Hyatt Zilara Canc&uacute;n</h3><p class="cs-price">up to $229</p><p class="cs-detail">Day pass as reported.</p><p class="cs-source">Source: ResortPass</p></article>
+          </div>
+        </div>
+
+        <div class="cs-panel hidden" id="cs-panel-weeklong">
+          <p class="cs-panel-intro">7-night cruise + resort combos and resort nights around sailings. Combo totals = your sailing from the tracker + resort nights; full one-total pricing gets verified before launch promotion.</p>
+          <div class="cs-cards">
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Warwick Paradise Island, Nassau</h3><p class="cs-price">$200&ndash;$500/night</p><p class="cs-detail">Resort nights around sailings, as reported.</p><p class="cs-source">Rate as reported</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Iberostar Selection B&aacute;varo, Punta Cana</h3><p class="cs-price">from $257/night</p><p class="cs-detail">Resort nights around sailings, as reported (Sept).</p><p class="cs-source">Rate as reported</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Bolongo Bay, St. Thomas</h3><p class="cs-price">~$427/night</p><p class="cs-detail">Sept as reported &middot; ~$744 Feb as reported.</p><p class="cs-source">Source: Kayak, as reported</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Sandals Royal Bahamian, Nassau</h3><p class="cs-price">$550&ndash;$1,050/night</p><p class="cs-detail">Per couple, as reported.</p><p class="cs-source">Rate as reported</p></article>
+            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Hyatt Zilara Cap Cana, Punta Cana</h3><p class="cs-price">$648&ndash;$1,139/night</p><p class="cs-detail">For two, as reported.</p><p class="cs-source">Source: Kayak avg, Oct 2026</p></article>
+            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Nickelodeon Punta Cana</h3><p class="cs-price">$786&ndash;$971/night</p><p class="cs-detail">For a family of four, as reported (Mar 2026).</p><p class="cs-source">Rate as reported</p></article>
+          </div>
+          <p class="cs-note">San Juan &amp; Miami: no true all-inclusive — we won&rsquo;t fake one. (San Juan and Miami/Fort Lauderdale have no true all-inclusive resorts, per 2026 guides.)</p>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -1058,6 +1146,28 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape" && openKey) closeBuy(true);
         });
+      })();
+    </script>
+
+    <script>
+      /* Cruise & Stay tabs + audience filter */
+      (function () {
+        var tabs = document.querySelectorAll(".cs-tab");
+        var panels = { weekend: document.getElementById("cs-panel-weekend"), taste: document.getElementById("cs-panel-taste"), weeklong: document.getElementById("cs-panel-weeklong") };
+        function showCs(key) {
+          Object.keys(panels).forEach(function (k) { panels[k].classList.toggle("hidden", k !== key); });
+          tabs.forEach(function (b) { var on = b.getAttribute("data-cs-tab") === key; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+        }
+        tabs.forEach(function (b) { b.addEventListener("click", function () { showCs(b.getAttribute("data-cs-tab")); }); });
+        var fBtns = document.querySelectorAll(".cs-filter-btn");
+        function applyFilter(val) {
+          fBtns.forEach(function (b) { var on = b.getAttribute("data-cs-filter") === val; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+          document.querySelectorAll("#cruise-stay [data-audience]").forEach(function (card) {
+            card.classList.toggle("hidden", val !== "all" && card.getAttribute("data-audience") !== val);
+          });
+        }
+        fBtns.forEach(function (b) { b.addEventListener("click", function () { applyFilter(b.getAttribute("data-cs-filter")); }); });
+        showCs("weekend"); applyFilter("all");
       })();
     </script>
   </body>
