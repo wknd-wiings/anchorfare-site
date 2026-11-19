@@ -904,15 +904,8 @@
         </div>
 
         <div class="cs-panel hidden" id="cs-panel-weeklong">
-          <p class="cs-panel-intro">7-night cruise + resort combos and resort nights around sailings. Combo totals = your sailing from the tracker + resort nights; full one-total pricing gets verified before launch promotion.</p>
-          <div class="cs-cards">
-            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Warwick Paradise Island, Nassau</h3><p class="cs-price">$200&ndash;$500/night</p><p class="cs-detail">Resort nights around sailings, as reported.</p><p class="cs-source">Rate as reported</p></article>
-            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Iberostar Selection B&aacute;varo, Punta Cana</h3><p class="cs-price">from $257/night</p><p class="cs-detail">Resort nights around sailings, as reported (Sept).</p><p class="cs-source">Rate as reported</p></article>
-            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Bolongo Bay, St. Thomas</h3><p class="cs-price">~$427/night</p><p class="cs-detail">Sept as reported &middot; ~$744 Feb as reported.</p><p class="cs-source">Source: Kayak, as reported</p></article>
-            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Sandals Royal Bahamian, Nassau</h3><p class="cs-price">$550&ndash;$1,050/night</p><p class="cs-detail">Per couple, as reported.</p><p class="cs-source">Rate as reported</p></article>
-            <article class="cs-card" data-audience="adults"><span class="cs-aud">Adults Only</span><h3>Hyatt Zilara Cap Cana, Punta Cana</h3><p class="cs-price">$648&ndash;$1,139/night</p><p class="cs-detail">For two, as reported.</p><p class="cs-source">Source: Kayak avg, Oct 2026</p></article>
-            <article class="cs-card" data-audience="family"><span class="cs-aud">Family-Friendly</span><h3>Nickelodeon Punta Cana</h3><p class="cs-price">$786&ndash;$971/night</p><p class="cs-detail">For a family of four, as reported (Mar 2026).</p><p class="cs-source">Rate as reported</p></article>
-          </div>
+          <p class="cs-panel-intro">One cruise + stay deal a day — verified, with its dates. Not the cheapest week out there; it&rsquo;s one we checked: a real sailing from the tracker plus a real 7-night stay, added up for two people. Miss today&rsquo;s and it&rsquo;s gone — a new one posts tomorrow. Only stays a tracked sailing can actually reach ride this rotation — Nassau made the cut; Punta Cana and St. Thomas wait for a sailing that names their port.</p>
+          <div class="cs-cards" id="cs-week-cards"></div>
           <p class="cs-note">San Juan &amp; Miami: no true all-inclusive — we won&rsquo;t fake one. (San Juan and Miami/Fort Lauderdale have no true all-inclusive resorts, per 2026 guides.)</p>
         </div>
       </section>
@@ -2153,10 +2146,43 @@
           return true;
         }
         var weekendLive = setupWeekend();
+        /* Week Long — daily rotation (Douglas, 2026-11-19): ONE
+           verified cruise + stay pairing per day, honestly framed.
+           Stay prices verified Nov 19, 2026 for Dec 10–17, 2026
+           (Expedia quotes, taxes & fees included); the sailing is
+           from the tracker. Only Nassau stays have a tracked sailing
+           that names their port in the window, so only Nassau rides
+           this rotation. The rotating card is exempt from the
+           audience filter below — it's the one deal of the day for
+           everybody. */
+        var CS_WEEK_DEALS = [
+          {
+            audience: "adults",
+            name: "Warwick Paradise Island, Nassau + Eurodam",
+            price: "$5,381.25 for two",
+            detail: "Holland America Eurodam sails Sat, Dec 12, 2026 from Fort Lauderdale &middot; 7 nights &middot; Nassau, Grand Turk, Amber Cove, Half Moon Cay &middot; $449 per person, all-in.<br />Stay: Warwick Paradise Island — 7 nights, Dec 10–17, 2026, all-inclusive, $4,483.25 for two incl. taxes &amp; fees (includes a $420 resort fee due at the property).",
+            source: "Cruise: AnchorFare tracker &middot; Stay: Expedia quote &middot; Verified Nov 19, 2026 — book to lock prices in"
+          },
+          {
+            audience: "adults",
+            name: "Sandals Royal Bahamian, Nassau + Eurodam",
+            price: "$7,166.29 for two",
+            detail: "Holland America Eurodam sails Sat, Dec 12, 2026 from Fort Lauderdale &middot; 7 nights &middot; Nassau, Grand Turk, Amber Cove, Half Moon Cay &middot; $449 per person, all-in.<br />Stay: Sandals Royal Bahamian — 7 nights, Dec 10–17, 2026, all-inclusive, $6,268.29 for two incl. taxes &amp; fees (cheapest room offered for these dates was a Club Level suite).",
+            source: "Cruise: AnchorFare tracker &middot; Stay: Expedia quote &middot; Verified Nov 19, 2026 — book to lock prices in"
+          }
+        ];
+        function setupWeekLong() {
+          var wrap = document.getElementById("cs-week-cards");
+          if (!wrap) return;
+          var d = CS_WEEK_DEALS[Math.floor(Date.now() / 86400000) % CS_WEEK_DEALS.length];
+          wrap.innerHTML = '<article class="cs-card" data-audience="' + d.audience + '"><span class="cs-aud">Adults Only &middot; Today&rsquo;s Week Long deal</span><h3>' + d.name + '</h3><p class="cs-price">' + d.price + '</p><p class="cs-detail">' + d.detail + '</p><p class="cs-source">' + d.source + '</p></article>';
+        }
+        setupWeekLong();
         var fBtns = document.querySelectorAll(".cs-filter-btn");
         function applyFilter(val) {
           fBtns.forEach(function (b) { var on = b.getAttribute("data-cs-filter") === val; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
           document.querySelectorAll("#cruise-stay [data-audience]").forEach(function (card) {
+            if (card.closest("#cs-week-cards")) return;
             card.classList.toggle("hidden", val !== "all" && card.getAttribute("data-audience") !== val);
           });
         }
