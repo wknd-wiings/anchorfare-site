@@ -359,6 +359,38 @@
       .window-range { text-align: center; margin: 14px 0 0; font-size: .9rem; color: var(--ink-soft); }
       .window-range strong { color: var(--navy); }
 
+      /* ---------- Premium gate (activates Jan 1, 2027) ---------- */
+      .win-btn .lock-tag {
+        display: inline-block; margin-top: 7px;
+        font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+        color: #8a6d1f; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 8px;
+      }
+      .win-btn.active .lock-tag { color: #ffe9b8; border-color: #ffe9b8; }
+      .premium-gate {
+        margin: 4px 0 8px; text-align: center;
+        background: linear-gradient(180deg, var(--navy-soft) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+        border: 1.5px solid var(--gold); border-top-color: #ecd9a0;
+        border-radius: 10px; padding: 30px 22px 26px; color: var(--cream);
+        box-shadow: 0 10px 22px rgba(6,24,48,.25);
+      }
+      .premium-gate .pg-kicker { margin: 0; font-size: .74rem; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-soft); }
+      .premium-gate .pg-title { margin: 10px 0 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.55rem; color: #fff8ea; }
+      .premium-gate .pg-copy { margin: 12px auto 0; max-width: 520px; font-size: .95rem; line-height: 1.55; color: var(--cream); }
+      .premium-gate .pg-price { margin: 16px 0 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 2rem; color: var(--gold-soft); }
+      .premium-gate .pg-price small { display: block; font-family: "Libre Franklin", sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--cream); margin-top: 4px; }
+      .premium-btn {
+        display: inline-block; margin-top: 18px; cursor: pointer; text-decoration: none;
+        padding: 14px 26px;
+        border-radius: 8px; border: 1.5px solid #8f3320; border-top-color: #ffb59f;
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        color: #fff8ea; font-family: "Libre Franklin", sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: .02em;
+        box-shadow: 0 5px 0 #7e2a1a, 0 9px 16px rgba(6,24,48,.3);
+        transition: transform .06s ease, box-shadow .06s ease, filter .15s ease;
+      }
+      .premium-btn:hover { filter: brightness(1.04); }
+      .premium-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.25); }
+      .premium-gate .pg-note { margin: 14px 0 0; font-size: .82rem; color: var(--gold-soft); }
+
       /* ---------- Deal cards ---------- */
       .panel-head {
         margin: 22px 0 4px;
@@ -1857,6 +1889,51 @@
   }
 };
 
+      /* Premium gate (Douglas, Nov 20, 2026): from January 1, 2027,
+         free visitors see only the 30-day window; the 60- and 90-day
+         windows are Premium ($4.99/month). Built dormant — before the
+         activation date nothing on the page changes: no counters, no
+         prompts, every window open. Premium members carry a
+         localStorage flag (set by the December subscription build)
+         and see every window unconditionally. Every gate setting
+         lives in AF_GATE below — change them nowhere else. */
+      var AF_GATE = {
+        ACTIVATION_ET: "2027-01-01",
+        PRICE_LABEL: "$4.99/month",
+        PREMIUM_KEY: "anchorfare_premium",
+        WAITLIST_URL: "https://weekendwiings.com/#tour-signup",
+        GATED_WINDOWS: ["b", "c"]
+      };
+      function afIsPremium() {
+        try { return window.localStorage.getItem(AF_GATE.PREMIUM_KEY) === "1"; }
+        catch (e) { return false; }
+      }
+      function afGateActive() {
+        if (afIsPremium()) return false;
+        var parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+        var y = "", m = "", d = "";
+        parts.forEach(function (p) { if (p.type === "year") y = p.value; else if (p.type === "month") m = p.value; else if (p.type === "day") d = p.value; });
+        return (y + "-" + m + "-" + d) >= AF_GATE.ACTIVATION_ET;
+      }
+      function afGated(key) {
+        return AF_GATE.GATED_WINDOWS.indexOf(key) !== -1 && afGateActive();
+      }
+      function afUpsellHtml(w) {
+        var days = w.title.replace("Sailing in ", "").replace(" days", "-day");
+        var html = "";
+        html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">Premium window</span></div>';
+        html += '<hr class="gold-rule" />';
+        html += '<div class="premium-gate">';
+        html += '<p class="pg-kicker">★ AnchorFare Premium</p>';
+        html += '<h3 class="pg-title">The ' + esc(days) + ' window is a Premium perk</h3>';
+        html += '<p class="pg-copy">Free AnchorFare shows the next 30 days of sailings, cheapest first. Premium unlocks the 60- and 90-day windows too — so you can catch the lowest fares months before they sail.</p>';
+        html += '<p class="pg-price">' + esc(AF_GATE.PRICE_LABEL) + '<small>AnchorFare Premium</small></p>';
+        html += '<a class="premium-btn" href="' + esc(AF_GATE.WAITLIST_URL) + '">Join the premium waitlist</a>';
+        html += '<p class="pg-note">Premium opens January 1, 2027 — join the waitlist and we&rsquo;ll hold your spot.</p>';
+        html += '</div>';
+        return html;
+      }
+
       function esc(s) {
         return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
       }
@@ -1884,6 +1961,14 @@
 
       function renderPanel(key) {
         var w = WINDOWS[key];
+        if (afGated(key)) {
+          /* Gated window: the deals never render — the panel carries
+             the Premium upsell in their place, and the window's
+             "also tracked" slot stays empty. */
+          document.getElementById("panel-" + key).innerHTML = afUpsellHtml(w);
+          document.getElementById("also-" + key).innerHTML = "";
+          return;
+        }
         var html = "";
         html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">' + w.deals.length + ' featured sailings · cheapest first</span></div>';
         html += '<hr class="gold-rule" />';
@@ -1924,6 +2009,17 @@
 
       ["a", "b", "c"].forEach(renderPanel);
 
+      /* When the gate is live, the 60/90 switcher buttons carry a
+         Premium tag so the lock is visible before the tap. */
+      if (afGateActive()) {
+        document.querySelectorAll('.win-btn[data-window="b"], .win-btn[data-window="c"]').forEach(function (b) {
+          var tag = document.createElement("span");
+          tag.className = "lock-tag";
+          tag.textContent = "★ Premium";
+          b.appendChild(tag);
+        });
+      }
+
       var rangeEl = document.getElementById("windowRange");
       function showWindow(key) {
         ["a", "b", "c"].forEach(function (k) {
@@ -1936,7 +2032,9 @@
           b.classList.toggle("active", on);
           b.setAttribute("aria-pressed", on ? "true" : "false");
         });
-        rangeEl.innerHTML = "<strong>" + esc(WINDOWS[key].title) + "</strong> · sails " + esc(WINDOWS[key].range) + " · sorted cheapest first";
+        rangeEl.innerHTML = afGated(key)
+          ? "<strong>" + esc(WINDOWS[key].title) + "</strong> · a Premium window — free AnchorFare sails the next 30 days"
+          : "<strong>" + esc(WINDOWS[key].title) + "</strong> · sails " + esc(WINDOWS[key].range) + " · sorted cheapest first";
       }
       document.querySelectorAll(".win-btn").forEach(function (b) {
         b.addEventListener("click", function () { showWindow(b.getAttribute("data-window")); });
