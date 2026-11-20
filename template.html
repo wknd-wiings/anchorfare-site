@@ -391,6 +391,19 @@
       .premium-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.25); }
       .premium-gate .pg-note { margin: 14px 0 0; font-size: .82rem; color: var(--gold-soft); }
 
+      /* ---------- Premium section (on-page, #premium) ---------- */
+      .premium-section {
+        margin: 34px 0 0; text-align: center;
+        background: linear-gradient(160deg, var(--navy-soft), var(--navy) 60%, var(--navy-deep));
+        border-top: 3px solid var(--gold); border-bottom: 3px solid var(--gold);
+        border-radius: 6px; padding: 28px 20px 26px; color: var(--cream);
+      }
+      .premium-section .ps-eyebrow { margin: 0 0 8px; font-size: .78rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-soft); }
+      .premium-section h2 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: clamp(1.4rem, 5.6vw, 1.9rem); line-height: 1.2; color: #fff8ea; }
+      .premium-section p { margin: 10px auto 0; max-width: 540px; font-size: .92rem; line-height: 1.55; color: rgba(246,239,220,.88); }
+      .premium-section .ps-price { margin: 16px 0 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 2.1rem; color: var(--gold-soft); }
+      .premium-section .ps-note { font-size: .8rem; color: rgba(246,239,220,.7); }
+
       /* ---------- Deal cards ---------- */
       .panel-head {
         margin: 22px 0 4px;
@@ -898,6 +911,21 @@
       <div id="also-b" class="also-slot hidden"></div>
       <div id="also-c" class="also-slot hidden"></div>
 
+      <!-- AnchorFare Premium — its OWN signup (Douglas, Nov 20, 2026):
+           AnchorFare Premium is a separate product from Weekend Wiings
+           Premium, with its own waitlist — a customer may want one and
+           not the other. The January gate's upsell button points here
+           (#premium), never off-site. Capture is a plain mailto: the
+           site has no form backend or signup mechanism of its own. -->
+      <section class="premium-section" id="premium" aria-label="AnchorFare Premium">
+        <p class="ps-eyebrow">★ AnchorFare Premium</p>
+        <h2>See further out. Sail cheaper.</h2>
+        <p>Free AnchorFare shows the next 30 days of sailings, cheapest first. Premium unlocks the <strong>60- and 90-day windows</strong> too — every tracked sailing, months ahead, where the lowest fares hide.</p>
+        <p class="ps-price">$4.99/month</p>
+        <a class="premium-btn" href="mailto:wkndwiings@gmail.com?subject=AnchorFare%20Premium%20waitlist&amp;body=Please%20hold%20my%20spot%20for%20AnchorFare%20Premium%20(%244.99%2Fmonth%2C%20opens%20January%201%2C%202027).">Join the AnchorFare Premium waitlist</a>
+        <p class="ps-note">Premium opens January 1, 2027. Tap the button and send the email — we&rsquo;ll hold your spot and write back when it opens. AnchorFare Premium is its own signup, separate from Weekend Wiings.</p>
+      </section>
+
       <!-- Cruise & Stay — added for Nov 27 launch (Douglas): cruise-first tabs -->
       <section class="cs-section" id="cruise-stay" aria-label="Cruise and Stay">
         <h2>Cruise &amp; Stay</h2>
@@ -963,13 +991,17 @@
          activation date nothing on the page changes: no counters, no
          prompts, every window open. Premium members carry a
          localStorage flag (set by the December subscription build)
-         and see every window unconditionally. Every gate setting
-         lives in AF_GATE below — change them nowhere else. */
+         and see every window unconditionally. The upsell button
+         stays on anchorfare.com (#premium): AnchorFare Premium is a
+         separate product from Weekend Wiings Premium, with its own
+         signup — never route it off-site (Douglas, Nov 20, 2026).
+         Every gate setting lives in AF_GATE below — change them
+         nowhere else. */
       var AF_GATE = {
         ACTIVATION_ET: "2027-01-01",
         PRICE_LABEL: "$4.99/month",
         PREMIUM_KEY: "anchorfare_premium",
-        WAITLIST_URL: "https://weekendwiings.com/#tour-signup",
+        PREMIUM_URL: "#premium",
         GATED_WINDOWS: ["b", "c"]
       };
       function afIsPremium() {
@@ -996,7 +1028,7 @@
         html += '<h3 class="pg-title">The ' + esc(days) + ' window is a Premium perk</h3>';
         html += '<p class="pg-copy">Free AnchorFare shows the next 30 days of sailings, cheapest first. Premium unlocks the 60- and 90-day windows too — so you can catch the lowest fares months before they sail.</p>';
         html += '<p class="pg-price">' + esc(AF_GATE.PRICE_LABEL) + '<small>AnchorFare Premium</small></p>';
-        html += '<a class="premium-btn" href="' + esc(AF_GATE.WAITLIST_URL) + '">Join the premium waitlist</a>';
+        html += '<a class="premium-btn" href="' + esc(AF_GATE.PREMIUM_URL) + '">Join the premium waitlist</a>';
         html += '<p class="pg-note">Premium opens January 1, 2027 — join the waitlist and we&rsquo;ll hold your spot.</p>';
         html += '</div>';
         return html;
