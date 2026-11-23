@@ -182,6 +182,9 @@
       }
       .hero-price { font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: clamp(2.6rem, 11vw, 3.6rem); line-height: .95; }
       .hero-price small { display: block; font-family: "Libre Franklin", sans-serif; font-weight: 600; font-size: .8rem; letter-spacing: .08em; margin-top: 5px; color: rgba(246,239,220,.85); }
+      /* Per-night math sits UNDER the total (Douglas's price rule,
+         2026-11-23): total first, "that's just $X a night" beneath. */
+      .hero-pernight { display: block; font-family: "Libre Franklin", sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: .02em; margin-top: 7px; color: var(--gold-soft); }
       .hero-badges { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
 
       /* Porthole badge */
@@ -201,6 +204,11 @@
       .porthole .per { font-size: .62rem; font-weight: 800; letter-spacing: .18em; margin-top: 4px; }
       .porthole.small { width: 84px; height: 84px; box-shadow: 0 0 0 2px var(--coral-deep), 0 4px 10px rgba(6,24,48,.22), inset 0 2px 5px rgba(255,255,255,.35); }
       .porthole.small .amt { font-size: 1.45rem; }
+      /* Total-price portholes (Douglas's price rule, 2026-11-23): the
+         badge carries the all-in TOTAL, so its longer figure steps
+         down a size to stay inside the circle. */
+      .porthole .amt.total { font-size: 1.3rem; }
+      .porthole.small .amt.total { font-size: 1rem; }
       .porthole.small .per { font-size: .55rem; }
 
       /* ---------- Basis + port badges ---------- */
@@ -489,17 +497,41 @@
         color: inherit; text-decoration: underline;
         text-decoration-color: var(--coral); text-decoration-thickness: 2px;
         text-underline-offset: 3px; border-radius: 3px;
-        transition: color .12s ease, background-color .12s ease;
+        transition: color .12s ease, background-color .12s ease, text-decoration-color .12s ease;
       }
-      .ship-name a:hover, .hero-ship a:hover, .cs-card h3 a:hover, a.ship-link:hover { color: var(--coral-deep); }
+      /* Hover/focus (Douglas, 2026-11-23): a hovered ship name must
+         plainly read as a link — deeper coral, a tint behind the
+         name, and a thicker underline — on EVERY render path (deal
+         cards, Cruise & Stay cards, detail rows). */
+      .ship-name a:hover, .cs-card h3 a:hover, a.ship-link:hover {
+        color: var(--coral-deep); background: rgba(217,90,65,.14);
+        text-decoration-color: var(--coral-deep); text-decoration-thickness: 3px;
+      }
+      .ship-name a:focus-visible, .cs-card h3 a:focus-visible, a.ship-link:focus-visible {
+        color: var(--coral-deep); background: rgba(217,90,65,.14);
+        text-decoration-color: var(--coral-deep); text-decoration-thickness: 3px;
+        outline: 2px solid var(--coral-deep); outline-offset: 2px;
+      }
+      /* The hero name sits on navy, where coral-deep would vanish —
+         there it lights up coral-light over a cream tint instead. */
+      .hero-ship a:hover {
+        color: var(--coral-light); background: rgba(246,239,220,.14);
+        text-decoration-color: var(--coral-light); text-decoration-thickness: 3px;
+      }
+      .hero-ship a:focus-visible {
+        color: var(--coral-light); background: rgba(246,239,220,.14);
+        text-decoration-color: var(--coral-light); text-decoration-thickness: 3px;
+        outline: 2px solid var(--coral-light); outline-offset: 2px;
+      }
       .ship-name a:active, .hero-ship a:active, .cs-card h3 a:active, a.ship-link:active { background: rgba(217,90,65,.14); }
-      .ship-name a:focus-visible, .hero-ship a:focus-visible, .cs-card h3 a:focus-visible, a.ship-link:focus-visible { outline: 2px solid var(--coral-deep); outline-offset: 2px; }
       .meta { margin: 7px 0 0; font-size: .9rem; font-weight: 600; color: var(--ink); }
       .sail-date { margin: 3px 0 0; font-size: .88rem; color: var(--ink-soft); }
       .itin { margin: 7px 0 0; font-size: .87rem; line-height: 1.45; color: var(--ink-soft); }
       .card-foot { margin-top: auto; padding-top: 13px; }
       .price-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
       .price { font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 2rem; color: var(--navy); line-height: 1; }
+      /* Per-night math UNDER the total (Douglas's price rule, 2026-11-23). */
+      .per-night-note { margin: 5px 0 0; font-size: .85rem; font-weight: 700; color: var(--coral-deep); }
       .price .pp { font-family: "Libre Franklin", sans-serif; font-size: .78rem; font-weight: 600; color: var(--ink-soft); }
       .card-badges { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 7px; }
       .rank {
@@ -833,22 +865,25 @@
     </div>
 
     <main>
-      <!-- Featured hero: best price per night in the whole sweep -->
-      <section class="hero" aria-label="Featured deal — lowest price per night">
+      <!-- Featured hero: MSC Meraviglia — Douglas's pick from the
+           verified Nov 22, 2026 re-check (replaces the stale
+           MSC Seascape $198.79 hero). Total price first, per-night
+           underneath, per Douglas's price rule (2026-11-23). -->
+      <section class="hero" aria-label="Featured deal — MSC Meraviglia, $178.64 all-in per person">
         <div class="card-top">
           <div class="card-main">
-            <p class="hero-kicker">★ Lowest price per night — all windows</p>
+            <p class="hero-kicker">★ Featured sailing</p>
             <p class="hero-line">MSC Cruises</p>
-            <h2 class="hero-ship"><a href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Seascape</a></h2>
-            <p class="hero-meta">7 nights<span class="dot">•</span>Western Caribbean<span class="dot">•</span>from Galveston<br />Sails Sun, Nov 29, 2026</p>
+            <h2 class="hero-ship"><a href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Meraviglia</a></h2>
+            <p class="hero-meta">6 nights<span class="dot">•</span>Caribbean (ports not enumerated in source)<span class="dot">•</span>from Miami<br />Sails Sun, Nov 29, 2026</p>
           </div>
-          <div class="porthole" aria-label="28 dollars per night">
-            <span class="amt">$28</span>
-            <span class="per">PER NIGHT</span>
+          <div class="porthole" aria-label="178 dollars and 64 cents total per person, all-in">
+            <span class="amt total">$178.64</span>
+            <span class="per">TOTAL</span>
           </div>
         </div>
         <div class="hero-bottom">
-          <div class="hero-price">$198.79<small>PER PERSON · INSIDE CABIN</small></div>
+          <div class="hero-price">$178.64<small>PER PERSON · ALL-IN TOTAL</small><span class="hero-pernight">That&rsquo;s just $29.77 a night</span></div>
         </div>
         <div class="hero-badges">
           <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
@@ -2133,9 +2168,9 @@
           html += '<p class="sail-date">Sails ' + esc(d.date) + '</p>';
           html += '<p class="itin">' + esc(d.itin) + '</p>';
           html += '</div>';
-          html += '<div class="porthole small" aria-label="' + Math.round(d.perNight) + ' dollars per night"><span class="amt">$' + Math.round(d.perNight) + '</span><span class="per">PER NIGHT</span></div>';
+          html += '<div class="porthole small" aria-label="' + money(d.price).slice(1) + ' dollars total per person"><span class="amt total">' + money(d.price) + '</span><span class="per">TOTAL</span></div>';
           html += '</div>';
-          html += '<div class="card-foot"><div class="price-row"><span class="price">' + priceLabel + '</span><span class="pp">' + ppNote + '</span></div>';
+          html += '<div class="card-foot"><div class="price-row"><span class="price">' + priceLabel + '</span><span class="pp">' + ppNote + '</span></div><p class="per-night-note">That&rsquo;s just ' + money(d.perNight) + ' a night</p>';
           html += '<div class="card-badges">' + basisBadge(d.basis) + honorBadge(d) + portBadge(d.portTag) + '</div>';
           html += '</div></article>';
         });
