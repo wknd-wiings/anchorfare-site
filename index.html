@@ -482,6 +482,18 @@
         font-weight: 700; font-size: 1.32rem; line-height: 1.15; color: var(--navy);
       }
       .ship-name .unnamed { font-style: italic; font-size: 1.05rem; color: var(--ink-soft); }
+      /* Ship-name links (Douglas, 2026-11-23): the name still reads as
+         the ship name — navy Playfair — but the coral underline and the
+         hover/pressed treatment make it plainly tappable. */
+      .ship-name a, .hero-ship a, .cs-card h3 a, a.ship-link {
+        color: inherit; text-decoration: underline;
+        text-decoration-color: var(--coral); text-decoration-thickness: 2px;
+        text-underline-offset: 3px; border-radius: 3px;
+        transition: color .12s ease, background-color .12s ease;
+      }
+      .ship-name a:hover, .hero-ship a:hover, .cs-card h3 a:hover, a.ship-link:hover { color: var(--coral-deep); }
+      .ship-name a:active, .hero-ship a:active, .cs-card h3 a:active, a.ship-link:active { background: rgba(217,90,65,.14); }
+      .ship-name a:focus-visible, .hero-ship a:focus-visible, .cs-card h3 a:focus-visible, a.ship-link:focus-visible { outline: 2px solid var(--coral-deep); outline-offset: 2px; }
       .meta { margin: 7px 0 0; font-size: .9rem; font-weight: 600; color: var(--ink); }
       .sail-date { margin: 3px 0 0; font-size: .88rem; color: var(--ink-soft); }
       .itin { margin: 7px 0 0; font-size: .87rem; line-height: 1.45; color: var(--ink-soft); }
@@ -827,7 +839,7 @@
           <div class="card-main">
             <p class="hero-kicker">★ Lowest price per night — all windows</p>
             <p class="hero-line">MSC Cruises</p>
-            <h2 class="hero-ship">MSC Seascape</h2>
+            <h2 class="hero-ship"><a href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Seascape</a></h2>
             <p class="hero-meta">7 nights<span class="dot">•</span>Western Caribbean<span class="dot">•</span>from Galveston<br />Sails Sun, Nov 29, 2026</p>
           </div>
           <div class="porthole" aria-label="28 dollars per night">
@@ -873,7 +885,7 @@
         <div class="strike-details">
           <div class="strike-row">
             <span class="what">The sailing</span>
-            <span class="detail">MSC Seashore · 3 nights · Port Canaveral<span class="sub">Sails Thu, Jan 14, 2027 · inside cabin</span></span>
+            <span class="detail"><a class="ship-link" href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Seashore</a> · 3 nights · Port Canaveral<span class="sub">Sails Thu, Jan 14, 2027 · inside cabin</span></span>
           </div>
           <div class="strike-row">
             <span class="what">The flight</span>
@@ -2054,6 +2066,26 @@
       }
       function money(n) { return "$" + (Number.isInteger(n) ? n.toLocaleString("en-US") : n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })); }
 
+      /* Ship-name links (Douglas, 2026-11-23): a deal's ship name links
+         to the cruise line's OWN site, so a visitor can click the name
+         and land where they can verify or book that sailing themselves.
+         Official line homepages only — never an aggregator. */
+      var LINE_URLS = {
+        "MSC Cruises": "https://www.msccruisesusa.com",
+        "Carnival Cruise Line": "https://www.carnival.com",
+        "Royal Caribbean": "https://www.royalcaribbean.com",
+        "Norwegian Cruise Line": "https://www.ncl.com",
+        "Celebrity Cruises": "https://www.celebritycruises.com",
+        "Holland America": "https://www.hollandamerica.com",
+        "Princess Cruises": "https://www.princess.com",
+        "Margaritaville at Sea": "https://margaritavilleatsea.com"
+      };
+      function shipLink(d) {
+        var url = d && LINE_URLS[d.line];
+        if (!d || !d.ship || !url) { return null; }
+        return '<a href="' + url + '" target="_blank" rel="noopener" title="Verify or book on the ' + esc(d.line) + ' website">' + esc(d.ship) + "</a>";
+      }
+
       function basisBadge(basis) {
         if (basis === "allin") {
           return '<span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>';
@@ -2089,7 +2121,7 @@
         html += '<hr class="gold-rule" />';
         html += '<div class="cards">';
         w.deals.forEach(function (d, i) {
-          var shipHtml = d.ship ? esc(d.ship) : '<span class="unnamed">Ship not named in source listing</span>';
+          var shipHtml = shipLink(d) || (d.ship ? esc(d.ship) : '<span class="unnamed">Ship not named in source listing</span>');
           var priceLabel = (d.fromPrice ? "from " : "") + money(d.price);
           var ppNote = "per person" + (d.cabin ? " · " + d.cabin : "");
           html += '<article class="card">';
@@ -2346,7 +2378,7 @@
             var basis = d.basis === "allin" ? "Per person &middot; All-in — taxes &amp; port fees included" : "Per person &middot; Fare only — taxes &amp; fees extra";
             var aud = audOf(d);
             var audLabel = aud === "adults" ? "Adults Only · 18+" : "Family-Friendly";
-            return '<article class="cs-card" data-audience="' + aud + '"><span class="cs-aud">Weekend sailing · ' + audLabel + '</span><h3>' + d.ship + '</h3><p class="cs-price">$' + Number(d.price).toFixed(2) + '</p><p class="cs-detail">' + d.line + ' &middot; ' + d.nights + ' nights &middot; from ' + d.port + '<br />Sails ' + d.date + ' &middot; ' + d.itin + '</p><p class="cs-source">' + basis + '</p></article>';
+            return '<article class="cs-card" data-audience="' + aud + '"><span class="cs-aud">Weekend sailing · ' + audLabel + '</span><h3>' + (shipLink(d) || esc(d.ship)) + '</h3><p class="cs-price">$' + Number(d.price).toFixed(2) + '</p><p class="cs-detail">' + d.line + ' &middot; ' + d.nights + ' nights &middot; from ' + d.port + '<br />Sails ' + d.date + ' &middot; ' + d.itin + '</p><p class="cs-source">' + basis + '</p></article>';
           }).join("");
           if (intro) {
             var nA = hits.filter(function (d) { return audOf(d) === "adults"; }).length;
