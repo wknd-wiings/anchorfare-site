@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="AnchorFare Privacy Policy — what the AnchorFare website and app collect, what they don't, and how your information is handled." />
+    <link rel="icon" href="data:," />
+    <title>Privacy Policy — AnchorFare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,600&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0a2242;
+        --navy-deep: #061830;
+        --navy-soft: #123058;
+        --cream: #f6efdc;
+        --paper: #fffdf4;
+        --ink: #1c2a3d;
+        --ink-soft: #48566a;
+        --coral: #d95a41;
+        --coral-deep: #b8432c;
+        --coral-light: #f0836a;
+        --gold: #c19a3d;
+        --gold-soft: #e3cd8f;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---------- Header (same masthead as the home page) ---------- */
+      header.masthead {
+        background: linear-gradient(180deg, var(--navy-soft) 0%, var(--navy) 55%, var(--navy-deep) 100%);
+        color: var(--cream);
+        padding: 26px 18px 22px;
+        text-align: center;
+        border-bottom: 3px solid var(--gold);
+        position: relative;
+      }
+      header.masthead::after {
+        content: "";
+        position: absolute; left: 0; right: 0; bottom: 5px;
+        border-bottom: 1px solid rgba(193,154,61,.55);
+      }
+      .brand {
+        display: flex; align-items: center; justify-content: center; gap: 14px;
+        flex-wrap: wrap;
+      }
+      h1.wordmark {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(2.3rem, 8.5vw, 3.4rem);
+        letter-spacing: .01em;
+        line-height: 1;
+        color: var(--cream);
+      }
+      h1.wordmark a { color: inherit; text-decoration: none; }
+      .tagline {
+        margin: 8px 0 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+        color: var(--gold-soft);
+      }
+
+      /* ---------- Policy body ---------- */
+      main {
+        max-width: 760px;
+        margin: 26px auto 0;
+        padding: 0 16px;
+      }
+      .policy-card {
+        background: var(--paper);
+        border: 1px solid #ddd0a8;
+        border-top: 3px solid var(--gold);
+        border-radius: 6px;
+        padding: 26px 22px 24px;
+        box-shadow: 0 3px 10px rgba(6,24,48,.08);
+      }
+      .policy-card h2 {
+        margin: 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: clamp(1.7rem, 6vw, 2.1rem);
+        color: var(--navy);
+      }
+      .effective {
+        margin: 8px 0 0;
+        font-size: .86rem;
+        font-weight: 600;
+        letter-spacing: .04em;
+        color: var(--ink-soft);
+      }
+      .policy-card h3 {
+        margin: 24px 0 6px;
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--navy);
+      }
+      .policy-card p, .policy-card li {
+        font-size: .96rem;
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .policy-card p { margin: 8px 0 0; }
+      .policy-card ul { margin: 8px 0 0; padding-left: 20px; }
+      .policy-card li { margin: 4px 0 0; }
+      .policy-card a { color: var(--coral-deep); font-weight: 600; }
+      .policy-card a:hover { color: var(--coral); }
+
+      /* ---------- Pressable back button ---------- */
+      .back-row { margin: 22px 0 0; text-align: center; }
+      .back-btn {
+        display: inline-block;
+        min-height: 48px;
+        padding: 13px 26px;
+        border-radius: 8px;
+        border: 1.5px solid #8f3320;
+        border-top-color: #ffb59f;
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        color: #fff8ea;
+        font-family: "Libre Franklin", sans-serif;
+        font-weight: 700;
+        font-size: .95rem;
+        text-decoration: none;
+        box-shadow: 0 4px 0 #7e2a1a, 0 7px 14px rgba(6,24,48,.22), inset 0 1px 0 rgba(255,255,255,.35);
+        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      }
+      .back-btn:hover { filter: brightness(1.04); }
+      .back-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.25), inset 0 1px 0 rgba(255,255,255,.35); }
+      .back-btn:focus-visible, a:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+      /* ---------- Footer (same as the home page) ---------- */
+      footer {
+        margin-top: 26px;
+        background: var(--navy-deep);
+        color: rgba(246,239,220,.88);
+        padding: 22px 18px 30px;
+        text-align: center;
+        border-top: 3px solid var(--gold);
+      }
+      footer .foot-brand {
+        font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 1.25rem; color: var(--cream); margin: 0 0 4px;
+      }
+      footer .foot-tag { font-family: "Playfair Display", Georgia, serif; font-style: italic; color: var(--gold-soft); margin: 0 0 14px; font-size: .95rem; }
+      footer p.fine { margin: 0 auto; max-width: 640px; font-size: .83rem; line-height: 1.65; }
+      footer .foot-op { margin: 10px 0 0; font-size: .83rem; font-weight: 600; color: var(--gold-soft); }
+      footer .foot-links { margin: 14px 0 0; font-size: .88rem; }
+      footer .foot-links a {
+        display: inline-block;
+        min-height: 44px;
+        line-height: 44px;
+        padding: 0 14px;
+        color: var(--gold-soft);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-color: var(--coral);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        border-radius: 6px;
+      }
+      footer .foot-links a:hover { color: var(--cream); }
+      footer .foot-links a:active { background: rgba(217,90,65,.18); }
+      footer .foot-links a:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 2px; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="brand">
+        <h1 class="wordmark"><a href="index.html">AnchorFare</a></h1>
+      </div>
+      <p class="tagline">Sail more. Spend less.</p>
+    </header>
+
+    <main>
+      <section class="policy-card">
+        <h2>Privacy Policy</h2>
+        <p class="effective">Effective November 2026</p>
+
+        <p>AnchorFare is a cruise deal tracker operated by MVP Forge LLC of Knoxville, Tennessee. This policy explains, in plain language, what information the AnchorFare website and app collect, what they don't, and how anything collected is used.</p>
+
+        <h3>No account, no sign-in</h3>
+        <p>Browsing AnchorFare — on the website or in the app — needs no account and no sign-in. We never ask for your name, email address, or password just to look at cruise deals, and we do not sell anything on this site.</p>
+
+        <h3>What the app collects</h3>
+        <p>The AnchorFare app collects a small amount of anonymous technical information, used for analytics only — to understand which deals people look at and to keep the app running well:</p>
+        <ul>
+          <li><strong>Usage data</strong> — product interaction, such as which screens and deals are viewed.</li>
+          <li><strong>Diagnostics</strong> — crash data and performance data, so problems can be found and fixed.</li>
+        </ul>
+        <p>This data is <strong>not linked to your identity</strong>, is <strong>not used to track you</strong> across other apps or websites, and is <strong>never sold</strong>.</p>
+
+        <h3>The website</h3>
+        <p>Like most websites, AnchorFare's hosting may keep standard technical logs of visits (such as pages requested and general connection information) and may use ordinary cookies or similar basics needed for the site to work and to understand overall traffic. We do not build profiles of individual visitors, and we do not sell personal information — we don't collect the kind of personal information there would be to sell.</p>
+
+        <h3>Prices and booking</h3>
+        <p>The prices shown on AnchorFare come from the cruise lines' publicly available offers and are verified before they are featured. AnchorFare finds the fare; booking happens on the cruise lines' own websites (or with your own travel agent), and once you leave AnchorFare, that cruise line's own privacy policy and terms apply to anything you share there.</p>
+
+        <h3>We do not sell your information</h3>
+        <p>We do not sell, rent, or trade personal information to anyone. Full stop.</p>
+
+        <h3>Changes to this policy</h3>
+        <p>If this policy changes, the updated version will be posted on this page with a new effective date.</p>
+
+        <h3>Questions</h3>
+        <p>Questions about this policy or about AnchorFare's handling of information can be sent to <a href="mailto:wkndwiings@gmail.com">wkndwiings@gmail.com</a>.</p>
+
+        <div class="back-row">
+          <a class="back-btn" href="index.html">Back to AnchorFare</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="foot-brand">AnchorFare</p>
+      <p class="foot-tag">Sail more. Spend less.</p>
+      <p class="foot-op">AnchorFare &middot; operated by MVP Forge LLC</p>
+      <p class="foot-links"><a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+  </body>
+</html>
