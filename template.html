@@ -455,6 +455,87 @@
       .premium-section .ps-price { margin: 16px 0 0; font-family: "Playfair Display", Georgia, serif; font-weight: 800; font-size: 2.1rem; color: var(--gold-soft); }
       .premium-section .ps-note { font-size: .8rem; color: rgba(246,239,220,.7); }
 
+      /* ---------- Filter bar ---------- */
+      .filter-bar {
+        margin: 18px 0 4px;
+        background: var(--paper);
+        border: 1px solid #ddd0a8;
+        border-top: 3px solid var(--gold);
+        border-radius: 6px;
+        padding: 16px 16px 14px;
+        box-shadow: 0 3px 10px rgba(6,24,48,.08);
+      }
+      .filter-field label, .filter-months-label {
+        display: block;
+        margin: 0 0 8px;
+        font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--navy);
+      }
+      .filter-field input {
+        width: 100%;
+        min-height: 48px;
+        padding: 11px 13px;
+        background: var(--cream);
+        border: 1.5px solid var(--navy);
+        border-radius: 8px;
+        color: var(--ink);
+        font-family: "Libre Franklin", sans-serif;
+        font-size: 1rem; font-weight: 600;
+        box-shadow: inset 0 1px 3px rgba(6,24,48,.12);
+      }
+      .filter-field input::placeholder { color: var(--ink-soft); font-weight: 500; }
+      .filter-field input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+      .filter-field + .filter-field { margin-top: 14px; }
+      .filter-months { margin-top: 14px; }
+      .month-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .month-chip, .length-chip, .clear-btn {
+        appearance: none; cursor: pointer;
+        min-height: 44px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: 1.5px solid var(--gold);
+        border-top-color: #ecd9a0;
+        background: linear-gradient(180deg, #fffdf4 0%, var(--cream) 55%, #eadfc0 100%);
+        color: var(--navy);
+        font-family: "Libre Franklin", sans-serif;
+        font-size: .88rem; font-weight: 700; line-height: 1.25;
+        box-shadow: 0 4px 0 #a8843a, 0 6px 12px rgba(6,24,48,.16), inset 0 1px 0 rgba(255,255,255,.85);
+        transition: transform 120ms ease, box-shadow 120ms ease, background .15s ease, filter .15s ease;
+      }
+      .month-chip:hover, .length-chip:hover, .clear-btn:hover { filter: brightness(1.02); }
+      .month-chip:active, .length-chip:active, .clear-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #a8843a, 0 3px 6px rgba(6,24,48,.16), inset 0 1px 0 rgba(255,255,255,.6); }
+      .month-chip.active, .length-chip.active {
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        border-color: #8f3320;
+        border-top-color: #ffb59f;
+        color: #fff8ea;
+        box-shadow: 0 5px 0 #7e2a1a, 0 9px 16px rgba(6,24,48,.22), inset 0 1px 0 rgba(255,255,255,.45);
+      }
+      .month-chip.active:active, .length-chip.active:active { transform: translateY(1px); box-shadow: 0 1px 0 #7e2a1a, 0 3px 8px rgba(6,24,48,.2), inset 0 1px 0 rgba(255,255,255,.35); }
+      .month-chip:focus-visible, .length-chip:focus-visible, .clear-btn:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+      .clear-btn {
+        background: linear-gradient(180deg, var(--coral-light) 0%, var(--coral) 55%, var(--coral-deep) 100%);
+        border-color: #8f3320;
+        border-top-color: #ffb59f;
+        color: #fff8ea;
+        box-shadow: 0 4px 0 #7e2a1a, 0 6px 12px rgba(6,24,48,.18), inset 0 1px 0 rgba(255,255,255,.45);
+      }
+      .clear-btn:active { box-shadow: 0 1px 0 #7e2a1a, 0 3px 6px rgba(6,24,48,.18), inset 0 1px 0 rgba(255,255,255,.3); }
+      .filter-count { margin: 12px 0 0; font-size: .86rem; font-weight: 700; color: var(--ink-soft); letter-spacing: .02em; }
+      .filter-count strong { color: var(--navy); }
+      .empty-state {
+        text-align: center;
+        padding: 28px 16px 30px;
+        background: var(--paper);
+        border: 1px dashed #cbbd8a;
+        border-radius: 6px;
+      }
+      .empty-state p { margin: 0 0 14px; font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--navy); line-height: 1.4; }
+      @media (max-width: 520px) {
+        .filter-bar { padding: 14px 12px 12px; }
+        .month-chips { gap: 7px; }
+        .month-chip, .length-chip { flex: 1 1 calc(50% - 7px); padding: 10px 8px; }
+      }
+
       /* ---------- Deal cards ---------- */
       .panel-head {
         margin: 22px 0 4px;
@@ -817,6 +898,21 @@
       .cs-note { margin: 14px 0 0; font-size: .88rem; line-height: 1.55; color: var(--ink-soft); font-style: italic; }
       @media (max-width: 520px) { .cs-track { grid-template-columns: 1fr; } }
       .hidden { display: none !important; }
+      .see-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        min-height: 44px; margin-top: 12px; padding: 10px 18px;
+        border-radius: 8px; border: 1.5px solid #8f3320; border-top-color: #ffb59d;
+        background: linear-gradient(180deg, #ff8a66, #e85d3d 55%, #d94f30);
+        color: #fff; font-family: "Libre Franklin", sans-serif; font-weight: 700;
+        font-size: .92rem; letter-spacing: .02em; text-decoration: none;
+        box-shadow: 0 3px 8px rgba(10,34,66,.35), inset 0 1px 0 rgba(255,255,255,.45);
+        transition: transform .12s ease, box-shadow .12s ease; cursor: pointer;
+      }
+      .see-btn:active { transform: translateY(1px); box-shadow: 0 1px 3px rgba(10,34,66,.35), inset 0 1px 0 rgba(255,255,255,.3); }
+      .see-btn:focus-visible, .also-link:focus-visible, .hero-link:focus-visible { outline: 3px solid #d9a92f; outline-offset: 2px; }
+      .also-link { color: var(--ink); text-decoration: underline; text-decoration-color: #d9a92f; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+      .also-link:hover { color: #8f3320; }
+      .hero-link { color: inherit; text-decoration: underline; text-decoration-color: #d9a92f; text-decoration-thickness: 3px; text-underline-offset: 5px; }
     </style>
   </head>
   <body>
@@ -883,31 +979,29 @@
     </div>
 
     <main>
-      <!-- Featured hero: MSC Meraviglia — Douglas's pick from the
-           verified Nov 22, 2026 re-check (replaces the stale
-           MSC Seascape $198.79 hero). Total price first, per-night
-           underneath, per Douglas's price rule (2026-11-23). -->
-      <section class="hero" aria-label="Featured deal — MSC Meraviglia, $178.64 all-in per person">
+      <!-- Featured hero: best price per night in the whole sweep -->
+      <section class="hero" aria-label="Featured deal — lowest price per night">
         <div class="card-top">
           <div class="card-main">
-            <p class="hero-kicker">★ Featured sailing</p>
+            <p class="hero-kicker">★ Lowest price per night — all windows</p>
             <p class="hero-line">MSC Cruises</p>
-            <h2 class="hero-ship"><a href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Meraviglia</a></h2>
-            <p class="hero-meta">6 nights<span class="dot">•</span>Caribbean (ports not enumerated in source)<span class="dot">•</span>from Miami<br />Sails Sun, Nov 29, 2026</p>
+            <h2 class="hero-ship"><a class="hero-link" href="https://www.msccruisesusa.com/cruise/ships/msc-seascape">MSC Seascape</a></h2>
+            <p class="hero-meta">7 nights<span class="dot">•</span>Western Caribbean<span class="dot">•</span>from Galveston<br />Sails Sun, Jan 10, 2027</p>
           </div>
-          <div class="porthole" aria-label="178 dollars and 64 cents total per person, all-in">
-            <span class="amt total">$178.64</span>
-            <span class="per">TOTAL</span>
+          <div class="porthole" aria-label="16 dollars per night">
+            <span class="amt">$16</span>
+            <span class="per">PER NIGHT</span>
           </div>
         </div>
         <div class="hero-bottom">
-          <div class="hero-price">$178.64<small>PER PERSON · ALL-IN TOTAL</small><span class="hero-pernight">That&rsquo;s just $29.77 a night</span></div>
+          <div class="hero-price">$114.79<small>PER PERSON · INSIDE CABIN</small></div>
         </div>
+        <div><a class="see-btn" href="https://www.msccruisesusa.com/cruise/ships/msc-seascape">See it at MSC Cruises →</a></div>
         <div class="hero-badges">
           <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
           <span class="tag fly">Fly &amp; Sail candidate — flight match coming</span>
         </div>
-      </section>
+      </section>      </section>
 
       <!-- Gold Strike: the verified Fly & Sail package (90-day window sailing) -->
       <section class="goldstrike" aria-label="Gold Strike — Fly and Sail package deal">
@@ -938,7 +1032,7 @@
         <div class="strike-details">
           <div class="strike-row">
             <span class="what">The sailing</span>
-            <span class="detail"><a class="ship-link" href="https://www.msccruisesusa.com" target="_blank" rel="noopener" title="Verify or book on the MSC Cruises website">MSC Seashore</a> · 3 nights · Port Canaveral<span class="sub">Sails Thu, Jan 14, 2027 · inside cabin</span></span>
+            <span class="detail"><a class="also-link" href="https://www.msccruisesusa.com/cruise/ships/msc-seashore">MSC Seashore</a> · 3 nights · Port Canaveral<span class="sub">Sails Thu, Jan 14, 2027 · inside cabin</span></span>
           </div>
           <div class="strike-row">
             <span class="what">The flight</span>
@@ -946,8 +1040,8 @@
           </div>
         </div>
         <div class="strike-math">
-          <p class="breakdown">Cruise <strong>$222.64</strong> all-in<br />+ Flight <strong>$302.60</strong></p>
-          <div class="strike-total">$525.24<small>PER PERSON · CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
+          <p class="breakdown">Cruise <strong>$207.64</strong> all-in<br />+ Flight <strong>$302.60</strong></p>
+          <div class="strike-total">$510.24<small>PER PERSON · CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
         </div>
         <div class="strike-badges">
           <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Southwest&rsquo;s site</span>
@@ -956,7 +1050,6 @@
         </div>
 
         <p class="strike-option-label">Deeper strike — <span class="deeper-note">Allegiant beats it</span></p>
-        <p class="strike-caveats"><strong>Heads up:</strong> Flies out a day early — a night ashore near the port is on you. Lands at Sanford, not Orlando International. Bags cost extra.</p>
         <div class="strike-details" style="margin-top:8px">
           <div class="strike-row">
             <span class="what">The flight</span>
@@ -964,17 +1057,41 @@
           </div>
         </div>
         <div class="strike-math two-totals">
-          <p class="breakdown">Cruise <strong>$222.64</strong> all-in<br />+ Flight <strong>$131.50</strong> / <strong>$232.50</strong></p>
+          <p class="breakdown">Cruise <strong>$207.64</strong> all-in<br />+ Flight <strong>$131.50</strong> / <strong>$232.50</strong></p>
           <div class="strike-totals">
-            <div class="strike-total">$354.14<small>PER PERSON · PERSONAL ITEM<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
-            <div class="strike-total">$455.14<small>PER PERSON · CHECKED BAG<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
+            <div class="strike-total">$339.14<small>PER PERSON · PERSONAL ITEM<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
+            <div class="strike-total">$440.14<small>PER PERSON · CHECKED BAG<br />CRUISE TAXES &amp; PORT FEES INCLUDED</small></div>
           </div>
         </div>
+        <p class="strike-caveats"><strong>Heads up:</strong> Flies out a day early — a night ashore near the port is on you. Lands at Sanford, not Orlando International. Bags cost extra.</p>
         <div class="strike-badges">
           <span class="verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>Verified on Allegiant&rsquo;s site</span>
           <span class="basis allin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 L9.5 18 L20 6.5"/></svg>All-in — taxes &amp; port fees included</span>
         </div>
       </section>
+
+      <!-- Filter bar: port city search + ship search + rolling 3-month filter -->
+      <div class="filter-bar" aria-label="Filter sailings by port city, ship, month and trip length">
+        <div class="filter-field">
+          <label for="portSearch">Search your port city</label>
+          <input type="text" id="portSearch" list="portList" placeholder="Try Miami, Galveston, Tampa…" autocomplete="off" />
+          <datalist id="portList"></datalist>
+        </div>
+        <div class="filter-field">
+          <label for="shipSearch">Search by ship</label>
+          <input type="text" id="shipSearch" list="shipList" placeholder="Try MSC Seascape, Carnival Glory…" autocomplete="off" />
+          <datalist id="shipList"></datalist>
+        </div>
+        <div class="filter-months">
+          <span class="filter-months-label" id="monthFilterLabel">Sail month</span>
+          <div class="month-chips" id="monthChips" role="group" aria-labelledby="monthFilterLabel"></div>
+        </div>
+        <div class="filter-months">
+          <span class="filter-months-label" id="lengthFilterLabel">Trip length</span>
+          <div class="month-chips" id="lengthChips" role="group" aria-labelledby="lengthFilterLabel"></div>
+        </div>
+        <p class="filter-count" id="filterCount" aria-live="polite"></p>
+      </div>
 
       <!-- Window switcher -->
       <div class="switcher-wrap">
@@ -1122,14 +1239,14 @@
     <footer>
       <p class="foot-brand">AnchorFare</p>
       <p class="foot-tag">Sail more. Spend less.</p>
-      <p class="fine">Prices from the Nov 14, 2026 re-check, per person double occupancy — cruise prices move fast and every featured deal is re-verified before it is promoted. AnchorFare finds the fare; you book direct with the line or your agent.</p>
+      <p class="fine">Prices from the Nov 26, 2026 re-check, per person double occupancy — cruise prices move fast and every featured deal is re-verified before it is promoted. AnchorFare finds the fare; you book direct with the line or your agent.</p>
       <p class="foot-op">AnchorFare &middot; operated by MVP Forge LLC</p>
       <p class="foot-links"><a href="privacy.html">Privacy Policy</a></p>
     </footer>
 
     <script>
       /* Deal data — generated by build_site.py from deals.json (do not edit here).
-         Source: AnchorFare tracker, Nov 12, 2026 sweep + verified Nov 14, 2026
+         Source: AnchorFare tracker, Nov 12, 2026 sweep + verified Nov 26, 2026
          SmartCruiser re-check. basis: "allin" = taxes & port fees included;
          "fare" = fare only. portTag: "fly" | "drive" | null. */
       var WINDOWS = __DEALS_JSON__;
@@ -1203,7 +1320,7 @@
         "Margaritaville at Sea": "https://margaritavilleatsea.com"
       };
       function shipLink(d) {
-        var url = d && LINE_URLS[d.line];
+        var url = d && (d.url || LINE_URLS[d.line]);
         if (!d || !d.ship || !url) { return null; }
         return '<a href="' + url + '" target="_blank" rel="noopener" title="Verify or book on the ' + esc(d.line) + ' website">' + esc(d.ship) + "</a>";
       }
@@ -1228,6 +1345,57 @@
         return '<span class="tag honor">★ ' + esc(d.honor) + '</span>';
       }
 
+      /* ---------- Filters: port city search + ship search + rolling 3-month + trip length ---------- */
+      var filterCity = "";
+      var filterShip = "";
+      var filterMonth = null; /* { month: 0-11, year: YYYY } or null */
+      var filterLength = null; /* exact nights value, or null for any length */
+      var currentWindow = "a";
+      var monthOptions = []; /* filled by buildMonthChips() */
+
+      function isFiltered() { return filterCity !== "" || filterShip !== "" || filterMonth !== null || filterLength !== null; }
+      function dealMatches(d) {
+        if (filterCity !== "" && String(d.port).toLowerCase().indexOf(filterCity) === -1) { return false; }
+        if (filterShip !== "" && String(d.ship || "").toLowerCase().indexOf(filterShip) === -1) { return false; }
+        if (filterMonth !== null) {
+          var dt = new Date(d.date);
+          if (isNaN(dt.getTime()) || dt.getMonth() !== filterMonth.month || dt.getFullYear() !== filterMonth.year) { return false; }
+        }
+        if (filterLength !== null && Number(d.nights) !== filterLength) { return false; }
+        return true;
+      }
+      function filteredDeals(key) { return WINDOWS[key].deals.filter(dealMatches); }
+      function updateFilterCount() {
+        var el = document.getElementById("filterCount");
+        if (!el) { return; }
+        var n = filteredDeals(currentWindow).length;
+        el.innerHTML = "Showing <strong>" + n + "</strong> " + (n === 1 ? "sailing" : "sailings");
+      }
+      function clearFilters() {
+        filterCity = "";
+        filterShip = "";
+        filterMonth = null;
+        filterLength = null;
+        var input = document.getElementById("portSearch");
+        if (input) { input.value = ""; }
+        var shipInput = document.getElementById("shipSearch");
+        if (shipInput) { shipInput.value = ""; }
+        var chips = document.querySelectorAll(".month-chip");
+        chips.forEach(function (c) {
+          var on = c.getAttribute("data-month-index") === "-1";
+          c.classList.toggle("active", on);
+          c.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        var lengthChips = document.querySelectorAll(".length-chip");
+        lengthChips.forEach(function (c) {
+          var on = c.getAttribute("data-length") === "-1";
+          c.classList.toggle("active", on);
+          c.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        ["a", "b", "c"].forEach(renderPanel);
+        updateFilterCount();
+      }
+
       function renderPanel(key) {
         var w = WINDOWS[key];
         if (afGated(key)) {
@@ -1238,11 +1406,25 @@
           document.getElementById("also-" + key).innerHTML = "";
           return;
         }
+        var deals = filteredDeals(key);
+        var filtered = isFiltered();
         var html = "";
-        html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">' + w.deals.length + ' featured sailings · cheapest first</span></div>';
+        if (filtered) {
+          html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">' + deals.length + ' ' + (deals.length === 1 ? "sailing matches" : "sailings match") + ' your search · cheapest first</span></div>';
+        } else {
+          html += '<div class="panel-head"><h2>' + esc(w.title) + '</h2><span class="count">' + w.deals.length + ' featured sailings · cheapest first</span></div>';
+        }
         html += '<hr class="gold-rule" />';
+        if (filtered && deals.length === 0) {
+          html += '<div class="empty-state"><p>No sailings match — try another city, ship, month or length</p><button type="button" class="clear-btn" data-clear-filters="true">Clear searches, month &amp; length</button></div>';
+          document.getElementById("panel-" + key).innerHTML = html;
+          document.getElementById("also-" + key).innerHTML = "";
+          var clearBtn = document.getElementById("panel-" + key).querySelector("[data-clear-filters]");
+          if (clearBtn) { clearBtn.addEventListener("click", clearFilters); }
+          return;
+        }
         html += '<div class="cards">';
-        w.deals.forEach(function (d, i) {
+        deals.forEach(function (d, i) {
           var shipHtml = shipLink(d) || (d.ship ? esc(d.ship) : '<span class="unnamed">Ship not named in source listing</span>');
           var priceLabel = (d.fromPrice ? "from " : "") + money(d.price);
           var ppNote = "per person" + (d.cabin ? " · " + d.cabin : "");
@@ -1259,6 +1441,7 @@
           html += '</div>';
           html += '<div class="card-foot"><div class="price-row"><span class="price">' + priceLabel + '</span><span class="pp">' + ppNote + '</span></div><p class="per-night-note">That&rsquo;s just ' + money(d.perNight) + ' a night</p>';
           html += '<div class="card-badges">' + basisBadge(d.basis) + honorBadge(d) + portBadge(d.portTag) + '</div>';
+          if (d.url) { html += '<a class="see-btn" href="' + d.url + '">See it at ' + esc(d.line) + ' \u2192</a>'; }
           html += '</div></article>';
         });
         html += '</div>';
@@ -1266,10 +1449,11 @@
         /* "Also tracked" renders into its own slot BELOW the games band,
            so the band sits between the deals list and this section. */
         var alsoHtml = "";
-        if (w.also && w.also.length) {
+        if (!filtered && w.also && w.also.length) {
           alsoHtml += '<div class="also"><h3>Also tracked in this window</h3><ul>';
           w.also.forEach(function (a) {
-            alsoHtml += '<li><span>' + esc(a.text) + '</span><span class="amt">' + esc(a.amt) + ' <span class="sub">· ' + esc(a.sub) + '</span></span></li>';
+            var aTxt = a.url ? '<a class="also-link" href="' + a.url + '">' + esc(a.text) + '</a>' : esc(a.text);
+            alsoHtml += '<li><span>' + aTxt + '</span><span class="amt">' + esc(a.amt) + ' <span class="sub">· ' + esc(a.sub) + '</span></span></li>';
           });
           alsoHtml += '</ul></div>';
         }
@@ -1277,6 +1461,112 @@
       }
 
       ["a", "b", "c"].forEach(renderPanel);
+
+      /* Build the port-city datalist from the deal data (unique, alphabetical) */
+      (function buildPortList() {
+        var seen = {};
+        ["a", "b", "c"].forEach(function (k) {
+          WINDOWS[k].deals.forEach(function (d) { if (d.port) { seen[d.port] = true; } });
+        });
+        var ports = Object.keys(seen).sort(function (x, y) { return x.localeCompare(y); });
+        var dl = document.getElementById("portList");
+        if (dl) {
+          dl.innerHTML = ports.map(function (p) { return '<option value="' + esc(p) + '"></option>'; }).join("");
+        }
+      })();
+
+      /* Build the ship datalist from the deal data (unique, alphabetical) */
+      (function buildShipList() {
+        var seen = {};
+        ["a", "b", "c"].forEach(function (k) {
+          WINDOWS[k].deals.forEach(function (d) { if (d.ship) { seen[d.ship] = true; } });
+        });
+        var ships = Object.keys(seen).sort(function (x, y) { return x.localeCompare(y); });
+        var dl = document.getElementById("shipList");
+        if (dl) {
+          dl.innerHTML = ships.map(function (s) { return '<option value="' + esc(s) + '"></option>'; }).join("");
+        }
+      })();
+
+      /* Build the month chips: All months + the next three months from today */
+      (function buildMonthChips() {
+        var wrap = document.getElementById("monthChips");
+        if (!wrap) { return; }
+        var now = new Date();
+        monthOptions = [];
+        for (var off = 1; off <= 3; off++) {
+          var d = new Date(now.getFullYear(), now.getMonth() + off, 1);
+          monthOptions.push({
+            month: d.getMonth(),
+            year: d.getFullYear(),
+            label: d.toLocaleString("en-US", { month: "long" }) + " " + d.getFullYear()
+          });
+        }
+        var html = '<button type="button" class="month-chip active" data-month-index="-1" aria-pressed="true">All months</button>';
+        monthOptions.forEach(function (m, i) {
+          html += '<button type="button" class="month-chip" data-month-index="' + i + '" aria-pressed="false">' + esc(m.label) + '</button>';
+        });
+        wrap.innerHTML = html;
+        wrap.querySelectorAll(".month-chip").forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            var idx = parseInt(chip.getAttribute("data-month-index"), 10);
+            filterMonth = idx === -1 ? null : { month: monthOptions[idx].month, year: monthOptions[idx].year };
+            wrap.querySelectorAll(".month-chip").forEach(function (c) {
+              var on = c === chip;
+              c.classList.toggle("active", on);
+              c.setAttribute("aria-pressed", on ? "true" : "false");
+            });
+            ["a", "b", "c"].forEach(renderPanel);
+            updateFilterCount();
+          });
+        });
+      })();
+
+      /* Build the trip-length chips: Any length + 3 through 8 days, exact nights match */
+      (function buildLengthChips() {
+        var wrap = document.getElementById("lengthChips");
+        if (!wrap) { return; }
+        var html = '<button type="button" class="length-chip active" data-length="-1" aria-pressed="true">Any length</button>';
+        for (var n = 3; n <= 8; n++) {
+          html += '<button type="button" class="length-chip" data-length="' + n + '" aria-pressed="false">' + n + ' days</button>';
+        }
+        wrap.innerHTML = html;
+        wrap.querySelectorAll(".length-chip").forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            var val = parseInt(chip.getAttribute("data-length"), 10);
+            filterLength = val === -1 ? null : val;
+            wrap.querySelectorAll(".length-chip").forEach(function (c) {
+              var on = c === chip;
+              c.classList.toggle("active", on);
+              c.setAttribute("aria-pressed", on ? "true" : "false");
+            });
+            ["a", "b", "c"].forEach(renderPanel);
+            updateFilterCount();
+          });
+        });
+      })();
+
+      /* Live city search */
+      (function bindCitySearch() {
+        var input = document.getElementById("portSearch");
+        if (!input) { return; }
+        input.addEventListener("input", function () {
+          filterCity = input.value.trim().toLowerCase();
+          ["a", "b", "c"].forEach(renderPanel);
+          updateFilterCount();
+        });
+      })();
+
+      /* Live ship search */
+      (function bindShipSearch() {
+        var input = document.getElementById("shipSearch");
+        if (!input) { return; }
+        input.addEventListener("input", function () {
+          filterShip = input.value.trim().toLowerCase();
+          ["a", "b", "c"].forEach(renderPanel);
+          updateFilterCount();
+        });
+      })();
 
       /* When the gate is live, the 60/90 switcher buttons carry a
          Premium tag so the lock is visible before the tap. */
@@ -1291,6 +1581,7 @@
 
       var rangeEl = document.getElementById("windowRange");
       function showWindow(key) {
+        currentWindow = key;
         ["a", "b", "c"].forEach(function (k) {
           document.getElementById("panel-" + k).classList.toggle("hidden", k !== key);
           document.getElementById("also-" + k).classList.toggle("hidden", k !== key);
@@ -1304,6 +1595,7 @@
         rangeEl.innerHTML = afGated(key)
           ? "<strong>" + esc(WINDOWS[key].title) + "</strong> · a Premium window — free AnchorFare sails the next 30 days"
           : "<strong>" + esc(WINDOWS[key].title) + "</strong> · sails " + esc(WINDOWS[key].range) + " · sorted cheapest first";
+        updateFilterCount();
       }
       document.querySelectorAll(".win-btn").forEach(function (b) {
         b.addEventListener("click", function () { showWindow(b.getAttribute("data-window")); });
